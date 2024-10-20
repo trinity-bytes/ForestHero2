@@ -4,16 +4,10 @@
 class Semilla : public Entidad
 {
 public:
-	Semilla(int, int);
+	Semilla();
 	~Semilla();
-
-	void Dibujar();
 };
 
-Semilla::Semilla(int x, int y) :Entidad(x, y) {}
+Semilla::Semilla() :Entidad() {}
 
 Semilla::~Semilla() {}
-
-void Semilla::Dibujar() {
-	// implementar
-}

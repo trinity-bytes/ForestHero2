@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Clases Objetos">
+      <UniqueIdentifier>{213fedf4-6583-49ef-975c-93f75b9e1664}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Clases Objetos\Recursos">
+      <UniqueIdentifier>{169ec41c-b4e1-4f05-8dcd-e7d5aa45bf2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Clases Objetos\Personajes">
+      <UniqueIdentifier>{c756b823-b886-4315-a7bb-a3a7fdb9076d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Bibliotecas Extra">
+      <UniqueIdentifier>{f1fd09b1-a99d-4202-a7a5-1b62344e8661}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyForm.cpp">
@@ -23,28 +35,34 @@
     <ClInclude Include="MyForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Entidad.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FuncionesCustom.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PersonajeSecundario.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Agua.h">
+      <Filter>Header Files\Clases Objetos\Recursos</Filter>
     </ClInclude>
     <ClInclude Include="Semilla.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Clases Objetos\Recursos</Filter>
+    </ClInclude>
+    <ClInclude Include="Personaje.h">
+      <Filter>Header Files\Clases Objetos\Personajes</Filter>
     </ClInclude>
     <ClInclude Include="Enemigo.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Clases Objetos\Personajes</Filter>
     </ClInclude>
-    <ClInclude Include="Basura.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Guardian.h">
+      <Filter>Header Files\Clases Objetos\Personajes</Filter>
     </ClInclude>
     <ClInclude Include="Arbol.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Clases Objetos\Recursos</Filter>
     </ClInclude>
-    <ClInclude Include="Agua.h">
+    <ClInclude Include="Basura.h">
+      <Filter>Header Files\Clases Objetos\Recursos</Filter>
+    </ClInclude>
+    <ClInclude Include="FuncionesCustom.h">
+      <Filter>Header Files\Bibliotecas Extra</Filter>
+    </ClInclude>
+    <ClInclude Include="Entidad.h">
+      <Filter>Header Files\Clases Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="GestionElementos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

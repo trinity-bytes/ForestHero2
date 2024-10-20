@@ -127,13 +127,15 @@
     <ClInclude Include="Arbol.h" />
     <ClInclude Include="Basura.h" />
     <ClInclude Include="Enemigo.h" />
+    <ClInclude Include="GestionElementos.h" />
+    <ClInclude Include="Guardian.h" />
     <ClInclude Include="Semilla.h" />
     <ClInclude Include="Entidad.h" />
     <ClInclude Include="FuncionesCustom.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="PersonajeSecundario.h" />
+    <ClInclude Include="Personaje.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

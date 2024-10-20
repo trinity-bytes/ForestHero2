@@ -4,17 +4,10 @@
 class Agua : public Entidad
 {
 public:
-	Agua(int, int);
+	Agua();
 	~Agua();
-
-	void Dibujar();
 };
 
-Agua::Agua(int x, int y) : Entidad(x, y) {}
+Agua::Agua() : Entidad() {}
 
 Agua::~Agua() {}
-
-void Agua::Dibujar() 
-{
-	//! por implementar
-}

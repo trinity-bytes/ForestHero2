@@ -4,17 +4,10 @@
 class Arbol : public Entidad
 {
 public:
-	Arbol(int, int);
+	Arbol();
 	~Arbol();
-
-	void Dibujar();
 };
 
-Arbol::Arbol(int x, int y) : Entidad(x, y) {}
+Arbol::Arbol() : Entidad() {}
 
 Arbol::~Arbol() {}
-
-void Arbol::Dibujar() 
-{
-	// implementar
-}
