@@ -29,7 +29,7 @@ Guardian::Guardian() :Personaje(velocidad)
 	contadorAgua = 15;
 	contadorSemillas = 20;
 	puntos = 0;
-	velocidad = 10;
+	velocidad = 8;
 }
 
 Guardian::~Guardian() {}
