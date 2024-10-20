@@ -20,7 +20,7 @@ public:
 
 	// setters
 	void setX(int);
-	void setX(int);
+	void setY(int);
 	void setImagen(char*);
 
 	void Borrar();
@@ -41,7 +41,7 @@ int Entidad::getAncho() { return this->ancho; }
 int Entidad::getAlto() { return this->alto; }
 
 void Entidad::setX(int x) { this->x = x; }
-void Entidad::setX(int y) { this->y = y; }
+void Entidad::setY(int y) { this->y = y; }
 
 void Entidad::setImagen(char* dirImagen) 
 {

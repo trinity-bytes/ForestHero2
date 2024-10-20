@@ -1,4 +1,6 @@
 #pragma once
+#include "Guardian.h"
+
 
 namespace ForestHero2 {
 
@@ -21,6 +23,14 @@ namespace ForestHero2 {
 			//
 			//TODO: Add the constructor code here
 			//
+			Random^ r = gcnew Random();
+
+			objGuardian = new Guardian();
+			objGuardian->setX(r->Next(this->Size.Width) - 100);
+			objGuardian->setY(r->Next(this->Size.Height) - 100);
+			objGuardian->setImagen("Resources/Images/personajeTemp.png");
+
+			escenario = gcnew Bitmap(gcnew System::String("Resources/Images/escenarioTemp.jpg"));
 		}
 
 	protected:
@@ -34,12 +44,18 @@ namespace ForestHero2 {
 				delete components;
 			}
 		}
+	private: System::ComponentModel::IContainer^ components;
+	protected:
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		Guardian* objGuardian;
+		Direccion teclaPulsada;
+		Bitmap^ escenario;
+
+	private: System::Windows::Forms::Timer^ timer1; 
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -48,13 +64,19 @@ namespace ForestHero2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->SuspendLayout();
+			// 
+			// timer1
+			// 
+			this->timer1->Enabled = true;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(744, 418);
+			this->ClientSize = System::Drawing::Size(984, 529);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
