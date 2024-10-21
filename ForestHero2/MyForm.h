@@ -28,8 +28,10 @@ namespace ForestHero2 {
 			objGuardian = new Guardian();
 			objGuardian->setX(r->Next(this->Size.Width) - 100);
 			objGuardian->setY(r->Next(this->Size.Height) - 100);
+			objGuardian->setVelocidad(10);
 			objGuardian->setImagen("Resources/Images/personajeTemp.png");
 
+			teclaPulsada = Direccion::Ninguno;
 			escenario = gcnew Bitmap(gcnew System::String("Resources/Images/escenarioTemp.jpg"));
 		}
 
@@ -83,20 +85,11 @@ namespace ForestHero2 {
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm";
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
+			this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyUp);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-		teclaPulsada = Direccion::Ninguno;
-		if (e->KeyCode == Keys::Up) teclaPulsada = Direccion::Arriba;
-		if (e->KeyCode == Keys::Down) teclaPulsada = Direccion::Abajo;
-		if (e->KeyCode == Keys::Right) teclaPulsada = Direccion::Derecha;
-		if (e->KeyCode == Keys::Left) teclaPulsada = Direccion::Izquierda;
-
-		objGuardian->setDireccion(teclaPulsada);
-	}
-
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 
 		// Creamos el canvas del formulario
@@ -122,5 +115,21 @@ namespace ForestHero2 {
 		delete espacioBuffer;
 		delete canvas;
 	}
-	};
+
+	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		teclaPulsada = Direccion::Ninguno;
+		if (e->KeyCode == Keys::Up) teclaPulsada = Direccion::Arriba;
+		if (e->KeyCode == Keys::Down) teclaPulsada = Direccion::Abajo;
+		if (e->KeyCode == Keys::Right) teclaPulsada = Direccion::Derecha;
+		if (e->KeyCode == Keys::Left) teclaPulsada = Direccion::Izquierda;
+
+		objGuardian->setVelocidad(10);
+		objGuardian->setDireccion(teclaPulsada);
+	}
+
+	private: System::Void MyForm_KeyUp(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		teclaPulsada = Direccion::Ninguno;
+		objGuardian->setVelocidad(0);
+	}
+};
 }

@@ -16,6 +16,7 @@ public:
 	int getDY();
 
 	// setter
+	void setVelocidad(int);
 	void setDireccion(Direccion);
 
 	void Mover(Graphics^, Direccion);
@@ -23,14 +24,15 @@ public:
 
 Personaje::Personaje(int velocidad) : Entidad()
 {
-	dx = dy = 0;
-	this->velocidad = velocidad;
+	dx = dy = velocidad = 0;
 }
 
 Personaje::~Personaje() {}
 
 int Personaje::getDX() { return this->dx; }
 int Personaje::getDY() { return this->dy; }
+
+void Personaje::setVelocidad(int velocidad) { this->velocidad = velocidad; }
 
 void Personaje::setDireccion(Direccion teclaPulsada)
 {
@@ -70,8 +72,8 @@ void Personaje::Mover(Graphics^ canvas, Direccion teclapulsada)
 	indiceAncho++;
 	if (indiceAncho > 3) indiceAncho = 0;
 
-	x = x + dx;
-	y = y + dy;
+	x += dx;
+	y += dy;
 
 	Dibujar(canvas);
 }
