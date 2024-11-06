@@ -11,7 +11,9 @@ public:
 	GestionJuego();
 	~GestionJuego();
 
-
+	void IniciarJuego();
+	void RevisarColisiones();
+	void DeterminarGanador();
 };
 
 GestionJuego::GestionJuego()
