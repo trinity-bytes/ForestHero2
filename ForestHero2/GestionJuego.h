@@ -1,25 +1,42 @@
 #pragma once
 #include "GestionRecursos.h"
-#include "Guardian.h"
 
 class GestionJuego
 {
 private:
 	ArregloElementos* objElementos;
-	Guardian* objGuardian;
 public:
 	GestionJuego();
 	~GestionJuego();
 
-	void IniciarJuego();
+	void IniciarElementos();
+	void MoverElementos();
 	void RevisarColisiones();
 	void DeterminarGanador();
 };
 
 GestionJuego::GestionJuego()
 {
+	IniciarElementos();
 }
 
-GestionJuego::~GestionJuego()
+GestionJuego::~GestionJuego() {}
+
+void GestionJuego::IniciarElementos() 
 {
+
+}
+
+void GestionJuego::MoverElementos() 
+{
+
+}
+
+void GestionJuego::RevisarColisiones() 
+{
+
+}
+
+void GestionJuego::DeterminarGanador() {
+
 }

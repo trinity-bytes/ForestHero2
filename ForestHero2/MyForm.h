@@ -1,6 +1,6 @@
 #pragma once
+#include "GestionJuego.h"
 #include "Guardian.h"
-
 
 namespace ForestHero2 {
 
@@ -11,18 +11,13 @@ namespace ForestHero2 {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
-	/// <summary>
-	/// Summary for MyForm
-	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
 		MyForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+
 			Random^ r = gcnew Random();
 
 			objGuardian = new Guardian();
@@ -36,9 +31,6 @@ namespace ForestHero2 {
 		}
 
 	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
 		~MyForm()
 		{
 			if (components)
@@ -50,9 +42,6 @@ namespace ForestHero2 {
 	protected:
 
 	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
 		Guardian* objGuardian;
 		Direccion teclaPulsada;
 		Bitmap^ escenario;
@@ -60,10 +49,6 @@ namespace ForestHero2 {
 	private: System::Windows::Forms::Timer^ timer1; 
 
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());

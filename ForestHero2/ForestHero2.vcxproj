@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agua.h" />
+    <ClInclude Include="Aliado.h" />
     <ClInclude Include="Arbol.h" />
     <ClInclude Include="Basura.h" />
     <ClInclude Include="Enemigo.h" />
