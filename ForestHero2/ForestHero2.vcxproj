@@ -127,7 +127,8 @@
     <ClInclude Include="Arbol.h" />
     <ClInclude Include="Basura.h" />
     <ClInclude Include="Enemigo.h" />
-    <ClInclude Include="GestionElementos.h" />
+    <ClInclude Include="GestionJuego.h" />
+    <ClInclude Include="GestionRecursos.h" />
     <ClInclude Include="Guardian.h" />
     <ClInclude Include="Semilla.h" />
     <ClInclude Include="Entidad.h" />
@@ -135,7 +136,7 @@
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Personaje.h" />
+    <ClInclude Include="Agente.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

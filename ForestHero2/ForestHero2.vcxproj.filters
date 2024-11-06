@@ -19,11 +19,11 @@
     <Filter Include="Header Files\Clases Objetos\Recursos">
       <UniqueIdentifier>{169ec41c-b4e1-4f05-8dcd-e7d5aa45bf2e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Clases Objetos\Personajes">
-      <UniqueIdentifier>{c756b823-b886-4315-a7bb-a3a7fdb9076d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Bibliotecas Extra">
       <UniqueIdentifier>{f1fd09b1-a99d-4202-a7a5-1b62344e8661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Clases Objetos\Agentes">
+      <UniqueIdentifier>{c756b823-b886-4315-a7bb-a3a7fdb9076d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -38,17 +38,14 @@
     <ClInclude Include="Agua.h">
       <Filter>Header Files\Clases Objetos\Recursos</Filter>
     </ClInclude>
-    <ClInclude Include="Semilla.h">
-      <Filter>Header Files\Clases Objetos\Recursos</Filter>
-    </ClInclude>
-    <ClInclude Include="Personaje.h">
-      <Filter>Header Files\Clases Objetos\Personajes</Filter>
+    <ClInclude Include="Agente.h">
+      <Filter>Header Files\Clases Objetos\Agentes</Filter>
     </ClInclude>
     <ClInclude Include="Enemigo.h">
-      <Filter>Header Files\Clases Objetos\Personajes</Filter>
+      <Filter>Header Files\Clases Objetos\Agentes</Filter>
     </ClInclude>
     <ClInclude Include="Guardian.h">
-      <Filter>Header Files\Clases Objetos\Personajes</Filter>
+      <Filter>Header Files\Clases Objetos\Agentes</Filter>
     </ClInclude>
     <ClInclude Include="Arbol.h">
       <Filter>Header Files\Clases Objetos\Recursos</Filter>
@@ -62,7 +59,13 @@
     <ClInclude Include="Entidad.h">
       <Filter>Header Files\Clases Objetos</Filter>
     </ClInclude>
-    <ClInclude Include="GestionElementos.h">
+    <ClInclude Include="GestionRecursos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Semilla.h">
+      <Filter>Header Files\Clases Objetos\Agentes</Filter>
+    </ClInclude>
+    <ClInclude Include="GestionJuego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

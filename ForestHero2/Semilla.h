@@ -1,13 +1,16 @@
 #pragma once
-#include "Entidad.h"
+#include "Agente.h"
 
-class Semilla : public Entidad
+class Semilla : public Agente
 {
 public:
 	Semilla();
 	~Semilla();
 };
 
-Semilla::Semilla() :Entidad() {}
+Semilla::Semilla() : Agente(velocidad) 
+{
+	velocidad = 5;
+}
 
 Semilla::~Semilla() {}

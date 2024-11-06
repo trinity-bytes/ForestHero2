@@ -1,45 +1,45 @@
 #pragma once
-#include "Personaje.h"
+#include "Agente.h"
 
-class Guardian : public Personaje 
+class Guardian : public Agente 
 {
 private:
 	int vidas;
-	int contadorAgua;
-	int contadorSemillas;
+	int cantAgua;
+	int cantSemillas;
 	int puntos;
 public:
 	Guardian();
 	~Guardian();
-
-	int getContadorSemillas();
-	int getContadorAgua();
+	
+	int getCantAgua();
+	int getCantSemillas();
 	int getPuntos();
 	int getVidas();
-
-	void setContadorSemillas(int);
-	void setContadorAgua(int);
+	
+	void setCantAgua(int);
+	void setCantSemillas(int);
 	void setPuntos(int);
 	void setVidas(int);
 };
 
-Guardian::Guardian() :Personaje(velocidad)
+Guardian::Guardian() :Agente(velocidad)
 {
 	vidas = 5;
-	contadorAgua = 15;
-	contadorSemillas = 20;
+	cantAgua = 15;
+	cantSemillas = 20;
 	puntos = 0;
 	velocidad = 8;
 }
 
 Guardian::~Guardian() {}
 
-int Guardian::getContadorSemillas() { return this->contadorSemillas; }
-int Guardian::getContadorAgua() { return this->contadorAgua; }
+int Guardian::getCantAgua() { return this->cantSemillas; }
+int Guardian::getCantSemillas() { return this->cantAgua; }
 int Guardian::getPuntos() { return this->puntos; }
 int Guardian::getVidas() { return this->vidas; }
 
-void Guardian::setContadorSemillas(int i) { this->contadorSemillas = i; }
-void Guardian::setContadorAgua(int i) { this->contadorAgua = i; }
+void Guardian::setCantAgua(int i) { this->cantSemillas = i; }
+void Guardian::setCantSemillas(int i) { this->cantAgua = i; }
 void Guardian::setPuntos(int i) { this->puntos = i; }
 void Guardian::setVidas(int i) { this->vidas = i; }
