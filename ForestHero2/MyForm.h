@@ -88,7 +88,7 @@ namespace ForestHero2 {
 		BufferedGraphics^ buffer = espacioBuffer->Allocate(canvas, this->ClientRectangle);
 
 		//A partir de aqui dibujamos en el canvas del buffer
-		buffer->Graphics->DrawImage(escenario, 0, 0, Rectangle(0, 0, 1000, 500), GraphicsUnit::Pixel);
+		buffer->Graphics->DrawImage(escenario, 0, 0, System::Drawing::Rectangle(0, 0, 1000, 500), GraphicsUnit::Pixel);
 
 		objGuardian->Mover(buffer->Graphics, teclaPulsada);
 

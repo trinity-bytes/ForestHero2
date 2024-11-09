@@ -70,10 +70,10 @@ void Entidad::Dibujar(Graphics^ canvas)
 	Bitmap^ bitmap = gcnew Bitmap(gcnew System::String(imagen));
 
 	//se obtiene un recuadro o porcion del sprite
-	Rectangle cuadro = Rectangle(indiceAncho * ancho, indiceAlto * alto, ancho, alto);
+	System::Drawing::Rectangle cuadro = System::Drawing::Rectangle(indiceAncho * ancho, indiceAlto * alto, ancho, alto);
 	
 	//para hacer zoom
-	Rectangle zoom = Rectangle(x, y, ancho * 1, alto * 1);
+	System::Drawing::Rectangle zoom = System::Drawing::Rectangle(x, y, ancho * 1, alto * 1);
 
 	//dibujar cuadro en el canvas del formulario
 	canvas->DrawImage(bitmap, zoom, cuadro, GraphicsUnit::Pixel);
