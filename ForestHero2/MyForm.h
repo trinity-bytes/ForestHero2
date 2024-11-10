@@ -84,7 +84,7 @@ namespace ForestHero2 {
 		buffer->Graphics->Clear(Color::WhiteSmoke);
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
 
-		
+		buffer->Render(g);
 	}
 
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
