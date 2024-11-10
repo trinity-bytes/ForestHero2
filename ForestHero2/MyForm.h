@@ -18,16 +18,6 @@ namespace ForestHero2 {
 		{
 			InitializeComponent();
 
-			Random^ r = gcnew Random();
-
-			objGuardian = new Guardian();
-			objGuardian->setX(r->Next(this->Size.Width) - 100);
-			objGuardian->setY(r->Next(this->Size.Height) - 100);
-			objGuardian->setVelocidad(10);
-			objGuardian->setImagen("Resources/Images/personajeTemp.png");
-
-			teclaPulsada = Direccion::Ninguno;
-			escenario = gcnew Bitmap(gcnew System::String("Resources/Images/escenarioTemp.jpg"));
 		}
 
 	protected:
@@ -42,9 +32,7 @@ namespace ForestHero2 {
 	protected:
 
 	private:
-		Guardian* objGuardian;
-		Direccion teclaPulsada;
-		Bitmap^ escenario;
+
 
 	private: System::Windows::Forms::Timer^ timer1; 
 
@@ -76,45 +64,13 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-
-		// Creamos el canvas del formulario
-		Graphics^ canvas = this->CreateGraphics();
-
-		// Reservamos un espacio para poner el Buffer
-		BufferedGraphicsContext^ espacioBuffer = BufferedGraphicsManager::Current;
-
-		// Creamos un canvas dentro del espacio del buffer utilizando el canvas
-		// del formulario
-		BufferedGraphics^ buffer = espacioBuffer->Allocate(canvas, this->ClientRectangle);
-
-		//A partir de aqui dibujamos en el canvas del buffer
-		buffer->Graphics->DrawImage(escenario, 0, 0, System::Drawing::Rectangle(0, 0, 1000, 500), GraphicsUnit::Pixel);
-
-		objGuardian->Mover(buffer->Graphics, teclaPulsada);
-
-		//Dibuja todo en el canvas del formulario
-		buffer->Render(canvas);
-
-		//liberamos los punteros
-		delete buffer;
-		delete espacioBuffer;
-		delete canvas;
 	}
 
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-		teclaPulsada = Direccion::Ninguno;
-		if (e->KeyCode == Keys::Up) teclaPulsada = Direccion::Arriba;
-		if (e->KeyCode == Keys::Down) teclaPulsada = Direccion::Abajo;
-		if (e->KeyCode == Keys::Right) teclaPulsada = Direccion::Derecha;
-		if (e->KeyCode == Keys::Left) teclaPulsada = Direccion::Izquierda;
-
-		objGuardian->setVelocidad(10);
-		objGuardian->setDireccion(teclaPulsada);
 	}
 
 	private: System::Void MyForm_KeyUp(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-		teclaPulsada = Direccion::Ninguno;
-		objGuardian->setVelocidad(0);
+
 	}
 };
 }

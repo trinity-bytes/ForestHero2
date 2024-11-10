@@ -6,37 +6,17 @@ class GestionJuego
 private:
 	ArregloElementos* objElementos;
 public:
-	GestionJuego();
-	~GestionJuego();
+	GestionJuego()
+	{
+		IniciarElementos();
+	}
+	~GestionJuego() {}
 
-	void IniciarElementos();
-	void MoverElementos();
-	void RevisarColisiones();
-	void DeterminarGanador();
+	void IniciarElementos() {}
+	void MoverElementos() {}
+	void RevisarColisiones() {}
+	void DeterminarGanador() {}
 };
 
-GestionJuego::GestionJuego()
-{
-	IniciarElementos();
-}
 
-GestionJuego::~GestionJuego() {}
 
-void GestionJuego::IniciarElementos() 
-{
-
-}
-
-void GestionJuego::MoverElementos() 
-{
-
-}
-
-void GestionJuego::RevisarColisiones() 
-{
-
-}
-
-void GestionJuego::DeterminarGanador() {
-
-}

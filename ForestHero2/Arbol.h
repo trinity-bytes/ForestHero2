@@ -4,10 +4,6 @@
 class Arbol : public Entidad
 {
 public:
-	Arbol();
-	~Arbol();
+	Arbol() : Entidad(x, y, ancho, alto) {}
+	~Arbol() {}
 };
-
-Arbol::Arbol() : Entidad() {}
-
-Arbol::~Arbol() {}
