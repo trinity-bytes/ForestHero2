@@ -6,13 +6,6 @@ class Aliado : Agente
 private:
 
 public:
-	Aliado();
-	~Aliado();
+	Aliado() : Agente(velocidad) { velocidad = 10; }
+	~Aliado() {}
 };
-
-Aliado::Aliado() : Agente(velocidad)
-{
-	velocidad = 10;
-}
-
-Aliado::~Aliado() {}

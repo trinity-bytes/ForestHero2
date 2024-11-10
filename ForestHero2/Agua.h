@@ -4,10 +4,6 @@
 class Agua : public Entidad
 {
 public:
-	Agua();
-	~Agua();
+	Agua() : Entidad(x, y, ancho, alto) {}
+	~Agua() {}
 };
-
-Agua::Agua() : Entidad() {}
-
-Agua::~Agua() {}

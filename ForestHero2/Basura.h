@@ -4,10 +4,6 @@
 class Basura : public Entidad
 {
 public:
-	Basura();
-	~Basura();
+	Basura() : Entidad(x, y, ancho, alto) {}
+	~Basura() {}
 };
-
-Basura::Basura() : Entidad() {}
-
-Basura::~Basura() {}

@@ -9,37 +9,23 @@ private:
 	int cantSemillas;
 	int puntos;
 public:
-	Guardian();
-	~Guardian();
+	Guardian() : Agente(velocidad)
+	{
+		vidas = 5;
+		cantAgua = 15;
+		cantSemillas = 20;
+		puntos = 0;
+		velocidad = 8;
+	}
+	~Guardian() {}
 	
-	int getCantAgua();
-	int getCantSemillas();
-	int getPuntos();
-	int getVidas();
+	int getCantAgua() { return this->cantSemillas; }
+	int getCantSemillas() { return this->cantAgua; }
+	int getPuntos() { return this->puntos; }
+	int getVidas() { return this->vidas; }
 	
-	void setCantAgua(int);
-	void setCantSemillas(int);
-	void setPuntos(int);
-	void setVidas(int);
+	void setCantAgua(int i) { this->cantSemillas = i; }
+	void setCantSemillas(int i) { this->cantAgua = i; }
+	void setPuntos(int i) { this->puntos = i; }
+	void setVidas(int i) { this->vidas = i; }
 };
-
-Guardian::Guardian() :Agente(velocidad)
-{
-	vidas = 5;
-	cantAgua = 15;
-	cantSemillas = 20;
-	puntos = 0;
-	velocidad = 8;
-}
-
-Guardian::~Guardian() {}
-
-int Guardian::getCantAgua() { return this->cantSemillas; }
-int Guardian::getCantSemillas() { return this->cantAgua; }
-int Guardian::getPuntos() { return this->puntos; }
-int Guardian::getVidas() { return this->vidas; }
-
-void Guardian::setCantAgua(int i) { this->cantSemillas = i; }
-void Guardian::setCantSemillas(int i) { this->cantAgua = i; }
-void Guardian::setPuntos(int i) { this->puntos = i; }
-void Guardian::setVidas(int i) { this->vidas = i; }
