@@ -121,7 +121,7 @@ namespace ForestHero2 {
 	}
 
 	private: System::Void MyForm_KeyUp(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-
+		guardian->Mover(buffer->Graphics, Direccion::Ninguna);
 	}
 };
 }
