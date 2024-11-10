@@ -82,7 +82,7 @@ namespace ForestHero2 {
 #pragma endregion
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 		buffer->Graphics->Clear(Color::WhiteSmoke);
-		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
+		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width * 0.81, bmpEscenario1->Height * 0.813);
 
 		buffer->Render(g);
 	}
