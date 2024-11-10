@@ -9,12 +9,12 @@ private:
 	int cantSemillas;
 	int puntos;
 public:
-	Guardian() : Agente(velocidad)
+	Guardian(int x, int y, int ancho, int alto) : Agente(x, y, velocidad, ancho, alto)
 	{
-		vidas = 5;
-		cantAgua = 15;
-		cantSemillas = 20;
-		puntos = 0;
+		this->vidas = 5;
+		this->cantAgua = 15;
+		this->cantSemillas = 20;
+		this->puntos = 0;
 		velocidad = 20;
 	}
 	~Guardian() {}

@@ -1,5 +1,5 @@
 #pragma once
-#include "GestionJuego.h"
+//#include "GestionJuego.h"
 #include "Guardian.h"
 
 namespace ForestHero2 {
@@ -20,7 +20,11 @@ namespace ForestHero2 {
 			g = panelCanvas->CreateGraphics();
 			space = BufferedGraphicsManager::Current;
 			buffer = space->Allocate(g, panelCanvas->ClientRectangle);
+
 			bmpEscenario1 = gcnew Bitmap("Resources/Images/Escenario1.png");
+			bmpGuardian = gcnew Bitmap("Resources/Images/personajeTemp.png");
+
+			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
 		}
 
 	protected:
@@ -39,8 +43,10 @@ namespace ForestHero2 {
 		BufferedGraphicsContext^ space;
 		BufferedGraphics^ buffer;
 		Bitmap^ bmpEscenario1;
-	private: System::Windows::Forms::Panel^ panelCanvas;
 
+		Bitmap^ bmpGuardian;
+		Guardian* guardian;
+	private: System::Windows::Forms::Panel^ panelCanvas;
 
 	private: System::Windows::Forms::Timer^ timer1; 
 
@@ -84,10 +90,34 @@ namespace ForestHero2 {
 		buffer->Graphics->Clear(Color::WhiteSmoke);
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width * 0.81, bmpEscenario1->Height * 0.813);
 
+		guardian->Dibujar(buffer->Graphics, bmpGuardian);
+
 		buffer->Render(g);
 	}
 
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		switch (e->KeyCode)
+		{
+		case Keys::A:
+			guardian->Mover(buffer->Graphics, Direccion::Izquierda); break;
+		case Keys::D:
+			guardian->Mover(buffer->Graphics, Direccion::Derecha); break;
+		case Keys::S:
+			guardian->Mover(buffer->Graphics, Direccion::Abajo); break;
+		case Keys::W:
+			guardian->Mover(buffer->Graphics, Direccion::Arriba); break;
+		case Keys::P:
+			// plantar arbol 
+			break;
+		case Keys::M:
+			// Disparar semillas 
+			break;
+		case Keys::K:
+			// Invocar aliade xd
+			break;
+		case Keys::Escape:
+			this->Close(); break;
+		}
 	}
 
 	private: System::Void MyForm_KeyUp(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {

@@ -8,9 +8,10 @@ class Agente : public Entidad
 protected:
     int dx, dy, velocidad;
 public:
-    Agente(int velocidad) : Entidad(x, y, ancho, alto)
+    Agente(int x, int y, int velocidad, int ancho, int alto) : Entidad(x, y, ancho, alto)
     {
-        dx = dy = velocidad = 0;
+        dx = dy = 0;
+        this->velocidad = velocidad;
     }
 
     ~Agente() {}
@@ -21,47 +22,55 @@ public:
 
     // setter
     void setVelocidad(int velocidad) { this->velocidad = velocidad; }
-    void setDireccion(Direccion teclaPulsada)
+
+    void Mover(Graphics^ g, Direccion teclaPulsada)
     {
         switch (teclaPulsada)
         {
         case Arriba:
             this->dx = 0;
             this->dy = -velocidad;
+
+            idY = 3;
             break;
         case Abajo:
             this->dx = 0;
             this->dy = velocidad;
+
+            idY = 0;
             break;
         case Izquierda:
             this->dx = -velocidad;
             this->dy = 0;
+
+            idY = 1;
             break;
         case Derecha:
             this->dx = velocidad;
             this->dy = 0;
+
+            idY = 2;
             break;
         case Ninguna:
             this->dx = 0;
             this->dy = 0;
+
+            idY = 0;
             break;
         }
-    }
 
-    void mover(Graphics^ g, Direccion teclapulsada)
-    {
-        if (teclapulsada == Direccion::Abajo)     idY = 0;
-        if (teclapulsada == Direccion::Arriba)    idY = 3;
-        if (teclapulsada == Direccion::Derecha)   idY = 2;
-        if (teclapulsada == Direccion::Izquierda) idY = 1;
-        if (teclapulsada == Direccion::Ninguna)   idY = 0;
+        if (teclaPulsada != Direccion::Ninguna)
+        {
+            idX++;
+            if (idX > 3) idX = 0;
 
-        idX++;
-        if (idX > 3) idX = 0;
-
-        x += dx;
-        y += dy;
+            x += dx;
+            y += dy;
+        }
+        else
+        {
+            idX = 0;
+        }
+        
     }
 };
-
-

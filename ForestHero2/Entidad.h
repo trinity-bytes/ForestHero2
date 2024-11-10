@@ -9,12 +9,12 @@ protected:
 public:
 	Entidad(int px, int py, int pancho, int palto)
 	{
-		x = px;
-		y = py;
-		ancho = pancho;
-		alto = palto;
-		idX = 0;
-		idY = 0;
+		this->x = px;
+		this->y = py;
+		this->ancho = pancho;
+		this->alto = palto;
+		this->idX = 0;
+		this->idY = 0;
 	}
 	~Entidad() {}
 
@@ -28,11 +28,11 @@ public:
 	void setX(int x) { this->x = x; }
 	void setY(int y) { this->y = y; }
 
-	virtual void dibujar(Graphics^ g, Bitmap^ bmp)
+	virtual void Dibujar(Graphics^ g, Bitmap^ bmp)
 	{
-		System::Drawing::Rectangle seccionMostrada = System::Drawing::Rectangle(idX * ancho, idY * alto, ancho, alto);
-		System::Drawing::Rectangle zoom = System::Drawing::Rectangle(x, y, ancho * 1.0, alto * 1.0);
-		g->DrawImage(bmp, zoom, seccionMostrada, GraphicsUnit::Pixel);
+		Rectangle sectionShow = Rectangle(idX * ancho, idY * alto, ancho, alto);
+		Rectangle zoom = Rectangle(x, y, ancho * 1.0, alto * 1.0);
+		g->DrawImage(bmp, zoom, sectionShow, GraphicsUnit::Pixel);
 	}
 
 	System::Drawing::Rectangle getRectangle()
