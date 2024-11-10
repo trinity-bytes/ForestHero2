@@ -1,7 +1,7 @@
 #pragma once
 #include "Entidad.h"
 
-enum Direccion { Arriba, Abajo, Izquierda, Derecha, Ninguno };
+enum Direccion { Arriba, Abajo, Izquierda, Derecha, Ninguna };
 
 class Agente : public Entidad
 {
@@ -41,7 +41,7 @@ public:
             this->dx = velocidad;
             this->dy = 0;
             break;
-        case Ninguno:
+        case Ninguna:
             this->dx = 0;
             this->dy = 0;
             break;
@@ -54,7 +54,7 @@ public:
         if (teclapulsada == Direccion::Arriba)    idY = 3;
         if (teclapulsada == Direccion::Derecha)   idY = 2;
         if (teclapulsada == Direccion::Izquierda) idY = 1;
-        if (teclapulsada == Direccion::Ninguno)   idY = 0;
+        if (teclapulsada == Direccion::Ninguna)   idY = 0;
 
         idX++;
         if (idX > 3) idX = 0;
