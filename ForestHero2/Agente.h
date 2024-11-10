@@ -78,6 +78,10 @@ void Agente::Mover(Graphics^ canvas, Direccion teclapulsada)
         x += dx;
         y += dy;
     }
+    else
+    {
+        indiceAncho = 0;
+    }
 
     Dibujar(canvas);
 }

@@ -64,7 +64,7 @@ namespace ForestHero2 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1339, 765);
+			this->ClientSize = System::Drawing::Size(1366, 768);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -103,10 +103,10 @@ namespace ForestHero2 {
 
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		teclaPulsada = Direccion::Ninguna;
-		if (e->KeyCode == Keys::Up) teclaPulsada = Direccion::Arriba;
-		if (e->KeyCode == Keys::Down) teclaPulsada = Direccion::Abajo;
-		if (e->KeyCode == Keys::Right) teclaPulsada = Direccion::Derecha;
-		if (e->KeyCode == Keys::Left) teclaPulsada = Direccion::Izquierda;
+		if (e->KeyCode == Keys::W) teclaPulsada = Direccion::Arriba;
+		if (e->KeyCode == Keys::S) teclaPulsada = Direccion::Abajo;
+		if (e->KeyCode == Keys::A) teclaPulsada = Direccion::Derecha;
+		if (e->KeyCode == Keys::D) teclaPulsada = Direccion::Izquierda;
 
 		objGuardian->setVelocidad(10);
 		objGuardian->setDireccion(teclaPulsada);
