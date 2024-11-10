@@ -28,26 +28,54 @@ public:
         switch (teclaPulsada)
         {
         case Arriba:
-            this->dx = 0;
-            this->dy = -velocidad;
+            if (y > 60)
+            {
+                this->dx = 0;
+                this->dy = -velocidad;
+            }
+            else
+            {
+                teclaPulsada = Direccion::Ninguna;
+            }
 
             idY = 3;
             break;
         case Abajo:
-            this->dx = 0;
-            this->dy = velocidad;
+            if (y + alto < 590)
+            {
+                this->dx = 0;
+                this->dy = velocidad;
+            }
+            else
+            {
+                teclaPulsada = Direccion::Ninguna;
+            }
 
             idY = 0;
             break;
         case Izquierda:
-            this->dx = -velocidad;
-            this->dy = 0;
+            if (x > 20)
+            {
+                this->dx = -velocidad;
+                this->dy = 0;
+            }
+            else
+            {
+                teclaPulsada = Direccion::Ninguna;
+            }
 
             idY = 1;
             break;
         case Derecha:
-            this->dx = velocidad;
-            this->dy = 0;
+            if (x + ancho < 820)
+            {
+                this->dx = velocidad;
+                this->dy = 0;
+            }
+            else
+            {
+                teclaPulsada = Direccion::Ninguna;
+            }
 
             idY = 2;
             break;
