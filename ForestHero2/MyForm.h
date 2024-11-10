@@ -26,7 +26,7 @@ namespace ForestHero2 {
 			objGuardian->setVelocidad(10);
 			objGuardian->setImagen("Resources/Images/personajeTemp.png");
 
-			teclaPulsada = Direccion::Ninguno;
+			teclaPulsada = Direccion::Ninguna;
 			escenario = gcnew Bitmap(gcnew System::String("Resources/Images/escenarioTemp.jpg"));
 		}
 
@@ -102,7 +102,7 @@ namespace ForestHero2 {
 	}
 
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-		teclaPulsada = Direccion::Ninguno;
+		teclaPulsada = Direccion::Ninguna;
 		if (e->KeyCode == Keys::Up) teclaPulsada = Direccion::Arriba;
 		if (e->KeyCode == Keys::Down) teclaPulsada = Direccion::Abajo;
 		if (e->KeyCode == Keys::Right) teclaPulsada = Direccion::Derecha;
@@ -113,7 +113,7 @@ namespace ForestHero2 {
 	}
 
 	private: System::Void MyForm_KeyUp(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-		teclaPulsada = Direccion::Ninguno;
+		teclaPulsada = Direccion::Ninguna;
 		objGuardian->setVelocidad(0);
 	}
 };
