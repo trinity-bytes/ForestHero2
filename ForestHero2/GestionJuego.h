@@ -6,6 +6,7 @@ class GestionJuego
 private:
 	ArregloElementos* objElementos;
 	Guardian* objGuardian;
+	Agua* objAgua;
 public:
 	GestionJuego()
 	{
@@ -41,6 +42,8 @@ public:
 			if (objElementos->returnEnemigo(i)->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				//Perder Vidas 
+				objGuardian->setVidas(-1);
+				objElementos->deleteEnemigo(i);
 			}
 		}
 
@@ -49,6 +52,7 @@ public:
 			if (objElementos->returnBasura(i)->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				//Perder Vidas
+				objGuardian->setVidas(-1);
 			}
 		}
 
@@ -57,6 +61,7 @@ public:
 			if (objElementos->returnAgua(i)->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				//Aumentar agua
+				objElementos->addAgua(objAgua);
 			}
 		}
 		for (int i = 0; i < objElementos->sizeArbol(); i++)

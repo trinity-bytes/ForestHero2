@@ -15,7 +15,7 @@ public:
 		cantAgua = 15;
 		cantSemillas = 20;
 		puntos = 0;
-		velocidad = 8;
+		velocidad = 20;
 	}
 	~Guardian() {}
 	
@@ -27,5 +27,5 @@ public:
 	void setCantAgua(int i) { this->cantSemillas = i; }
 	void setCantSemillas(int i) { this->cantAgua = i; }
 	void setPuntos(int i) { this->puntos = i; }
-	void setVidas(int i) { this->vidas = i; }
+	void setVidas(int i) { this->vidas += i; }
 };
