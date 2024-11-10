@@ -1,5 +1,5 @@
 #pragma once
-//#include "GestionJuego.h"
+#include "GestionJuego.h"
 #include "Guardian.h"
 
 namespace ForestHero2 {
@@ -25,6 +25,8 @@ namespace ForestHero2 {
 			bmpGuardian = gcnew Bitmap("Resources/Images/personajeTemp.png");
 
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
+
+
 		}
 
 	protected:
@@ -46,6 +48,7 @@ namespace ForestHero2 {
 
 		Bitmap^ bmpGuardian;
 		Guardian* guardian;
+		GestionJuego* objGJuego;
 	private: System::Windows::Forms::Panel^ panelCanvas;
 
 	private: System::Windows::Forms::Timer^ timer1; 

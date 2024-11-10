@@ -98,7 +98,6 @@ public:
         else
         {
             idX = 0;
-        }
-        
+        } 
     }
 };

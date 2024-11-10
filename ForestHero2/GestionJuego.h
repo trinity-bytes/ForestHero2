@@ -1,6 +1,8 @@
 #pragma once
+#include "FuncionesCustom.h"
 #include "GestionRecursos.h"
 #include "Guardian.h"
+
 class GestionJuego
 {
 private:
@@ -15,11 +17,29 @@ public:
 	~GestionJuego() {}
 
 	void IniciarElementos() {}
-	void MoverEnemigos(Graphics^ g, Direccion tecla) 
+
+	void MoverTodo(Graphics^ g) 
 	{
+		int r = GenerarNumeroAleatorio(0, 100);
+		Direccion tecla;
+
+		switch (r)
+		{
+		case 1:
+			tecla = Arriba; break;
+		case 15:
+			tecla = Abajo; break;
+		case 30:
+			tecla = Izquierda; break;
+		case 45:
+			tecla = Derecha; break;
+		default:
+			break;
+		}
+
 		for (int i = 0; i < objElementos->sizeEnemigo(); i++)
 		{
-			objElementos->returnEnemigo(i)->mover(g, tecla);
+			objElementos->returnEnemigo(i)->Mover(g, tecla);
 		}
 	}
 	void RevisarColisiones() 
