@@ -6,7 +6,7 @@ class Aliado : public Agente
 private:
 
 public:
-	Aliado() : Agente(velocidad) { velocidad = 10; }
+	Aliado() : Agente(velocidad) { velocidad = 20; }
 	~Aliado() {}
 	void mover(Graphics^ g)
 	{
@@ -14,7 +14,6 @@ public:
 		if (idX > 3) idX = 0;
 
 		x += dx;
-		x -= dx;
 	}
 	void dibujar(Graphics^ g, Bitmap^ bmp)
 	{
