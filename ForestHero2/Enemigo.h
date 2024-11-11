@@ -1,10 +1,15 @@
 #pragma once
-#include "FuncionesCustom.h"
 #include "Agente.h"
 
 class Enemigo : public Agente
 {
+private:
+	int vidas;
 public:
-	Enemigo() : Agente(velocidad) { velocidad = 5; }
+	Enemigo(int x, int y, int ancho, int alto) : Agente(x, y, velocidad, ancho, alto)
+	{ 
+		vidas = 2;
+		velocidad = 5; 
+	}
 	~Enemigo() {}
 };

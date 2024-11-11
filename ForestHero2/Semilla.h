@@ -4,9 +4,9 @@
 class Semilla : public Agente
 {
 public:
-	Semilla() : Agente(velocidad)
+	Semilla(int x, int y, int ancho, int alto) : Agente(x, y, velocidad, ancho, alto)
 	{
-		velocidad = 5;
+		velocidad = 20;
 	}
 	~Semilla() {}
 };

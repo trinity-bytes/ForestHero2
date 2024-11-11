@@ -23,10 +23,11 @@ namespace ForestHero2 {
 
 			bmpEscenario1 = gcnew Bitmap("Resources/Images/Escenario1.png");
 			bmpGuardian = gcnew Bitmap("Resources/Images/personajeTemp.png");
+			bmpEnemigo = gcnew Bitmap("Resources/Images/enemigoTemp.png");
 
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
 
-
+			objGJuego->IniciarElementos(bmpEnemigo->Width / 4, bmpEnemigo->Height / 4);
 		}
 
 	protected:
@@ -44,9 +45,11 @@ namespace ForestHero2 {
 		Graphics^ g;
 		BufferedGraphicsContext^ space;
 		BufferedGraphics^ buffer;
-		Bitmap^ bmpEscenario1;
 
+		Bitmap^ bmpEscenario1;
 		Bitmap^ bmpGuardian;
+		Bitmap^ bmpEnemigo;
+
 		Guardian* guardian;
 		GestionJuego* objGJuego;
 	private: System::Windows::Forms::Panel^ panelCanvas;
@@ -91,8 +94,11 @@ namespace ForestHero2 {
 #pragma endregion
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 		buffer->Graphics->Clear(Color::WhiteSmoke);
-		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width * 0.81, bmpEscenario1->Height * 0.813);
 
+		objGJuego->MoverTodo(buffer->Graphics);
+
+		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width * 0.81, bmpEscenario1->Height * 0.813);
+		objGJuego->DibujarTodo(buffer->Graphics, bmpEnemigo);
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
 
 		buffer->Render(g);
