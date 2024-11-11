@@ -23,6 +23,7 @@ private:
 	vector<Enemigo*> arregloEnemigos;
 
 	int cantidadInicialEnemigos;
+	Direccion direccionActual;
 public:
 	GestionJuego()
 	{
@@ -33,18 +34,20 @@ public:
 		arregloBasuras = vector<Basura*>();
 		arregloEnemigos = vector<Enemigo*>();
 
+		direccionActual = Ninguna;
 		cantidadInicialEnemigos = 5;
 	}
 	~GestionJuego() {}
 
 	void IniciarElementos(int ancho, int alto) 
 	{
+		int cx, cy;
 		// inicializar enemigos
 		for (int i = 0; i < cantidadInicialEnemigos; i++)
 		{
-			int x = GenerarNumeroAleatorio(500, 80);
-			int y = GenerarNumeroAleatorio(500, 300);
-			Enemigo* e = new Enemigo(x, y, ancho, alto);
+			cx = GenerarNumeroAleatorio(500, 80);
+			cy = GenerarNumeroAleatorio(500, 300);
+			Enemigo* e = new Enemigo(cx, cy, ancho, alto);
 			arregloEnemigos.push_back(e);
 		}
 	}
@@ -60,25 +63,26 @@ public:
 	void MoverTodo(Graphics^ g) 
 	{
 		int r = GenerarNumeroAleatorio(0, 100);
-		Direccion tecla = Ninguna;
 
 		switch (r)
 		{
 		case 1:
-			tecla = Arriba; break;
+			direccionActual = Arriba; break;
 		case 15:
-			tecla = Abajo; break;
+			direccionActual = Abajo; break;
 		case 30:
-			tecla = Izquierda; break;
+			direccionActual = Izquierda; break;
 		case 45:
-			tecla = Derecha; break;
+			direccionActual = Derecha; break;
+		case 95:
+			direccionActual = Ninguna; break;
 		default:
 			break;
 		}
 
 		for (int i = 0; i < arregloEnemigos.size(); i++)
 		{
-			arregloEnemigos[i]->Mover(g, tecla);
+			arregloEnemigos[i]->Mover(g, direccionActual);
 		}
 	}
 	void RevisarColisiones() 
