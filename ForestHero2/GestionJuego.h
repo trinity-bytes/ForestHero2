@@ -1,29 +1,27 @@
 #pragma once
 #include "FuncionesCustom.h"
-//#include "GestionRecursos.h"
 #include "Enemigo.h"
 #include "Agua.h"
 #include "Semilla.h"
 #include "Arbol.h"
 #include "Basura.h"
 #include "vector"
-//#include "Guardian.h"
 
 using namespace std;
 
 class GestionJuego
 {
 private:
-	//ArregloElementos* objElementos;
-	//Guardian* objGuardian;
 	vector<Agua*> arregloAgua;
 	vector<Semilla*> arregloSemillas;
 	vector<Arbol*> arregloArboles;
 	vector<Basura*> arregloBasuras;
 	vector<Enemigo*> arregloEnemigos;
 
+	// Definimos la cantidad inical de cada elemento del mapa
 	int cantidadInicialEnemigos;
-	Direccion direccionActual;
+	int cantidadInicialAgua;
+	int cantidadInicialSemillas;
 public:
 	GestionJuego()
 	{
@@ -34,19 +32,24 @@ public:
 		arregloBasuras = vector<Basura*>();
 		arregloEnemigos = vector<Enemigo*>();
 
-		direccionActual = Ninguna;
+		/// iniciando los recursos
 		cantidadInicialEnemigos = 5;
+		cantidadInicialAgua = 10;
+		cantidadInicialSemillas = 14;
 	}
+
 	~GestionJuego() {}
 
 	void IniciarElementos(int ancho, int alto) 
 	{
 		int cx, cy;
+
 		// inicializar enemigos
 		for (int i = 0; i < cantidadInicialEnemigos; i++)
 		{
 			cx = GenerarNumeroAleatorio(20, 820 - ancho);
 			cy = GenerarNumeroAleatorio(60, 590 - alto);
+
 			Enemigo* e = new Enemigo(cx, cy, ancho, alto);
 			arregloEnemigos.push_back(e);
 		}

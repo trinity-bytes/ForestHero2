@@ -10,7 +10,7 @@ public:
 	Enemigo(int x, int y, int ancho, int alto) : Agente(x, y, velocidad, ancho, alto)
 	{ 
 		vidas = 2;
-		velocidad = 5; 
+		velocidad = 6; 
 		direccionActual = Ninguna;
 	}
 	~Enemigo() {}
