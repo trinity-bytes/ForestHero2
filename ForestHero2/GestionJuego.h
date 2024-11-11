@@ -40,22 +40,25 @@ public:
 
 	~GestionJuego() {}
 
-	void IniciarElementos(int ancho, int alto) 
+	void IniciarElementos(int anchoEnemigos, int altoEnemigos) 
 	{
 		int cx, cy;
 
 		// inicializar enemigos
 		for (int i = 0; i < cantidadInicialEnemigos; i++)
 		{
-			cx = GenerarNumeroAleatorio(20, 820 - ancho);
-			cy = GenerarNumeroAleatorio(60, 590 - alto);
+			cx = GenerarNumeroAleatorio(20, 820 - anchoEnemigos);
+			cy = GenerarNumeroAleatorio(60, 590 - altoEnemigos);
 
-			Enemigo* e = new Enemigo(cx, cy, ancho, alto);
+			Enemigo* e = new Enemigo(cx, cy, anchoEnemigos, altoEnemigos);
 			arregloEnemigos.push_back(e);
 		}
 
 		// inicializar agua
+		for (int i = 0; i < cantidadInicialAgua; i++)
+		{
 
+		}
 
 		// inicializar semillas
 	}

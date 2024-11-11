@@ -99,18 +99,20 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-		buffer->Graphics->Clear(Color::WhiteSmoke);
-
 		objGJuego->MoverTodo(buffer->Graphics);
-
+		
+		buffer->Graphics->Clear(Color::WhiteSmoke);
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width * 0.81, bmpEscenario1->Height * 0.813);
 		objGJuego->DibujarTodo(buffer->Graphics, bmpEnemigo);
+
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
+
 		if (mostrar)
 		{
 			aliado->Mover(buffer->Graphics, Direccion::Derecha);
 			aliado->dibujar(buffer->Graphics, bmpAliado);
 		}
+
 		buffer->Render(g);
 	}
 
