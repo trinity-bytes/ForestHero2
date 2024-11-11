@@ -1,7 +1,7 @@
 #pragma once
 #include "GestionJuego.h"
 #include "Guardian.h"
-
+#include "Aliado.h"
 namespace ForestHero2 {
 
 	using namespace System;
@@ -23,9 +23,8 @@ namespace ForestHero2 {
 
 			bmpEscenario1 = gcnew Bitmap("Resources/Images/Escenario1.png");
 			bmpGuardian = gcnew Bitmap("Resources/Images/personajeTemp.png");
-
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
-
+			bmpAliado = gcnew Bitmap("Resources/Images/aliadoTemp.png");
 
 		}
 
@@ -45,10 +44,12 @@ namespace ForestHero2 {
 		BufferedGraphicsContext^ space;
 		BufferedGraphics^ buffer;
 		Bitmap^ bmpEscenario1;
-
+		Bitmap^ bmpAliado;
 		Bitmap^ bmpGuardian;
 		Guardian* guardian;
 		GestionJuego* objGJuego;
+		Aliado* aliado;
+		bool mostrar = false;
 	private: System::Windows::Forms::Panel^ panelCanvas;
 
 	private: System::Windows::Forms::Timer^ timer1; 
@@ -94,7 +95,11 @@ namespace ForestHero2 {
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width * 0.81, bmpEscenario1->Height * 0.813);
 
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
-
+		if (mostrar)
+		{
+			aliado->Mover(buffer->Graphics, Direccion::Derecha);
+			aliado->dibujar(buffer->Graphics, bmpAliado);
+		}
 		buffer->Render(g);
 	}
 
@@ -116,7 +121,8 @@ namespace ForestHero2 {
 			// Disparar semillas 
 			break;
 		case Keys::K:
-			// Invocar aliade xd
+			aliado = new Aliado(panelCanvas->MinimumSize.Width, rand() % 300 + 200, 20, bmpGuardian->Width / 2, bmpGuardian->Height / 2);  // Llamar a su función de mover
+			mostrar = true;
 			break;
 		case Keys::Escape:
 			this->Close(); break;
