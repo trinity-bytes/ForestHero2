@@ -45,8 +45,8 @@ public:
 		// inicializar enemigos
 		for (int i = 0; i < cantidadInicialEnemigos; i++)
 		{
-			cx = GenerarNumeroAleatorio(20, 500);
-			cy = GenerarNumeroAleatorio(80, 300);
+			cx = GenerarNumeroAleatorio(20, 820 - ancho);
+			cy = GenerarNumeroAleatorio(60, 590 - alto);
 			Enemigo* e = new Enemigo(cx, cy, ancho, alto);
 			arregloEnemigos.push_back(e);
 		}
