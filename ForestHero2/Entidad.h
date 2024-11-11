@@ -30,8 +30,8 @@ public:
 
 	virtual void Dibujar(Graphics^ g, Bitmap^ bmp)
 	{
-		Rectangle sectionShow = Rectangle(idX * ancho, idY * alto, ancho, alto);
-		Rectangle zoom = Rectangle(x, y, ancho * 1.0, alto * 1.0);
+		System::Drawing::Rectangle sectionShow = System::Drawing::Rectangle(idX * ancho, idY * alto, ancho, alto);
+		System::Drawing::Rectangle zoom = System::Drawing::Rectangle(x, y, ancho * 1.0, alto * 1.0);
 		g->DrawImage(bmp, zoom, sectionShow, GraphicsUnit::Pixel);
 	}
 

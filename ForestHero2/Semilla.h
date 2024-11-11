@@ -4,7 +4,7 @@
 class Semilla : public Agente
 {
 public:
-	Semilla() : Agente(velocidad)
+	Semilla() : Agente(x, y, velocidad, ancho, alto)
 	{
 		velocidad = 5;
 	}

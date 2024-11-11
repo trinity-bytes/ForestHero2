@@ -84,9 +84,9 @@ public:
 				objElementos->addAgua(objAgua);
 			}
 		}
-		for (int i = 0; i < objElementos->sizeArbol(); i++)
+		for (int i = 0; i < objElementos->sizeSemilla(); i++)
 		{
-			if (objElementos->returnArbol(i)->getRectangle().IntersectsWith(objGuardian->getRectangle()))
+			if (objElementos->returnSemilla(i)->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				//No se si este es la semilla que se encuentra por el suelo, en ese caso en vez de ser
 				//return arbol, es return Semilla

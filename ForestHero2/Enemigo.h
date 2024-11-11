@@ -5,6 +5,6 @@
 class Enemigo : public Agente
 {
 public:
-	Enemigo() : Agente(velocidad) { velocidad = 5; }
+	Enemigo() : Agente(x, y, velocidad, ancho, alto) { velocidad = 5; }
 	~Enemigo() {}
 };
