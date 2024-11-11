@@ -45,44 +45,63 @@ public:
 		// inicializar enemigos
 		for (int i = 0; i < cantidadInicialEnemigos; i++)
 		{
-			cx = GenerarNumeroAleatorio(500, 80);
-			cy = GenerarNumeroAleatorio(500, 300);
+			cx = GenerarNumeroAleatorio(20, 500);
+			cy = GenerarNumeroAleatorio(80, 300);
 			Enemigo* e = new Enemigo(cx, cy, ancho, alto);
 			arregloEnemigos.push_back(e);
 		}
+
+		// inicializar agua
+
+
+		// inicializar semillas
 	}
 
 	void DibujarTodo(Graphics^ g, Bitmap^ bmpEnemigo)
 	{
+		// dibujamos a los enemigos
 		for (int i = 0; i < arregloEnemigos.size(); i++)
 		{
 			arregloEnemigos[i]->Dibujar(g, bmpEnemigo);
 		}
+
+		// dibujamos el agua
+
+
+		// dibujamos las semillas
+
+
+		// dibujamos los arboles
+
+
+		// dibujamos la basura
 	}
 
 	void MoverTodo(Graphics^ g) 
 	{
-		int r = GenerarNumeroAleatorio(0, 100);
-
-		switch (r)
-		{
-		case 1:
-			direccionActual = Arriba; break;
-		case 15:
-			direccionActual = Abajo; break;
-		case 30:
-			direccionActual = Izquierda; break;
-		case 45:
-			direccionActual = Derecha; break;
-		case 95:
-			direccionActual = Ninguna; break;
-		default:
-			break;
-		}
+		int r;
 
 		for (int i = 0; i < arregloEnemigos.size(); i++)
 		{
-			arregloEnemigos[i]->Mover(g, direccionActual);
+			r = GenerarNumeroAleatorio(0, 100);
+
+			switch (r)
+			{
+			case 1:
+				arregloEnemigos[i]->setDireccionActual(Arriba); break;
+			case 15:
+				arregloEnemigos[i]->setDireccionActual(Abajo); break;
+			case 30:
+				arregloEnemigos[i]->setDireccionActual(Izquierda); break;
+			case 45:
+				arregloEnemigos[i]->setDireccionActual(Derecha); break;
+			case 95:
+				arregloEnemigos[i]->setDireccionActual(Ninguna); break;
+			default:
+				break;
+			}
+
+			arregloEnemigos[i]->Mover(g, arregloEnemigos[i]->getDireccionActual());
 		}
 	}
 	void RevisarColisiones() 
