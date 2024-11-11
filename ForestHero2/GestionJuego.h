@@ -60,7 +60,7 @@ public:
 	void MoverTodo(Graphics^ g) 
 	{
 		int r = GenerarNumeroAleatorio(0, 100);
-		Direccion tecla;
+		Direccion tecla = Ninguna;
 
 		switch (r)
 		{
@@ -146,6 +146,3 @@ public:
 	//	}
 	//}
 };
-
-
-

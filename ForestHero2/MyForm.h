@@ -24,9 +24,10 @@ namespace ForestHero2 {
 			bmpEscenario1 = gcnew Bitmap("Resources/Images/Escenario1.png");
 			bmpGuardian = gcnew Bitmap("Resources/Images/personajeTemp.png");
 			bmpEnemigo = gcnew Bitmap("Resources/Images/enemigoTemp.png");
+			bmpAliado = gcnew Bitmap("Resources/Images/aliadoTemp.png");
 
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
-			bmpAliado = gcnew Bitmap("Resources/Images/aliadoTemp.png");
+			objGJuego = new GestionJuego();
 
 			objGJuego->IniciarElementos(bmpEnemigo->Width / 4, bmpEnemigo->Height / 4);
 		}
@@ -48,11 +49,14 @@ namespace ForestHero2 {
 		BufferedGraphics^ buffer;
 
 		Bitmap^ bmpEscenario1;
-
 		Bitmap^ bmpGuardian;
+		Bitmap^ bmpEnemigo;
+		Bitmap^ bmpAliado;
+
 		Guardian* guardian;
 		GestionJuego* objGJuego;
 		Aliado* aliado;
+
 		bool mostrar = false;
 	private: System::Windows::Forms::Panel^ panelCanvas;
 

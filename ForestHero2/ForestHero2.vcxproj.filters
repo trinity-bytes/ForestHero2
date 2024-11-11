@@ -59,9 +59,6 @@
     <ClInclude Include="Entidad.h">
       <Filter>Header Files\Clases Objetos</Filter>
     </ClInclude>
-    <ClInclude Include="GestionRecursos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Semilla.h">
       <Filter>Header Files\Clases Objetos\Agentes</Filter>
     </ClInclude>

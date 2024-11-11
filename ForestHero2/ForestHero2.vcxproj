@@ -129,7 +129,6 @@
     <ClInclude Include="Basura.h" />
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="GestionJuego.h" />
-    <ClInclude Include="GestionRecursos.h" />
     <ClInclude Include="Guardian.h" />
     <ClInclude Include="Semilla.h" />
     <ClInclude Include="Entidad.h" />
