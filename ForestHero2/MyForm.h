@@ -115,9 +115,7 @@ namespace ForestHero2 {
 		objGJuego->MoverTodo(buffer->Graphics);
 		
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
-
 		objGJuego->DibujarTodo(buffer->Graphics, bmpEnemigo, bmpAgua);
-
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
 
 		if (mostrar)
