@@ -34,13 +34,13 @@ public:
 
 		/// iniciando los recursos
 		cantidadInicialEnemigos = 5;
-		cantidadInicialAgua = 10;
-		cantidadInicialSemillas = 14;
+		cantidadInicialAgua = 8;
+		cantidadInicialSemillas = 12;
 	}
 
 	~GestionJuego() {}
 
-	void IniciarElementos(int anchoEnemigos, int altoEnemigos) 
+	void IniciarElementos(int anchoEnemigos, int altoEnemigos, int anchoAgua, int altoAgua) 
 	{
 		int cx, cy;
 
@@ -57,23 +57,24 @@ public:
 		// inicializar agua
 		for (int i = 0; i < cantidadInicialAgua; i++)
 		{
+			cx = GenerarNumeroAleatorio(20, 820 - anchoAgua);
+			cy = GenerarNumeroAleatorio(60, 590 - altoAgua);
 
+			Agua* a = new Agua(cx, cy, anchoAgua, altoAgua);
+			arregloAgua.push_back(a);
 		}
 
 		// inicializar semillas
 	}
 
-	void DibujarTodo(Graphics^ g, Bitmap^ bmpEnemigo)
+	void DibujarTodo(Graphics^ g, Bitmap^ bmpEnemigo, Bitmap^ bmpAgua)
 	{
-		// dibujamos a los enemigos
-		for (int i = 0; i < arregloEnemigos.size(); i++)
-		{
-			arregloEnemigos[i]->Dibujar(g, bmpEnemigo);
-		}
-
 		// dibujamos el agua
-
-
+		for (int i = 0; i < arregloAgua.size(); i++)
+		{
+			arregloAgua[i]->Dibujar(g, bmpAgua);
+		}
+		
 		// dibujamos las semillas
 
 
@@ -81,15 +82,23 @@ public:
 
 
 		// dibujamos la basura
+
+
+		// dibujamos a los enemigos
+		for (int i = 0; i < arregloEnemigos.size(); i++)
+		{
+			arregloEnemigos[i]->Dibujar(g, bmpEnemigo);
+		}
 	}
 
 	void MoverTodo(Graphics^ g) 
 	{
 		int r;
 
+		//! Mover enemigos
 		for (int i = 0; i < arregloEnemigos.size(); i++)
 		{
-			r = GenerarNumeroAleatorio(0, 100);
+			r = GenerarNumeroAleatorio(0, 70);
 
 			switch (r)
 			{
@@ -101,7 +110,7 @@ public:
 				arregloEnemigos[i]->setDireccionActual(Izquierda); break;
 			case 45:
 				arregloEnemigos[i]->setDireccionActual(Derecha); break;
-			case 95:
+			case 60:
 				arregloEnemigos[i]->setDireccionActual(Ninguna); break;
 			default:
 				break;

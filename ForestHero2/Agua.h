@@ -4,6 +4,6 @@
 class Agua : public Entidad
 {
 public:
-	Agua() : Entidad(x, y, ancho, alto) {}
+	Agua(int x, int y, int ancho, int alto) : Entidad(x, y, ancho, alto) {}
 	~Agua() {}
 };
