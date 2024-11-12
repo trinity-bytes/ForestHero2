@@ -17,6 +17,8 @@ namespace ForestHero2 {
 		MyForm(void)
 		{
 			InitializeComponent();
+			
+
 			g = panelCanvas->CreateGraphics();
 			space = BufferedGraphicsManager::Current;
 			buffer = space->Allocate(g, panelCanvas->ClientRectangle);
@@ -91,7 +93,12 @@ namespace ForestHero2 {
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			/// Desactiva el escalado automatico vvvv
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None; 
+
+			// todo Anotacion para el futuro: al haber desacrivado el escalado de la fuente
+			// todo puede ser que tengamos progmelas al mostrar texto, aun no lo se xD
+			//this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1366, 768);
 			this->Controls->Add(this->panelCanvas);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
@@ -107,8 +114,8 @@ namespace ForestHero2 {
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 		objGJuego->MoverTodo(buffer->Graphics);
 		
-		buffer->Graphics->Clear(Color::WhiteSmoke);
-		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width * 0.81, bmpEscenario1->Height * 0.813);
+		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
+
 		objGJuego->DibujarTodo(buffer->Graphics, bmpEnemigo, bmpAgua);
 
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
