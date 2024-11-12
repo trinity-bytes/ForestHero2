@@ -28,7 +28,7 @@ public:
         switch (teclaPulsada)
         {
         case Arriba:
-            if (y > 60)
+            if (y > 90)
             {
                 this->dx = 0;
                 this->dy = -velocidad;
@@ -41,7 +41,7 @@ public:
             idY = 3;
             break;
         case Abajo:
-            if (y + alto < 590)
+            if (y + alto < 730)
             {
                 this->dx = 0;
                 this->dy = velocidad;
@@ -54,7 +54,7 @@ public:
             idY = 0;
             break;
         case Izquierda:
-            if (x > 20)
+            if (x > 40)
             {
                 this->dx = -velocidad;
                 this->dy = 0;
@@ -67,7 +67,7 @@ public:
             idY = 1;
             break;
         case Derecha:
-            if (x + ancho < 820)
+            if (x + ancho < 1000)
             {
                 this->dx = velocidad;
                 this->dy = 0;

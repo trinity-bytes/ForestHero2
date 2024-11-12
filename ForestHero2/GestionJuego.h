@@ -33,7 +33,7 @@ public:
 		arregloEnemigos = vector<Enemigo*>();
 
 		/// iniciando los recursos
-		cantidadInicialEnemigos = 5;
+		cantidadInicialEnemigos = 6;
 		cantidadInicialAgua = 8;
 		cantidadInicialSemillas = 12;
 	}
@@ -47,8 +47,8 @@ public:
 		// inicializar enemigos
 		for (int i = 0; i < cantidadInicialEnemigos; i++)
 		{
-			cx = GenerarNumeroAleatorio(20, 820 - anchoEnemigos);
-			cy = GenerarNumeroAleatorio(60, 590 - altoEnemigos);
+			cx = GenerarNumeroAleatorio(40, 1000 - anchoEnemigos);
+			cy = GenerarNumeroAleatorio(90, 730 - altoEnemigos);
 
 			Enemigo* e = new Enemigo(cx, cy, anchoEnemigos, altoEnemigos);
 			arregloEnemigos.push_back(e);
@@ -57,8 +57,8 @@ public:
 		// inicializar agua
 		for (int i = 0; i < cantidadInicialAgua; i++)
 		{
-			cx = GenerarNumeroAleatorio(20, 820 - anchoAgua);
-			cy = GenerarNumeroAleatorio(60, 590 - altoAgua);
+			cx = GenerarNumeroAleatorio(40, 1000 - anchoAgua);
+			cy = GenerarNumeroAleatorio(90, 730 - altoAgua);
 
 			Agua* a = new Agua(cx, cy, anchoAgua, altoAgua);
 			arregloAgua.push_back(a);
@@ -98,19 +98,19 @@ public:
 		//! Mover enemigos
 		for (int i = 0; i < arregloEnemigos.size(); i++)
 		{
-			r = GenerarNumeroAleatorio(0, 70);
+			r = GenerarNumeroAleatorio(0, 40);
 
 			switch (r)
 			{
 			case 1:
 				arregloEnemigos[i]->setDireccionActual(Arriba); break;
-			case 15:
+			case 10:
 				arregloEnemigos[i]->setDireccionActual(Abajo); break;
-			case 30:
+			case 15:
 				arregloEnemigos[i]->setDireccionActual(Izquierda); break;
-			case 45:
+			case 20:
 				arregloEnemigos[i]->setDireccionActual(Derecha); break;
-			case 60:
+			case 25:
 				arregloEnemigos[i]->setDireccionActual(Ninguna); break;
 			default:
 				break;
