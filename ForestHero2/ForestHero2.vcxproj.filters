@@ -68,5 +68,8 @@
     <ClInclude Include="Aliado.h">
       <Filter>Header Files\Clases Objetos\Agentes</Filter>
     </ClInclude>
+    <ClInclude Include="MyForm1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
