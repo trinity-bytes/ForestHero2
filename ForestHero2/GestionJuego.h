@@ -25,7 +25,7 @@ private:
 public:
 	GestionJuego()
 	{
-		// iniciamos los arreglos siuuu
+		// iniciamos los arreglos
 		arregloAgua = vector<Agua*>();
 		arregloSemillas = vector<Semilla*>();
 		arregloArboles = vector<Arbol*>();
@@ -40,11 +40,7 @@ public:
 
 	~GestionJuego() {}
 
-	void IniciarElementos(
-		int anchoEnemigos, int altoEnemigos,
-		int anchoAgua, int altoAgua,
-		int anchoSemilla, int altoSemilla
-	) 
+	void IniciarElementos(int anchoEnemigos, int altoEnemigos,int anchoAgua, int altoAgua,int anchoSemilla, int altoSemilla) 
 	{
 		int cx, cy;
 
@@ -79,12 +75,7 @@ public:
 		}
 	}
 
-	void DibujarTodo(
-		Graphics^ g,
-		Bitmap^ bmpEnemigo,
-		Bitmap^ bmpAgua,
-		Bitmap^ bmpSemilla
-	)
+	void DibujarTodo(Graphics^ g,Bitmap^ bmpEnemigo,Bitmap^ bmpAgua,Bitmap^ bmpSemilla)
 	{
 		// dibujamos el agua
 		for (int i = 0; i < arregloAgua.size(); i++)
@@ -99,7 +90,10 @@ public:
 		}
 
 		// dibujamos los arboles
-
+		/*for (int i = 0; i < arregloArboles.size(); i++)
+		{
+			arregloArboles[i]->Dibujar(g, bmpArbol);
+		}*/
 
 		// dibujamos la basura
 

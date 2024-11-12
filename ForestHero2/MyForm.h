@@ -95,13 +95,7 @@ namespace ForestHero2 {
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			/// Desactiva el escalado automatico vvvv
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None; 
-
-			// todo Anotacion para el futuro: al haber desactivado el escalado de la fuente
-			// todo puede ser que tengamos progmelas al mostrar texto, aun no lo se xD
-			//this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1366, 768);
 			this->Controls->Add(this->panelCanvas);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
@@ -118,12 +112,7 @@ namespace ForestHero2 {
 		objGJuego->MoverTodo(buffer->Graphics);
 		
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
-		objGJuego->DibujarTodo(
-			buffer->Graphics, 
-			bmpEnemigo, 
-			bmpAgua,
-			bmpSemilla
-		);
+		objGJuego->DibujarTodo(buffer->Graphics, bmpEnemigo, bmpAgua,bmpSemilla);
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
 
 		if (mostrar)
@@ -150,7 +139,8 @@ namespace ForestHero2 {
 			// plantar arbol 
 			break;
 		case Keys::M:
-			// Disparar semillas 
+			// Disparar semillas falta implementar
+			//guardian->dispararSemillas(semilla);
 			break;
 		case Keys::K:
 			aliado = new Aliado(panelCanvas->MinimumSize.Width, rand() % 300 + 200, 20, bmpGuardian->Width / 2, bmpGuardian->Height / 2);  // Llamar a su función de mover

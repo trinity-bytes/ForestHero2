@@ -8,13 +8,6 @@ private:
 public:
 	Aliado(int px, int py, int pvelocidad, int pancho, int palto) : Agente(px, py, pvelocidad, pancho, palto) { velocidad = 20; }
 	~Aliado() {}
-	//void mover(Graphics^ g)
-	//{
-	//	idX++;
-	//	if (idX > 3) idX = 0;
-
-	//	x += dx;
-	//}
 	void dibujar(Graphics^ g, Bitmap^ bmp)
 	{
 		System::Drawing::Rectangle seccionMostrada = System::Drawing::Rectangle(idX * ancho, idY * alto, ancho, alto);
