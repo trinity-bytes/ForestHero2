@@ -97,7 +97,10 @@ public:
 	)
 	{
 		// dibujamos los arboles
-
+		/*for (int i = 0; i < arregloArboles.size(); i++)
+		{
+			arregloArboles[i]->Dibujar(g, bmpArbol);
+		}*/
 
 		// dibujamos el agua
 		for (int i = 0; i < arregloAgua.size(); i++)
