@@ -28,6 +28,7 @@ namespace ForestHero2 {
 			bmpEnemigo = gcnew Bitmap("Resources/Images/enemigoTemp.png");
 			bmpAliado = gcnew Bitmap("Resources/Images/aliadoTemp.png");
 			bmpAgua = gcnew Bitmap("Resources/Images/aguaTemp.png");
+			bmpSemilla = gcnew Bitmap("Resources/Images/semillaTemp.png");
 
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
 			objGJuego = new GestionJuego();
@@ -35,7 +36,8 @@ namespace ForestHero2 {
 			// inicializamos los elementos pasando los parametros de sus dimensiones
 			objGJuego->IniciarElementos(
 				bmpEnemigo->Width / 4, bmpEnemigo->Height / 4,
-				bmpAgua->Width, bmpAgua->Height
+				bmpAgua->Width, bmpAgua->Height,
+				bmpSemilla->Width, bmpSemilla->Height
 			);
 		}
 
@@ -60,6 +62,7 @@ namespace ForestHero2 {
 		Bitmap^ bmpEnemigo;
 		Bitmap^ bmpAliado;
 		Bitmap^ bmpAgua;
+		Bitmap^ bmpSemilla;
 
 		Guardian* guardian;
 		GestionJuego* objGJuego;
@@ -115,7 +118,12 @@ namespace ForestHero2 {
 		objGJuego->MoverTodo(buffer->Graphics);
 		
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
-		objGJuego->DibujarTodo(buffer->Graphics, bmpEnemigo, bmpAgua);
+		objGJuego->DibujarTodo(
+			buffer->Graphics, 
+			bmpEnemigo, 
+			bmpAgua,
+			bmpSemilla
+		);
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
 
 		if (mostrar)

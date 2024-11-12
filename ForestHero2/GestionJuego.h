@@ -40,7 +40,11 @@ public:
 
 	~GestionJuego() {}
 
-	void IniciarElementos(int anchoEnemigos, int altoEnemigos, int anchoAgua, int altoAgua) 
+	void IniciarElementos(
+		int anchoEnemigos, int altoEnemigos,
+		int anchoAgua, int altoAgua,
+		int anchoSemilla, int altoSemilla
+	) 
 	{
 		int cx, cy;
 
@@ -65,9 +69,22 @@ public:
 		}
 
 		// inicializar semillas
+		for (int i = 0; i < cantidadInicialSemillas; i++)
+		{
+			cx = GenerarNumeroAleatorio(40, 1000 - anchoSemilla);
+			cy = GenerarNumeroAleatorio(90, 730 - altoSemilla);
+
+			Semilla* s = new Semilla(cx, cy, anchoSemilla, altoSemilla);
+			arregloSemillas.push_back(s);
+		}
 	}
 
-	void DibujarTodo(Graphics^ g, Bitmap^ bmpEnemigo, Bitmap^ bmpAgua)
+	void DibujarTodo(
+		Graphics^ g,
+		Bitmap^ bmpEnemigo,
+		Bitmap^ bmpAgua,
+		Bitmap^ bmpSemilla
+	)
 	{
 		// dibujamos el agua
 		for (int i = 0; i < arregloAgua.size(); i++)
@@ -76,7 +93,10 @@ public:
 		}
 		
 		// dibujamos las semillas
-
+		for (int i = 0; i < arregloSemillas.size(); i++)
+		{
+			arregloSemillas[i]->Dibujar(g, bmpSemilla);
+		}
 
 		// dibujamos los arboles
 
