@@ -8,6 +8,8 @@
 #include "vector"
 
 using namespace std;
+using namespace System;
+using namespace System::Drawing;
 
 class GestionJuego
 {
@@ -22,6 +24,7 @@ private:
 	int cantidadInicialEnemigos;
 	int cantidadInicialAgua;
 	int cantidadInicialSemillas;
+	int limXizquierda, limXderecha, limYsuperior, limYinferior;
 public:
 	GestionJuego()
 	{
@@ -36,6 +39,12 @@ public:
 		cantidadInicialEnemigos = 6;
 		cantidadInicialAgua = 8;
 		cantidadInicialSemillas = 12;
+
+		/// Limites del escenario
+		limXizquierda = 40;
+		limXderecha = 1000;
+		limYsuperior = 90;
+		limYinferior = 730;
 	}
 
 	~GestionJuego() {}
@@ -51,8 +60,8 @@ public:
 		// inicializar enemigos
 		for (int i = 0; i < cantidadInicialEnemigos; i++)
 		{
-			cx = GenerarNumeroAleatorio(40, 1000 - anchoEnemigos);
-			cy = GenerarNumeroAleatorio(90, 730 - altoEnemigos);
+			cx = GenerarNumeroAleatorio(limXizquierda, limXderecha - anchoEnemigos);
+			cy = GenerarNumeroAleatorio(limYsuperior, limYinferior - altoEnemigos);
 
 			Enemigo* e = new Enemigo(cx, cy, anchoEnemigos, altoEnemigos);
 			arregloEnemigos.push_back(e);
@@ -61,8 +70,8 @@ public:
 		// inicializar agua
 		for (int i = 0; i < cantidadInicialAgua; i++)
 		{
-			cx = GenerarNumeroAleatorio(40, 1000 - anchoAgua);
-			cy = GenerarNumeroAleatorio(90, 730 - altoAgua);
+			cx = GenerarNumeroAleatorio(limXizquierda, limXderecha - anchoAgua);
+			cy = GenerarNumeroAleatorio(limYsuperior, limYinferior - altoAgua);
 
 			Agua* a = new Agua(cx, cy, anchoAgua, altoAgua);
 			arregloAgua.push_back(a);
@@ -71,8 +80,8 @@ public:
 		// inicializar semillas
 		for (int i = 0; i < cantidadInicialSemillas; i++)
 		{
-			cx = GenerarNumeroAleatorio(40, 1000 - anchoSemilla);
-			cy = GenerarNumeroAleatorio(90, 730 - altoSemilla);
+			cx = GenerarNumeroAleatorio(limXizquierda, limXderecha - anchoSemilla);
+			cy = GenerarNumeroAleatorio(limYsuperior, limYinferior - altoSemilla);
 
 			Semilla* s = new Semilla(cx, cy, anchoSemilla, altoSemilla);
 			arregloSemillas.push_back(s);
@@ -83,9 +92,13 @@ public:
 		Graphics^ g,
 		Bitmap^ bmpEnemigo,
 		Bitmap^ bmpAgua,
-		Bitmap^ bmpSemilla
+		Bitmap^ bmpSemilla,
+		Bitmap^ bmpBasura
 	)
 	{
+		// dibujamos los arboles
+
+
 		// dibujamos el agua
 		for (int i = 0; i < arregloAgua.size(); i++)
 		{
@@ -98,11 +111,11 @@ public:
 			arregloSemillas[i]->Dibujar(g, bmpSemilla);
 		}
 
-		// dibujamos los arboles
-
-
 		// dibujamos la basura
-
+		/*for (int i = 0; i < arregloBasuras.size(); i++)
+		{
+			arregloBasuras[i]->Dibujar(g, bmpBasura);
+		}*/
 
 		// dibujamos a los enemigos
 		for (int i = 0; i < arregloEnemigos.size(); i++)
@@ -139,7 +152,8 @@ public:
 			arregloEnemigos[i]->Mover(g, arregloEnemigos[i]->getDireccionActual());
 		}
 	}
-	void RevisarColisiones() 
+
+	void RevisarColisiones(System::Drawing::Rectangle guardian) 
 	{
 		//for (int i = 0; i < objElementos->sizeBasura(); i++)
 		//{
@@ -154,15 +168,18 @@ public:
 		//	}
 		//}
 
-		//for (int i = 0; i < objElementos->sizeEnemigo(); i++)
-		//{
-		//	if (objElementos->returnEnemigo(i)->getRectangle().IntersectsWith(objGuardian->getRectangle()))
-		//	{
-		//		//Perder Vidas 
-		//		objGuardian->setVidas(-1);
-		//		objElementos->deleteEnemigo(i);
-		//	}
-		//}
+		for (int i = 0; i < arregloEnemigos.size(); i++)
+		{
+			if (i >= arregloEnemigos.size()) break;
+
+			if (arregloEnemigos[i]->getRectangle().IntersectsWith(guardian))
+			{
+				//Perder Vidas 
+				//objGuardian->setVidas(-1);
+				arregloEnemigos.erase(arregloEnemigos.begin() + i);
+				i--;
+			}
+		}
 
 		//for (int i = 0; i < objElementos->sizeBasura(); i++)
 		//{

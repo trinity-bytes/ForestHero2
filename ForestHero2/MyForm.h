@@ -17,7 +17,6 @@ namespace ForestHero2 {
 		MyForm(void)
 		{
 			InitializeComponent();
-			
 
 			g = panelCanvas->CreateGraphics();
 			space = BufferedGraphicsManager::Current;
@@ -29,6 +28,7 @@ namespace ForestHero2 {
 			bmpAliado = gcnew Bitmap("Resources/Images/aliadoTemp.png");
 			bmpAgua = gcnew Bitmap("Resources/Images/aguaTemp.png");
 			bmpSemilla = gcnew Bitmap("Resources/Images/semillaTemp.png");
+			bmpBasura = gcnew Bitmap("Resources/Images/basuraTemp.png");
 
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
 			objGJuego = new GestionJuego();
@@ -63,6 +63,7 @@ namespace ForestHero2 {
 		Bitmap^ bmpAliado;
 		Bitmap^ bmpAgua;
 		Bitmap^ bmpSemilla;
+		Bitmap^ bmpBasura;
 
 		Guardian* guardian;
 		GestionJuego* objGJuego;
@@ -111,10 +112,10 @@ namespace ForestHero2 {
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 			this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyUp);
 			this->ResumeLayout(false);
-
 		}
 #pragma endregion
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+		objGJuego->RevisarColisiones(guardian->getRectangle());
 		objGJuego->MoverTodo(buffer->Graphics);
 		
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
@@ -122,7 +123,8 @@ namespace ForestHero2 {
 			buffer->Graphics, 
 			bmpEnemigo, 
 			bmpAgua,
-			bmpSemilla
+			bmpSemilla,
+			bmpBasura
 		);
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
 
