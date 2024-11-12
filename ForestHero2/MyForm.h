@@ -96,7 +96,7 @@ namespace ForestHero2 {
 			/// Desactiva el escalado automatico vvvv
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None; 
 
-			// todo Anotacion para el futuro: al haber desacrivado el escalado de la fuente
+			// todo Anotacion para el futuro: al haber desactivado el escalado de la fuente
 			// todo puede ser que tengamos progmelas al mostrar texto, aun no lo se xD
 			//this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1366, 768);
