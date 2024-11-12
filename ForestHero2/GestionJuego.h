@@ -25,6 +25,7 @@ private:
 	int cantidadInicialAgua;
 	int cantidadInicialSemillas;
 	int limXizquierda, limXderecha, limYsuperior, limYinferior;
+	int cx, cy;
 public:
 	GestionJuego()
 	{
@@ -49,38 +50,28 @@ public:
 
 	~GestionJuego() {}
 
-	void IniciarElementos(int anchoEnemigos, int altoEnemigos,int anchoAgua, int altoAgua,int anchoSemilla, int altoSemilla) 
+	void IniciarElementos(
+		int anchoEnemigo, int altoEnemigo,
+		int anchoAgua, int altoAgua,
+		int anchoSemilla, int altoSemilla
+	) 
 	{
-		int cx, cy;
-
 		// inicializar enemigos
 		for (int i = 0; i < cantidadInicialEnemigos; i++)
 		{
-			cx = GenerarNumeroAleatorio(limXizquierda, limXderecha - anchoEnemigos);
-			cy = GenerarNumeroAleatorio(limYsuperior, limYinferior - altoEnemigos);
-
-			Enemigo* e = new Enemigo(cx, cy, anchoEnemigos, altoEnemigos);
-			arregloEnemigos.push_back(e);
+			AgregarEnemigo(anchoEnemigo, altoEnemigo);
 		}
 
 		// inicializar agua
 		for (int i = 0; i < cantidadInicialAgua; i++)
 		{
-			cx = GenerarNumeroAleatorio(limXizquierda, limXderecha - anchoAgua);
-			cy = GenerarNumeroAleatorio(limYsuperior, limYinferior - altoAgua);
-
-			Agua* a = new Agua(cx, cy, anchoAgua, altoAgua);
-			arregloAgua.push_back(a);
+			AgregarAgua(anchoAgua, altoAgua);
 		}
 
 		// inicializar semillas
 		for (int i = 0; i < cantidadInicialSemillas; i++)
 		{
-			cx = GenerarNumeroAleatorio(limXizquierda, limXderecha - anchoSemilla);
-			cy = GenerarNumeroAleatorio(limYsuperior, limYinferior - altoSemilla);
-
-			Semilla* s = new Semilla(cx, cy, anchoSemilla, altoSemilla);
-			arregloSemillas.push_back(s);
+			AgregarSemilla(anchoSemilla, altoSemilla);
 		}
 	}
 
@@ -209,6 +200,44 @@ public:
 		//	}
 		//}
 	}
+
+	void AgregarEnemigo(int anchoEnemigo, int altoEnemigo)
+	{
+		cx = GenerarNumeroAleatorio(limXizquierda, limXderecha - anchoEnemigo);
+		cy = GenerarNumeroAleatorio(limYsuperior, limYinferior - altoEnemigo);
+
+		Enemigo* e = new Enemigo(cx, cy, anchoEnemigo, altoEnemigo);
+		arregloEnemigos.push_back(e);
+	}
+
+	void AgregarAgua(int anchoAgua, int altoAgua)
+	{
+		cx = GenerarNumeroAleatorio(limXizquierda, limXderecha - anchoAgua);
+		cy = GenerarNumeroAleatorio(limYsuperior, limYinferior - altoAgua);
+
+		Agua* a = new Agua(cx, cy, anchoAgua, altoAgua);
+		arregloAgua.push_back(a);
+	}
+
+	void AgregarSemilla(int anchoSemilla, int altoSemilla)
+	{
+		cx = GenerarNumeroAleatorio(limXizquierda, limXderecha - anchoSemilla);
+		cy = GenerarNumeroAleatorio(limYsuperior, limYinferior - altoSemilla);
+
+		Semilla* s = new Semilla(cx, cy, anchoSemilla, altoSemilla);
+		arregloSemillas.push_back(s);
+	}
+
+	void AgregarBasura()
+	{
+
+	}
+
+	void AgregarArbol()
+	{
+
+	}
+
 	void DeterminarGanador() 
 	{
 		//Poner la funcion de determinar ganador
