@@ -26,7 +26,7 @@ namespace ForestHero2 {
 			bmpEnemigo = gcnew Bitmap("Resources/Images/enemigoTemp.png");
 			bmpAliado = gcnew Bitmap("Resources/Images/aliadoTemp.png");
 			bmpAgua = gcnew Bitmap("Resources/Images/aguaTemp.png");
-			bmpSemilla = gcnew Bitmap("Resources/Images/semillaTemp.png");
+			bmpSemilla = gcnew Bitmap("Resources/Images/spriteSemillaTemp.png");
 			bmpBasura = gcnew Bitmap("Resources/Images/basuraTemp.png");
 			bmpArbol = gcnew Bitmap("Resources/Images/basuraTemp.png");
 
@@ -37,7 +37,7 @@ namespace ForestHero2 {
 			objGJuego->IniciarElementos(
 				bmpEnemigo->Width / 4, bmpEnemigo->Height / 4,
 				bmpAgua->Width, bmpAgua->Height,
-				bmpSemilla->Width, bmpSemilla->Height
+				bmpSemilla->Width / 4, bmpSemilla->Height / 4
 			);
 		}
 
@@ -171,7 +171,7 @@ namespace ForestHero2 {
 
 	private: System::Void timerSemillas_Tick(System::Object^ sender, System::EventArgs^ e)
 	{
-		objGJuego->AgregarSemilla(bmpSemilla->Width, bmpSemilla->Height);
+		objGJuego->AgregarSemilla(bmpSemilla->Width / 4, bmpSemilla->Height / 4);
 	}
 
 	private: System::Void timerBasura_Tick(System::Object^ sender, System::EventArgs^ e)
@@ -205,8 +205,8 @@ namespace ForestHero2 {
 				objGJuego->AgregarArbol(
 					guardian->getX(),
 					guardian->getY(),
-					bmpArbol->Width,
-					bmpArbol->Height
+					bmpArbol->Width / 4,
+					bmpArbol->Height / 4
 				);
 
 				guardian->setCantAgua(guardian->getCantAgua() - 1);
@@ -220,8 +220,8 @@ namespace ForestHero2 {
 				objGJuego->DispararSemilla(
 					guardian->getX(), 
 					guardian->getY(),
-					bmpSemilla->Width,
-					bmpSemilla->Height,
+					bmpSemilla->Width / 4,
+					bmpSemilla->Height / 4,
 					guardian->getDireccionActual()
 				);
 			}
