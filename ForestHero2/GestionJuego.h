@@ -79,40 +79,54 @@ public:
 		Graphics^ g,
 		Bitmap^ bmpEnemigo,
 		Bitmap^ bmpAgua,
-		Bitmap^ bmpSemilla
+		Bitmap^ bmpSemilla,
+		Bitmap^ bmpBasura,
+		Bitmap^ bmpArbol
 	)
 	{
 		// dibujamos los arboles
-		/*for (int i = 0; i < arregloArboles.size(); i++)
+		if (arregloArboles.size() > 0)
 		{
-			arregloArboles[i]->Dibujar(g, bmpArbol);
-		}*/
-
-		// dibujamos el agua
-		for (int i = 0; i < arregloAgua.size(); i++)
-		{
-			arregloAgua[i]->Dibujar(g, bmpAgua);
+			for (int i = 0; i < arregloArboles.size(); i++)
+			{
+				arregloArboles[i]->Dibujar(g, bmpArbol);
+			}
 		}
 		
-		// dibujamos las semillas
-		for (int i = 0; i < arregloSemillas.size(); i++)
+		// dibujamos el agua
+		if (arregloAgua.size() > 0)
 		{
-			arregloSemillas[i]->Dibujar(g, bmpSemilla);
+			for (int i = 0; i < arregloAgua.size(); i++)
+			{
+				arregloAgua[i]->Dibujar(g, bmpAgua);
+			}
 		}
-
-		// dibujamos los arboles
-
-
+				
+		// dibujamos las semillas
+		if (arregloSemillas.size() > 0)
+		{
+			for (int i = 0; i < arregloSemillas.size(); i++)
+			{
+				arregloSemillas[i]->Dibujar(g, bmpSemilla);
+			}
+		}
+		
 		// dibujamos la basura
-		/*for (int i = 0; i < arregloBasuras.size(); i++)
+		if (arregloBasuras.size() > 0)
 		{
-			arregloBasuras[i]->Dibujar(g, bmpBasura);
-		}*/
-
+			for (int i = 0; i < arregloBasuras.size(); i++)
+			{
+				arregloBasuras[i]->Dibujar(g, bmpBasura);
+			}
+		}
+		
 		// dibujamos a los enemigos
-		for (int i = 0; i < arregloEnemigos.size(); i++)
+		if (arregloEnemigos.size() > 0)
 		{
-			arregloEnemigos[i]->Dibujar(g, bmpEnemigo);
+			for (int i = 0; i < arregloEnemigos.size(); i++)
+			{
+				arregloEnemigos[i]->Dibujar(g, bmpEnemigo);
+			}
 		}
 	}
 
@@ -160,6 +174,7 @@ public:
 		//	}
 		//}
 
+		// Colision con los enemigos
 		for (int i = 0; i < arregloEnemigos.size(); i++)
 		{
 			if (i >= arregloEnemigos.size()) break;
@@ -182,14 +197,19 @@ public:
 		//	}
 		//}
 
-		//for (int i = 0; i < objElementos->sizeAgua(); i++)
-		//{
-		//	if (objElementos->returnAgua(i)->getRectangle().IntersectsWith(objGuardian->getRectangle()))
-		//	{
-		//		//Aumentar agua
-		//		objElementos->addAgua(objAgua);
-		//	}
-		//}
+		// Colision con agua
+		for (int i = 0; i < arregloAgua.size(); i++)
+		{
+			if (i >= arregloAgua.size()) break;
+
+			if (arregloAgua[i]->getRectangle().IntersectsWith(guardian))
+			{
+				// incrementar el contador de agua del guardian
+				arregloAgua.erase(arregloAgua.begin() + i);
+				i--;
+			}
+		}
+		
 		//for (int i = 0; i < objElementos->sizeArbol(); i++)
 		//{
 		//	if (objElementos->returnArbol(i)->getRectangle().IntersectsWith(objGuardian->getRectangle()))
@@ -239,7 +259,7 @@ public:
 		arregloBasuras.push_back(b);
 	}
 
-	void AgregarArbol()
+	void AgregarArbol(int x, int y, int anchoArbol, int altoArbol)
 	{
 
 	}
