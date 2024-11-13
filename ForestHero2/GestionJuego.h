@@ -228,9 +228,15 @@ public:
 		arregloSemillas.push_back(s);
 	}
 
-	void AgregarBasura()
+	void AgregarBasura(int anchoBasura, int altoBasura)
 	{
+		int r = GenerarNumeroAleatorio(0, arregloEnemigos.size() - 1);
 
+		cx = arregloEnemigos[r]->getX();
+		cy = arregloEnemigos[r]->getY();
+
+		Basura* b = new Basura(cx, cy, anchoBasura, altoBasura);
+		arregloBasuras.push_back(b);
 	}
 
 	void AgregarArbol()

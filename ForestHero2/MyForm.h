@@ -1,7 +1,6 @@
 #pragma once
 #include "GestionJuego.h"
 #include "Guardian.h"
-#include "Aliado.h"
 namespace ForestHero2 {
 
 	using namespace System;
@@ -67,25 +66,56 @@ namespace ForestHero2 {
 
 		Guardian* guardian;
 		GestionJuego* objGJuego;
-		Aliado* aliado;
 
-		bool mostrar = false;
+		const int tiempoEnemigos = 5000; // => 5 segundos
+		const int tiempoAgua = 4000; // => 4 segundos
+		const int tiempoSemillas = 4000; // => 4 segundos
+		const int tiempoBasura = 8000; // => 8 segundos
+
 	private: System::Windows::Forms::Panel^ panelCanvas;
-
-	private: System::Windows::Forms::Timer^ timer1; 
+	private: System::Windows::Forms::Timer^ timerJuego;
+	private: System::Windows::Forms::Timer^ timerEnemigos;
+	private: System::Windows::Forms::Timer^ timerAgua;
+	private: System::Windows::Forms::Timer^ timerSemillas;
+	private: System::Windows::Forms::Timer^ timerBasura;
 
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timerJuego = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panelCanvas = (gcnew System::Windows::Forms::Panel());
 			this->SuspendLayout();
 			// 
-			// timer1
+			// timerJuego
 			// 
-			this->timer1->Enabled = true;
-			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
+			this->timerJuego->Enabled = true;
+			this->timerJuego->Tick += gcnew System::EventHandler(this, &MyForm::timerJuego_Tick);
+			
+			//! Timer para la generacion de los enemigos
+			timerEnemigos = gcnew System::Windows::Forms::Timer();
+			timerEnemigos->Interval = tiempoEnemigos; 
+			timerEnemigos->Tick += gcnew System::EventHandler(this, &MyForm::timerEnemigos_Tick);
+			timerEnemigos->Start();
+
+			//! Timer para la generacion de agua
+			timerAgua = gcnew System::Windows::Forms::Timer();
+			timerAgua->Interval = tiempoAgua;
+			timerAgua->Tick += gcnew System::EventHandler(this, &MyForm::timerAgua_Tick);
+			timerAgua->Start();
+
+			//! Timer para la generacion de las semillas
+			timerSemillas = gcnew System::Windows::Forms::Timer();
+			timerSemillas->Interval = tiempoSemillas;
+			timerSemillas->Tick += gcnew System::EventHandler(this, &MyForm::timerSemillas_Tick);
+			timerSemillas->Start();
+
+			//! Timer para la generacion de la basura
+			timerBasura = gcnew System::Windows::Forms::Timer();
+			timerBasura->Interval = tiempoBasura;
+			timerBasura->Tick += gcnew System::EventHandler(this, &MyForm::timerBasura_Tick);
+			timerBasura->Start();
+
 			// 
 			// panelCanvas
 			// 
@@ -106,9 +136,10 @@ namespace ForestHero2 {
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 			this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyUp);
 			this->ResumeLayout(false);
+
 		}
 #pragma endregion
-	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void timerJuego_Tick(System::Object^ sender, System::EventArgs^ e) {
 		objGJuego->RevisarColisiones(guardian->getRectangle());
 		objGJuego->MoverTodo(buffer->Graphics);
 		
@@ -121,13 +152,27 @@ namespace ForestHero2 {
 		);
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
 
-		if (mostrar)
-		{
-			aliado->Mover(buffer->Graphics, Direccion::Derecha);
-			aliado->dibujar(buffer->Graphics, bmpAliado);
-		}
-
 		buffer->Render(g);
+	}
+
+	private: System::Void timerEnemigos_Tick(System::Object^ sender, System::EventArgs^ e) 
+	{
+		objGJuego->AgregarEnemigo(bmpEnemigo->Width / 4, bmpEnemigo->Height / 4);
+	}
+
+	private: System::Void timerAgua_Tick(System::Object^ sender, System::EventArgs^ e)
+	{
+		objGJuego->AgregarAgua(bmpAgua->Width, bmpAgua->Height);
+	}
+
+	private: System::Void timerSemillas_Tick(System::Object^ sender, System::EventArgs^ e)
+	{
+		objGJuego->AgregarSemilla(bmpSemilla->Width, bmpSemilla->Height);
+	}
+
+	private: System::Void timerBasura_Tick(System::Object^ sender, System::EventArgs^ e)
+	{
+		objGJuego->AgregarBasura(bmpBasura->Width, bmpBasura->Height);
 	}
 
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
@@ -147,10 +192,6 @@ namespace ForestHero2 {
 		case Keys::M:
 			// Disparar semillas falta implementar
 			//guardian->dispararSemillas(semilla);
-			break;
-		case Keys::K:
-			aliado = new Aliado(panelCanvas->MinimumSize.Width, rand() % 300 + 200, 20, bmpGuardian->Width / 2, bmpGuardian->Height / 2);  // Llamar a su función de mover
-			mostrar = true;
 			break;
 		case Keys::Escape:
 			this->Close(); break;
