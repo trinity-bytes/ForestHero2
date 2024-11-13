@@ -26,7 +26,7 @@ namespace ForestHero2 {
 			bmpEnemigo = gcnew Bitmap("Resources/Images/enemigoTemp.png");
 			bmpAliado = gcnew Bitmap("Resources/Images/aliadoTemp.png");
 			bmpAgua = gcnew Bitmap("Resources/Images/aguaTemp.png");
-			bmpSemilla = gcnew Bitmap("Resources/Images/spriteSemillaTemp.png");
+			bmpSemilla = gcnew Bitmap("Resources/Images/semillaTemp.png");
 			bmpBasura = gcnew Bitmap("Resources/Images/basuraTemp.png");
 			bmpArbol = gcnew Bitmap("Resources/Images/basuraTemp.png");
 
@@ -37,7 +37,7 @@ namespace ForestHero2 {
 			objGJuego->IniciarElementos(
 				bmpEnemigo->Width / 4, bmpEnemigo->Height / 4,
 				bmpAgua->Width, bmpAgua->Height,
-				bmpSemilla->Width / 4, bmpSemilla->Height / 4
+				bmpSemilla->Width, bmpSemilla->Height
 			);
 		}
 
@@ -69,13 +69,21 @@ namespace ForestHero2 {
 		Guardian* guardian;
 		GestionJuego* objGJuego;
 		int cantSemillas;
+
+		// boleanos para capturar el estado de las teclas presionadas
+		bool teclaW = false;
+		bool teclaA = false;
+		bool teclaS = false;
+		bool teclaD = false;
+		bool teclaM = false;
+		bool teclaP = false;
+
 	private: System::Windows::Forms::Panel^ panelCanvas;
 	private: System::Windows::Forms::Timer^ timerJuego;
 	private: System::Windows::Forms::Timer^ timerEnemigos;
 	private: System::Windows::Forms::Timer^ timerAgua;
 	private: System::Windows::Forms::Timer^ timerSemillas;
 	private: System::Windows::Forms::Label^ CtSemillas;
-
 	private: System::Windows::Forms::Timer^ timerBasura;
 
 #pragma region Windows Form Designer generated code
@@ -119,25 +127,25 @@ namespace ForestHero2 {
 			// timerEnemigos
 			// 
 			this->timerEnemigos->Enabled = true;
-			this->timerEnemigos->Interval = 5000;
+			this->timerEnemigos->Interval = 5000; // 5 segundos
 			this->timerEnemigos->Tick += gcnew System::EventHandler(this, &MyForm::timerEnemigos_Tick);
 			// 
 			// timerAgua
 			// 
 			this->timerAgua->Enabled = true;
-			this->timerAgua->Interval = 4000;
+			this->timerAgua->Interval = 4000; // 4 segundos
 			this->timerAgua->Tick += gcnew System::EventHandler(this, &MyForm::timerAgua_Tick);
 			// 
 			// timerSemillas
 			// 
 			this->timerSemillas->Enabled = true;
-			this->timerSemillas->Interval = 4000;
+			this->timerSemillas->Interval = 4000; // 4 segundos
 			this->timerSemillas->Tick += gcnew System::EventHandler(this, &MyForm::timerSemillas_Tick);
 			// 
 			// timerBasura
 			// 
 			this->timerBasura->Enabled = true;
-			this->timerBasura->Interval = 8000;
+			this->timerBasura->Interval = 8000; // 8 segundos
 			this->timerBasura->Tick += gcnew System::EventHandler(this, &MyForm::timerBasura_Tick);
 			// 
 			// MyForm
@@ -161,8 +169,62 @@ namespace ForestHero2 {
 		objGJuego->RevisarColisiones(guardian->getRectangle());
 		objGJuego->ColisionPersonaje(guardian);
 		objGJuego->MoverTodo(buffer->Graphics);
+
 		cantSemillas = guardian->getCantSemillas();
 		CtSemillas->Text = L"" + cantSemillas;
+
+		if (teclaW)
+		{
+			guardian->setDireccionActual(Direccion::Arriba);
+			guardian->Mover(buffer->Graphics, Direccion::Arriba);
+		}
+		if (teclaA)
+		{
+			guardian->setDireccionActual(Direccion::Izquierda);
+			guardian->Mover(buffer->Graphics, Direccion::Izquierda);
+		}
+		if (teclaS)
+		{
+			guardian->setDireccionActual(Direccion::Abajo);
+			guardian->Mover(buffer->Graphics, Direccion::Abajo);
+		}
+		if (teclaD)
+		{
+			guardian->setDireccionActual(Direccion::Derecha);
+			guardian->Mover(buffer->Graphics, Direccion::Derecha);
+		}
+		if (teclaM)
+		{
+			// plantar arbol 
+			if (guardian->getCantSemillas() > 0 && guardian->getCantAgua() > 0)
+			{
+				objGJuego->AgregarArbol(
+					guardian->getX(),
+					guardian->getY(),
+					bmpArbol->Width,
+					bmpArbol->Height
+				);
+
+				guardian->setCantAgua(guardian->getCantAgua() - 1);
+				guardian->setCantSemillas(guardian->getCantSemillas() - 1);
+			}
+		}
+		if (teclaP) /// DISPARO
+		{
+			// disparar semillas
+			if (guardian->getCantSemillas() > 0)
+			{
+				objGJuego->DispararSemilla(
+					guardian->getX(),
+					guardian->getY(),
+					bmpSemilla->Width,
+					bmpSemilla->Height,
+					guardian->getDireccionActual()
+				);
+				guardian->setCantSemillas(guardian->getCantSemillas() - 1);
+			}
+		}
+
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
 		objGJuego->DibujarTodo(
 			buffer->Graphics, 
@@ -200,57 +262,26 @@ namespace ForestHero2 {
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		switch (e->KeyCode)
 		{
-		case Keys::W:
-			guardian->setDireccionActual(Direccion::Arriba);
-			guardian->Mover(buffer->Graphics, Direccion::Arriba);
-			break;
-		case Keys::A:
-			guardian->setDireccionActual(Direccion::Izquierda);
-			guardian->Mover(buffer->Graphics, Direccion::Izquierda); 
-			break;
-		case Keys::S:
-			guardian->setDireccionActual(Direccion::Abajo);
-			guardian->Mover(buffer->Graphics, Direccion::Abajo);
-			break;
-		case Keys::D:
-			guardian->setDireccionActual(Direccion::Derecha);
-			guardian->Mover(buffer->Graphics, Direccion::Derecha); 
-			break;
-		case Keys::M:
-			// plantar arbol 
-			if (guardian->getCantSemillas() > 0 && guardian->getCantAgua() > 0)
-			{
-				objGJuego->AgregarArbol(
-					guardian->getX(),
-					guardian->getY(),
-					bmpArbol->Width / 4,
-					bmpArbol->Height / 4
-				);
-
-				guardian->setCantAgua(guardian->getCantAgua() - 1);
-				guardian->setCantSemillas(guardian->getCantSemillas() - 1);
-			}
-			break;
-		case Keys::P:
-			// disparar semillas
-			if (guardian->getCantSemillas() > 0)
-			{
-				objGJuego->DispararSemilla(
-					guardian->getX(), 
-					guardian->getY(),
-					bmpSemilla->Width / 4,
-					bmpSemilla->Height / 4,
-					guardian->getDireccionActual()
-				);
-			}
-			break;
-		case Keys::Escape:
-			this->Close(); break;
+		case Keys::W: teclaW = true; break;
+		case Keys::A: teclaA = true; break;
+		case Keys::S: teclaS = true; break;
+		case Keys::D: teclaD = true; break;
+		case Keys::M: teclaM = true; break;
+		case Keys::P: teclaP = true; break;
+		case Keys::Escape: this->Close(); break;
 		}
 	}
 
 	private: System::Void MyForm_KeyUp(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
-		guardian->Mover(buffer->Graphics, Direccion::Ninguna);
+		switch (e->KeyCode)
+		{
+		case Keys::W: teclaW = false; break;
+		case Keys::A: teclaA = false; break;
+		case Keys::S: teclaS = false; break;
+		case Keys::D: teclaD = false; break;
+		case Keys::M: teclaM = false; break;
+		case Keys::P: teclaP = false; break;
+		}
 	}
 };
 }
