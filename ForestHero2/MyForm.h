@@ -28,6 +28,7 @@ namespace ForestHero2 {
 			bmpAgua = gcnew Bitmap("Resources/Images/aguaTemp.png");
 			bmpSemilla = gcnew Bitmap("Resources/Images/semillaTemp.png");
 			bmpBasura = gcnew Bitmap("Resources/Images/basuraTemp.png");
+			bmpArbol = gcnew Bitmap("Resources/Images/basuraTemp.png");
 
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
 			objGJuego = new GestionJuego();
@@ -63,6 +64,7 @@ namespace ForestHero2 {
 		Bitmap^ bmpAgua;
 		Bitmap^ bmpSemilla;
 		Bitmap^ bmpBasura;
+		Bitmap^ bmpArbol;
 
 		Guardian* guardian;
 		GestionJuego* objGJuego;
@@ -148,7 +150,9 @@ namespace ForestHero2 {
 			buffer->Graphics, 
 			bmpEnemigo, 
 			bmpAgua,
-			bmpSemilla
+			bmpSemilla,
+			bmpBasura,
+			bmpArbol
 		);
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
 
@@ -186,10 +190,16 @@ namespace ForestHero2 {
 			guardian->Mover(buffer->Graphics, Direccion::Abajo); break;
 		case Keys::W:
 			guardian->Mover(buffer->Graphics, Direccion::Arriba); break;
-		case Keys::P:
-			// plantar arbol 
-			break;
 		case Keys::M:
+			// plantar arbol 
+			objGJuego->AgregarArbol(
+				guardian->getX(), 
+				guardian->getY(), 
+				bmpArbol->Width, 
+				bmpArbol->Height
+			);
+			break;
+		case Keys::P:
 			// Disparar semillas falta implementar
 			//guardian->dispararSemillas(semilla);
 			break;
