@@ -90,6 +90,7 @@ namespace ForestHero2 {
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 		//Ranking
 		buffer->Graphics->DrawImage(bmpRanking, 0, 0, bmpRanking->Width, bmpRanking->Height);
+		buffer->Render(g);
 	}
 	};
 }
