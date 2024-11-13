@@ -68,12 +68,14 @@ namespace ForestHero2 {
 
 		Guardian* guardian;
 		GestionJuego* objGJuego;
-
+		int cantSemillas;
 	private: System::Windows::Forms::Panel^ panelCanvas;
 	private: System::Windows::Forms::Timer^ timerJuego;
 	private: System::Windows::Forms::Timer^ timerEnemigos;
 	private: System::Windows::Forms::Timer^ timerAgua;
 	private: System::Windows::Forms::Timer^ timerSemillas;
+	private: System::Windows::Forms::Label^ CtSemillas;
+
 	private: System::Windows::Forms::Timer^ timerBasura;
 
 #pragma region Windows Form Designer generated code
@@ -82,44 +84,61 @@ namespace ForestHero2 {
 			this->components = (gcnew System::ComponentModel::Container());
 			this->timerJuego = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panelCanvas = (gcnew System::Windows::Forms::Panel());
+			this->CtSemillas = (gcnew System::Windows::Forms::Label());
+			this->timerEnemigos = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timerAgua = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timerSemillas = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timerBasura = (gcnew System::Windows::Forms::Timer(this->components));
+			this->panelCanvas->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// timerJuego
 			// 
 			this->timerJuego->Enabled = true;
 			this->timerJuego->Tick += gcnew System::EventHandler(this, &MyForm::timerJuego_Tick);
-			
-			//! Timer para la generacion de los enemigos
-			this->timerEnemigos = gcnew System::Windows::Forms::Timer();
-			this->timerEnemigos->Interval = 5000;
-			this->timerEnemigos->Tick += gcnew System::EventHandler(this, &MyForm::timerEnemigos_Tick);
-			this->timerEnemigos->Start();
-
-			//! Timer para la generacion de agua
-			this->timerAgua = gcnew System::Windows::Forms::Timer();
-			this->timerAgua->Interval = 4000;
-			this->timerAgua->Tick += gcnew System::EventHandler(this, &MyForm::timerAgua_Tick);
-			this->timerAgua->Start();
-
-			//! Timer para la generacion de las semillas
-			this->timerSemillas = gcnew System::Windows::Forms::Timer();
-			this->timerSemillas->Interval = 4000;
-			this->timerSemillas->Tick += gcnew System::EventHandler(this, &MyForm::timerSemillas_Tick);
-			this->timerSemillas->Start();
-
-			//! Timer para la generacion de la basura
-			this->timerBasura = gcnew System::Windows::Forms::Timer();
-			this->timerBasura->Interval = 8000;
-			this->timerBasura->Tick += gcnew System::EventHandler(this, &MyForm::timerBasura_Tick);
-			this->timerBasura->Start();
-
 			// 
 			// panelCanvas
 			// 
+			this->panelCanvas->Controls->Add(this->CtSemillas);
 			this->panelCanvas->Location = System::Drawing::Point(0, 0);
 			this->panelCanvas->Name = L"panelCanvas";
 			this->panelCanvas->Size = System::Drawing::Size(1366, 768);
 			this->panelCanvas->TabIndex = 0;
+			// 
+			// CtSemillas
+			// 
+			this->CtSemillas->AutoSize = true;
+			this->CtSemillas->BackColor = System::Drawing::Color::Transparent;
+			this->CtSemillas->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16));
+			this->CtSemillas->Location = System::Drawing::Point(228, 35);
+			this->CtSemillas->Name = L"CtSemillas";
+			this->CtSemillas->Size = System::Drawing::Size(70, 26);
+			this->CtSemillas->TabIndex = 0;
+			this->CtSemillas->Text = L"label1";
+			// 
+			// timerEnemigos
+			// 
+			this->timerEnemigos->Enabled = true;
+			this->timerEnemigos->Interval = 5000;
+			this->timerEnemigos->Tick += gcnew System::EventHandler(this, &MyForm::timerEnemigos_Tick);
+			// 
+			// timerAgua
+			// 
+			this->timerAgua->Enabled = true;
+			this->timerAgua->Interval = 4000;
+			this->timerAgua->Tick += gcnew System::EventHandler(this, &MyForm::timerAgua_Tick);
+			// 
+			// timerSemillas
+			// 
+			this->timerSemillas->Enabled = true;
+			this->timerSemillas->Interval = 4000;
+			this->timerSemillas->Tick += gcnew System::EventHandler(this, &MyForm::timerSemillas_Tick);
+			// 
+			// timerBasura
+			// 
+			this->timerBasura->Enabled = true;
+			this->timerBasura->Interval = 8000;
+			this->timerBasura->Tick += gcnew System::EventHandler(this, &MyForm::timerBasura_Tick);
 			// 
 			// MyForm
 			// 
@@ -132,14 +151,18 @@ namespace ForestHero2 {
 			this->Text = L"MyForm";
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 			this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyUp);
+			this->panelCanvas->ResumeLayout(false);
+			this->panelCanvas->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	private: System::Void timerJuego_Tick(System::Object^ sender, System::EventArgs^ e) {
 		objGJuego->RevisarColisiones(guardian->getRectangle());
+		objGJuego->ColisionPersonaje(guardian);
 		objGJuego->MoverTodo(buffer->Graphics);
-		
+		cantSemillas = guardian->getCantSemillas();
+		CtSemillas->Text = L"" + cantSemillas;
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
 		objGJuego->DibujarTodo(
 			buffer->Graphics, 

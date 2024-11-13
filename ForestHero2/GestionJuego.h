@@ -229,6 +229,19 @@ public:
 		//	}
 		//}
 	}
+
+	void ColisionPersonaje(Guardian* objGuardian)
+	{
+		for (int i = 0; i < arregloSemillas.size(); i++)
+		{
+			if (arregloSemillas[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
+			{
+				arregloSemillas.erase(arregloSemillas.begin() + i);
+				objGuardian->setCantSemillas(objGuardian->getCantSemillas() + 1);
+				i--;
+			}
+		}
+	}
 	/*void mostrarRaking() {
 		Guardian* objGuardian = objGuardian = new Guardian(200, 200, 256 , 256);
 		MyForm1^ ranking = gcnew MyForm1();
