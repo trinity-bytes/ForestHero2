@@ -208,6 +208,8 @@ namespace ForestHero2 {
 				guardian->setCantAgua(guardian->getCantAgua() - 1);
 				guardian->setCantSemillas(guardian->getCantSemillas() - 1);
 			}
+
+			teclaM = false;
 		}
 		if (teclaP) /// DISPARO
 		{
@@ -223,6 +225,8 @@ namespace ForestHero2 {
 				);
 				guardian->setCantSemillas(guardian->getCantSemillas() - 1);
 			}
+
+			teclaP = false;
 		}
 
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
