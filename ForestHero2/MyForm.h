@@ -22,7 +22,7 @@ namespace ForestHero2 {
 			space = BufferedGraphicsManager::Current;
 			buffer = space->Allocate(g, panelCanvas->ClientRectangle);
 
-			bmpEscenario1 = gcnew Bitmap("Resources/Images/Escenario1BETA.png");
+			bmpEscenario1 = gcnew Bitmap("Resources/Images/Escenario1.png");
 			bmpGuardian = gcnew Bitmap("Resources/Images/personajeTemp.png");
 			bmpEnemigo = gcnew Bitmap("Resources/Images/enemigoTemp.png");
 			bmpAliado = gcnew Bitmap("Resources/Images/aliadoTemp.png");
