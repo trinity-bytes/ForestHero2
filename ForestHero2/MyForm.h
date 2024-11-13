@@ -69,11 +69,6 @@ namespace ForestHero2 {
 		Guardian* guardian;
 		GestionJuego* objGJuego;
 
-		const int tiempoEnemigos = 5000; // => 5 segundos
-		const int tiempoAgua = 4000; // => 4 segundos
-		const int tiempoSemillas = 4000; // => 4 segundos
-		const int tiempoBasura = 8000; // => 8 segundos
-
 	private: System::Windows::Forms::Panel^ panelCanvas;
 	private: System::Windows::Forms::Timer^ timerJuego;
 	private: System::Windows::Forms::Timer^ timerEnemigos;
@@ -95,28 +90,28 @@ namespace ForestHero2 {
 			this->timerJuego->Tick += gcnew System::EventHandler(this, &MyForm::timerJuego_Tick);
 			
 			//! Timer para la generacion de los enemigos
-			timerEnemigos = gcnew System::Windows::Forms::Timer();
-			timerEnemigos->Interval = tiempoEnemigos; 
-			timerEnemigos->Tick += gcnew System::EventHandler(this, &MyForm::timerEnemigos_Tick);
-			timerEnemigos->Start();
+			this->timerEnemigos = gcnew System::Windows::Forms::Timer();
+			this->timerEnemigos->Interval = 5000;
+			this->timerEnemigos->Tick += gcnew System::EventHandler(this, &MyForm::timerEnemigos_Tick);
+			this->timerEnemigos->Start();
 
 			//! Timer para la generacion de agua
-			timerAgua = gcnew System::Windows::Forms::Timer();
-			timerAgua->Interval = tiempoAgua;
-			timerAgua->Tick += gcnew System::EventHandler(this, &MyForm::timerAgua_Tick);
-			timerAgua->Start();
+			this->timerAgua = gcnew System::Windows::Forms::Timer();
+			this->timerAgua->Interval = 4000;
+			this->timerAgua->Tick += gcnew System::EventHandler(this, &MyForm::timerAgua_Tick);
+			this->timerAgua->Start();
 
 			//! Timer para la generacion de las semillas
-			timerSemillas = gcnew System::Windows::Forms::Timer();
-			timerSemillas->Interval = tiempoSemillas;
-			timerSemillas->Tick += gcnew System::EventHandler(this, &MyForm::timerSemillas_Tick);
-			timerSemillas->Start();
+			this->timerSemillas = gcnew System::Windows::Forms::Timer();
+			this->timerSemillas->Interval = 4000;
+			this->timerSemillas->Tick += gcnew System::EventHandler(this, &MyForm::timerSemillas_Tick);
+			this->timerSemillas->Start();
 
 			//! Timer para la generacion de la basura
-			timerBasura = gcnew System::Windows::Forms::Timer();
-			timerBasura->Interval = tiempoBasura;
-			timerBasura->Tick += gcnew System::EventHandler(this, &MyForm::timerBasura_Tick);
-			timerBasura->Start();
+			this->timerBasura = gcnew System::Windows::Forms::Timer();
+			this->timerBasura->Interval = 8000;
+			this->timerBasura->Tick += gcnew System::EventHandler(this, &MyForm::timerBasura_Tick);
+			this->timerBasura->Start();
 
 			// 
 			// panelCanvas
