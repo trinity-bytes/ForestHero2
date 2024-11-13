@@ -223,13 +223,14 @@ public:
 		//	}
 		//}
 	}
-	void mostrarRaking() {
+	/*void mostrarRaking() {
 		Guardian* objGuardian = objGuardian = new Guardian(200, 200, 256 , 256);
+		MyForm1^ ranking = gcnew MyForm1();
 		if (objGuardian->getVidas() == 0) {
-			MyForm1^ ranking = gcnew MyForm1();
+			
 			ranking->Show();
 		}
-	}
+	}*/
 
 	void AgregarEnemigo(int anchoEnemigo, int altoEnemigo)
 	{
