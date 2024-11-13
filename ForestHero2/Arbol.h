@@ -4,6 +4,6 @@
 class Arbol : public Entidad
 {
 public:
-	Arbol() : Entidad(x, y, ancho, alto) {}
+	Arbol(int x, int y, int ancho, int alto) : Entidad(x, y, ancho, alto) {}
 	~Arbol() {}
 };

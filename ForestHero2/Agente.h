@@ -7,11 +7,13 @@ class Agente : public Entidad
 {
 protected:
     int dx, dy, velocidad;
+    Direccion direccionActual;
 public:
     Agente(int x, int y, int velocidad, int ancho, int alto) : Entidad(x, y, ancho, alto)
     {
         dx = dy = 0;
         this->velocidad = velocidad;
+        direccionActual = Ninguna;
     }
 
     ~Agente() {}
@@ -19,8 +21,10 @@ public:
     // getters
     int getDY() { return this->dy; }
     int getDX() { return this->dx; }
-
+    Direccion getDireccionActual() { return this->direccionActual; }
+        
     // setter
+    void setDireccionActual(Direccion d) { this->direccionActual = d; }
     void setVelocidad(int velocidad) { this->velocidad = velocidad; }
 
     void Mover(Graphics^ g, Direccion teclaPulsada)

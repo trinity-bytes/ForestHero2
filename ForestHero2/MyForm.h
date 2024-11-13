@@ -182,26 +182,49 @@ namespace ForestHero2 {
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		switch (e->KeyCode)
 		{
-		case Keys::A:
-			guardian->Mover(buffer->Graphics, Direccion::Izquierda); break;
-		case Keys::D:
-			guardian->Mover(buffer->Graphics, Direccion::Derecha); break;
-		case Keys::S:
-			guardian->Mover(buffer->Graphics, Direccion::Abajo); break;
 		case Keys::W:
-			guardian->Mover(buffer->Graphics, Direccion::Arriba); break;
+			guardian->setDireccionActual(Direccion::Arriba);
+			guardian->Mover(buffer->Graphics, Direccion::Arriba);
+			break;
+		case Keys::A:
+			guardian->setDireccionActual(Direccion::Izquierda);
+			guardian->Mover(buffer->Graphics, Direccion::Izquierda); 
+			break;
+		case Keys::S:
+			guardian->setDireccionActual(Direccion::Abajo);
+			guardian->Mover(buffer->Graphics, Direccion::Abajo);
+			break;
+		case Keys::D:
+			guardian->setDireccionActual(Direccion::Derecha);
+			guardian->Mover(buffer->Graphics, Direccion::Derecha); 
+			break;
 		case Keys::M:
 			// plantar arbol 
-			objGJuego->AgregarArbol(
-				guardian->getX(), 
-				guardian->getY(), 
-				bmpArbol->Width, 
-				bmpArbol->Height
-			);
+			if (guardian->getCantSemillas() > 0 && guardian->getCantAgua() > 0)
+			{
+				objGJuego->AgregarArbol(
+					guardian->getX(),
+					guardian->getY(),
+					bmpArbol->Width,
+					bmpArbol->Height
+				);
+
+				guardian->setCantAgua(guardian->getCantAgua() - 1);
+				guardian->setCantSemillas(guardian->getCantSemillas() - 1);
+			}
 			break;
 		case Keys::P:
-			// Disparar semillas falta implementar
-			//guardian->dispararSemillas(semilla);
+			// disparar semillas
+			if (guardian->getCantSemillas() > 0)
+			{
+				objGJuego->DispararSemilla(
+					guardian->getX(), 
+					guardian->getY(),
+					bmpSemilla->Width,
+					bmpSemilla->Height,
+					guardian->getDireccionActual()
+				);
+			}
 			break;
 		case Keys::Escape:
 			this->Close(); break;

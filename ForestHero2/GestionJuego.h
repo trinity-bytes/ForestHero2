@@ -157,6 +157,12 @@ public:
 
 			arregloEnemigos[i]->Mover(g, arregloEnemigos[i]->getDireccionActual());
 		}
+
+		//! Mover semillas
+		for (int i = 0; i < arregloSemillas.size(); i++)
+		{
+			arregloSemillas[i]->Mover(g, arregloSemillas[i]->getDireccionActual());
+		}
 	}
 
 	void RevisarColisiones(System::Drawing::Rectangle guardian) 
@@ -261,7 +267,14 @@ public:
 
 	void AgregarArbol(int x, int y, int anchoArbol, int altoArbol)
 	{
+		Arbol* a = new Arbol(x, y, anchoArbol, altoArbol);
+		arregloArboles.push_back(a);
+	}
 
+	void DispararSemilla(int anchoSemilla, int altoSemilla, int x, int y, Direccion d)
+	{
+		Semilla* s = new Semilla(x, y, anchoSemilla, altoSemilla, d);
+		arregloSemillas.push_back(s);
 	}
 
 	void DeterminarGanador() 
