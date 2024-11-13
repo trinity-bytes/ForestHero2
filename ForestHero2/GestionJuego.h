@@ -1,5 +1,7 @@
 #pragma once
 #include "FuncionesCustom.h"
+#include "MyForm1.h"
+#include "Guardian.h"
 #include "Enemigo.h"
 #include "Agua.h"
 #include "Semilla.h"
@@ -171,6 +173,7 @@ public:
 				arregloEnemigos.erase(arregloEnemigos.begin() + i);
 				i--;
 			}
+			
 		}
 
 		//for (int i = 0; i < objElementos->sizeBasura(); i++)
@@ -199,6 +202,13 @@ public:
 		//		//Aumentar semillas
 		//	}
 		//}
+	}
+	void mostrarRaking() {
+		Guardian* objGuardian = objGuardian = new Guardian(200, 200, 256 , 256);
+		if (objGuardian->getVidas() == 0) {
+			MyForm1^ ranking = gcnew MyForm1();
+			ranking->Show();
+		}
 	}
 
 	void AgregarEnemigo(int anchoEnemigo, int altoEnemigo)
