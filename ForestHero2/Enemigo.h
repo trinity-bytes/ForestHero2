@@ -12,4 +12,8 @@ public:
 		velocidad = 6; 
 	}
 	~Enemigo() {}
+
+	int getVidas() { return this->vidas; }
+
+	void setVidas(int vidas) { this->vidas = vidas; }
 };

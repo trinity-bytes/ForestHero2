@@ -33,28 +33,29 @@ public:
         switch (direccionActual)
         {
         case Arriba:
-            if (y > 90) {
+            if (y > 70) {
                 dx = 0;
                 dy = -velocidad;
                 y += dy;
             }
             break;
         case Abajo:
-            if (y + alto < 730) {
+        case Ninguna:
+            if (y + alto < 830) {
                 dx = 0;
                 dy = velocidad;
                 y += dy;
             }
             break;
         case Izquierda:
-            if (x > 40) {
+            if (x > 30) {
                 dx = -velocidad;
                 dy = 0;
                 x += dx;
             }
             break;
         case Derecha:
-            if (x + ancho < 1000) {
+            if (x + ancho < 1100) {
                 dx = velocidad;
                 dy = 0;
                 x += dx;

@@ -174,15 +174,25 @@ public:
 			if (!arregloSemillas[i]->getSeMueve()) continue; /// ignoraos las semillas que no se mueven uwu
 
 			arregloSemillas[i]->Mover(g);
+
+			/// eliminamos las semillas que traspasan los limites del escenario
+			if (arregloSemillas[i]->getX() < limXizquierda ||
+				arregloSemillas[i]->getX() > limXderecha ||
+				arregloSemillas[i]->getY() < limYsuperior ||
+				arregloSemillas[i]->getY() > limYinferior)
+			{
+				arregloSemillas.erase(arregloSemillas.begin() + i);
+				i--;
+			}
 		}
 	}
 
 	void ColisionPersonaje(Guardian* objGuardian)
 	{
-		/// colision con semillas
+		/// colision Guardian - semillas
 		for (int i = 0; i < arregloSemillas.size(); i++)
 		{
-			if (arregloSemillas[i]->getSeMueve()) continue;
+			if (arregloSemillas[i]->getSeMueve()) continue; /// ignoramos a las semillas que se mueven (asi como ella me ignora pipipi)
 			if (arregloSemillas[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				arregloSemillas.erase(arregloSemillas.begin() + i);
@@ -193,7 +203,7 @@ public:
 			}
 		}
 
-		/// Colision con agua
+		/// Colision Guardian - agua
 		for (int i = 0; i < arregloAgua.size(); i++)
 		{
 			if (i >= arregloAgua.size()) break;
@@ -209,17 +219,19 @@ public:
 			}
 		}
 
-		/// Colision con basura
+		/// Colision guardian - basura
 		for (int i = 0; i < arregloBasuras.size(); i++)
 		{
 			if (arregloBasuras[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				//Perder Vidas
 				objGuardian->setCantVidas(-1);
+				
+				// todo timeout de inmunidad para que el guardian no pierda vidas infinitamente
 			}
 		}
 
-		/// Colision con los enemigos
+		/// Colision guardina - enemigos
 		for (int i = 0; i < arregloEnemigos.size(); i++)
 		{
 			if (i >= arregloEnemigos.size()) break;
@@ -227,10 +239,51 @@ public:
 			if (arregloEnemigos[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				///Perder Vidas
-
 				arregloEnemigos.erase(arregloEnemigos.begin() + i);
 				i--;
 				objGuardian->setCantVidas(-1);
+			}
+		}
+
+		/// Colision semilla - basura
+		for (int i = 0; i < arregloSemillas.size(); i++)
+		{
+			if (!arregloSemillas[i]->getSeMueve()) continue; /// ignormos a las semillas que no semueven
+
+			for (int j = 0; j < arregloBasuras.size(); j++)
+			{
+				if (arregloSemillas[i]->getRectangle().IntersectsWith(arregloBasuras[j]->getRectangle()))
+				{
+					arregloSemillas.erase(arregloSemillas.begin() + i);
+					arregloBasuras.erase(arregloBasuras.begin() + j);
+					i--;
+					break; /// terminamos el ciclo ya que se elimino la semilla
+				}
+			}
+		}
+
+		/// Colison Semilla - Enemigo
+		for (int i = 0; i < arregloSemillas.size(); i++)
+		{
+			if (!arregloSemillas[i]->getSeMueve()) continue; /// ignormos a las semillas que no semueven
+
+			for (int j = 0; j < arregloEnemigos.size(); j++)
+			{
+				if (arregloSemillas[i]->getRectangle().IntersectsWith(arregloEnemigos[j]->getRectangle()))
+				{
+					arregloSemillas.erase(arregloSemillas.begin() + i);
+
+					/// le restamos vidas al enemigo
+					arregloEnemigos[i]->setVidas(arregloEnemigos[i]->getVidas() - 1);
+
+					if (arregloEnemigos[i]->getVidas() <= 0) /// verificamos las vidas del enemigo
+					{
+						arregloSemillas.erase(arregloSemillas.begin() + j);
+					}
+										
+					i--;
+					break; /// terminamos el ciclo ya que se elimino la semilla
+				}
 			}
 		}
 	}
@@ -286,11 +339,11 @@ public:
 		int xAjustado = objGuardian->getX() - limXizquierda;
 		int yAjustado = objGuardian->getY() - limYsuperior;
 
-		///caclulamos la fil y columna actuales en base a la posicion ajustada
+		///caclulamos la fila y columna actuales en base a la posicion ajustada
 		int columnaActual = xAjustado / anchoCelda;
 		int filaActual = yAjustado / altoCelda;
 
-		/// Calcualmos el centro de la celda actual y las cercanas
+		/// Calculamos el centro de la celda actual y las cercanas
 		int posiciones[4][2] = {
 		{ columnaActual * anchoCelda + anchoCelda / 2, filaActual * altoCelda + altoCelda / 2 },
 		{ (columnaActual + 1) * anchoCelda + anchoCelda / 2, filaActual * altoCelda + altoCelda / 2 },
@@ -307,18 +360,21 @@ public:
 									posiciones[0][1]
 								);
 
-		for (int i = 1; i < 4; i++) {
+		for (int i = 1; i < 4; i++) 
+		{
 			int nuevaColumna = (i % 2 == 0) ? columnaActual : columnaActual + 1;
 			int nuevaFila = (i < 2) ? filaActual : filaActual + 1; // ternario (recuerdos de vietnam XD)
 
-			if (nuevaColumna < columnasMatriz && nuevaFila < filasMatriz) {
+			if (nuevaColumna < columnasMatriz && nuevaFila < filasMatriz) 
+			{
 				double distancia = CalcularDistancia(
 										xAjustado, 
 										yAjustado, 
 										posiciones[i][0], 
 										posiciones[i][1]
 									);
-				if (distancia < distanciaMinima) {
+				if (distancia < distanciaMinima) 
+				{
 					distanciaMinima = distancia;
 					mejorColumna = nuevaColumna;
 					mejorFila = nuevaFila;
@@ -348,6 +404,7 @@ public:
 			cx = objGuardian->getX();
 			break;
 		case Abajo:
+		case Ninguna:
 			cy = objGuardian->getY() + objGuardian->getAlto();
 			cx = objGuardian->getX();
 			break;

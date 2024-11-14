@@ -15,7 +15,7 @@ public:
 		this->cantAgua = 15;
 		this->cantSemillas = 20;
 		this->puntos = 0;
-		velocidad = 8;
+		velocidad = 12;
 	}
 	~Guardian() {}
 	int getCantVidas() { return this->cantVidas; }
