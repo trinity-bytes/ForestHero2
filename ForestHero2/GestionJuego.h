@@ -202,7 +202,7 @@ public:
 			if (arregloBasuras[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				//Perder Vidas
-				objGuardian->setCantVidas(objGuardian->getCantVidas() - 1);
+				objGuardian->setCantVidas(-1);
 			}
 		}
 
@@ -213,11 +213,11 @@ public:
 
 			if (arregloEnemigos[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
-				///Perder Vidas 
-				objGuardian->setCantVidas(objGuardian->getCantVidas() - 1);
+				///Perder Vidas
 
 				arregloEnemigos.erase(arregloEnemigos.begin() + i);
 				i--;
+				objGuardian->setCantVidas(-1);
 			}
 		}
 	}
