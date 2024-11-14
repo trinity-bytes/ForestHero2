@@ -26,9 +26,9 @@ namespace ForestHero2 {
 			bmpEnemigo = gcnew Bitmap("Resources/Images/enemigoTemp.png");
 			bmpAliado = gcnew Bitmap("Resources/Images/aliadoTemp.png");
 			bmpAgua = gcnew Bitmap("Resources/Images/aguaTemp.png");
-			bmpSemilla = gcnew Bitmap("Resources/Images/semillaTemp.png");
-			bmpBasura = gcnew Bitmap("Resources/Images/basuraTemp.png");
-			bmpArbol = gcnew Bitmap("Resources/Images/basuraTemp.png");
+			bmpSemilla = gcnew Bitmap("Resources/Images/semilla.png");
+			bmpBasura = gcnew Bitmap("Resources/Images/basura.png");
+			bmpArbol = gcnew Bitmap("Resources/Images/arbol.png");
 
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
 			objGJuego = new GestionJuego();
