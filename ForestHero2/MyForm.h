@@ -126,7 +126,7 @@ namespace ForestHero2 {
 			this->CTVidas->AutoSize = true;
 			this->CTVidas->BackColor = System::Drawing::Color::Transparent;
 			this->CTVidas->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16));
-			this->CTVidas->Location = System::Drawing::Point(786, 34);
+			this->CTVidas->Location = System::Drawing::Point(792, 34);
 			this->CTVidas->Name = L"CTVidas";
 			this->CTVidas->Size = System::Drawing::Size(70, 26);
 			this->CTVidas->TabIndex = 2;
