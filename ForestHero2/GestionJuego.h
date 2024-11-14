@@ -178,6 +178,7 @@ public:
 
 				objGuardian->setCantSemillas(objGuardian->getCantSemillas() + 1);
 				i--;
+				objGuardian->setPuntos(1000);
 			}
 		}
 
@@ -193,6 +194,7 @@ public:
 
 				arregloAgua.erase(arregloAgua.begin() + i);
 				i--;
+				objGuardian->setPuntos(1000);
 			}
 		}
 
@@ -203,6 +205,14 @@ public:
 			{
 				//Perder Vidas
 				objGuardian->setCantVidas(-1);
+			}
+			if (objGuardian->getPuntos() >= 10000)
+			{
+				objGuardian->setPuntos(-10000);
+			}
+			else
+			{
+				objGuardian->setPuntos(-objGuardian->getPuntos());
 			}
 		}
 
@@ -218,6 +228,14 @@ public:
 				arregloEnemigos.erase(arregloEnemigos.begin() + i);
 				i--;
 				objGuardian->setCantVidas(-1);
+				if (objGuardian->getPuntos() >= 10000)
+				{
+					objGuardian->setPuntos(-10000);
+				}
+				else
+				{
+					objGuardian->setPuntos(-objGuardian->getPuntos());
+				}
 			}
 		}
 	}
