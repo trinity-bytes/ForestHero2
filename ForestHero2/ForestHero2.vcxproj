@@ -128,6 +128,7 @@
     <ClInclude Include="Arbol.h" />
     <ClInclude Include="Basura.h" />
     <ClInclude Include="Enemigo.h" />
+    <ClInclude Include="File.h" />
     <ClInclude Include="GestionJuego.h" />
     <ClInclude Include="Guardian.h" />
     <ClInclude Include="MyForm1.h">

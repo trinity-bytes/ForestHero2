@@ -189,6 +189,7 @@ public:
 
 				objGuardian->setCantSemillas(objGuardian->getCantSemillas() + 1);
 				i--;
+				objGuardian->setPuntos(1000);
 			}
 		}
 
@@ -204,6 +205,7 @@ public:
 
 				arregloAgua.erase(arregloAgua.begin() + i);
 				i--;
+				objGuardian->setPuntos(1000);
 			}
 		}
 
@@ -213,7 +215,7 @@ public:
 			if (arregloBasuras[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				//Perder Vidas
-				objGuardian->setVidas(objGuardian->getVidas() - 1);
+				objGuardian->setCantVidas(-1);
 			}
 		}
 
@@ -224,11 +226,11 @@ public:
 
 			if (arregloEnemigos[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
-				///Perder Vidas 
-				objGuardian->setVidas(objGuardian->getVidas() - 1);
+				///Perder Vidas
 
 				arregloEnemigos.erase(arregloEnemigos.begin() + i);
 				i--;
+				objGuardian->setCantVidas(-1);
 			}
 		}
 	}
@@ -370,7 +372,7 @@ public:
 
 	bool AnalizarGAMEOVER(Guardian* objGuardian, bool objetivoComletado)
 	{
-		if (objGuardian->getVidas()==0)
+		if (objGuardian->getCantVidas()==0)
 		{
 			//Poner GAMEOVER
 		}

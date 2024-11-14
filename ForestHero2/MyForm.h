@@ -69,7 +69,9 @@ namespace ForestHero2 {
 		Guardian* guardian;
 		GestionJuego* objGJuego;
 		int cantSemillas;
-
+		int cantAguas;
+		int cantVidas;
+		int cantPuntos;
 		// boleanos para capturar el estado de las teclas presionadas
 		bool teclaW = false;
 		bool teclaA = false;
@@ -84,6 +86,11 @@ namespace ForestHero2 {
 	private: System::Windows::Forms::Timer^ timerAgua;
 	private: System::Windows::Forms::Timer^ timerSemillas;
 	private: System::Windows::Forms::Label^ CtSemillas;
+	private: System::Windows::Forms::Label^ CtAgua;
+	private: System::Windows::Forms::Label^ CtVidas;
+
+	private: System::Windows::Forms::Label^ CtPuntos;
+
 	private: System::Windows::Forms::Timer^ timerBasura;
 
 #pragma region Windows Form Designer generated code
@@ -92,6 +99,9 @@ namespace ForestHero2 {
 			this->components = (gcnew System::ComponentModel::Container());
 			this->timerJuego = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panelCanvas = (gcnew System::Windows::Forms::Panel());
+			this->CtPuntos = (gcnew System::Windows::Forms::Label());
+			this->CtVidas = (gcnew System::Windows::Forms::Label());
+			this->CtAgua = (gcnew System::Windows::Forms::Label());
 			this->CtSemillas = (gcnew System::Windows::Forms::Label());
 			this->timerEnemigos = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timerAgua = (gcnew System::Windows::Forms::Timer(this->components));
@@ -107,45 +117,87 @@ namespace ForestHero2 {
 			// 
 			// panelCanvas
 			// 
+			this->panelCanvas->Controls->Add(this->CtPuntos);
+			this->panelCanvas->Controls->Add(this->CtVidas);
+			this->panelCanvas->Controls->Add(this->CtAgua);
 			this->panelCanvas->Controls->Add(this->CtSemillas);
 			this->panelCanvas->Location = System::Drawing::Point(0, 0);
 			this->panelCanvas->Name = L"panelCanvas";
 			this->panelCanvas->Size = System::Drawing::Size(1366, 768);
 			this->panelCanvas->TabIndex = 0;
 			// 
+			// CtPuntos
+			// 
+			this->CtPuntos->AutoSize = true;
+			this->CtPuntos->BackColor = System::Drawing::Color::Transparent;
+			this->CtPuntos->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 30));
+			this->CtPuntos->Location = System::Drawing::Point(1069, 107);
+			this->CtPuntos->Name = L"CtPuntos";
+			this->CtPuntos->RightToLeft = System::Windows::Forms::RightToLeft::No;
+			this->CtPuntos->Size = System::Drawing::Size(45, 49);
+			this->CtPuntos->TabIndex = 3;
+			this->CtPuntos->Text = L"0";
+			this->CtPuntos->TextAlign = System::Drawing::ContentAlignment::TopRight;
+			this->CtPuntos->UseWaitCursor = true;
+			// 
+			// CtVidas
+			// 
+			this->CtVidas->AutoSize = true;
+			this->CtVidas->BackColor = System::Drawing::Color::Transparent;
+			this->CtVidas->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->CtVidas->Location = System::Drawing::Point(792, 34);
+			this->CtVidas->Name = L"CtVidas";
+			this->CtVidas->Size = System::Drawing::Size(67, 25);
+			this->CtVidas->TabIndex = 2;
+			this->CtVidas->Text = L"label1";
+			// 
+			// CtAgua
+			// 
+			this->CtAgua->AutoSize = true;
+			this->CtAgua->BackColor = System::Drawing::Color::Transparent;
+			this->CtAgua->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->CtAgua->Location = System::Drawing::Point(504, 34);
+			this->CtAgua->Name = L"CtAgua";
+			this->CtAgua->Size = System::Drawing::Size(67, 25);
+			this->CtAgua->TabIndex = 1;
+			this->CtAgua->Text = L"label1";
+			// 
 			// CtSemillas
 			// 
 			this->CtSemillas->AutoSize = true;
 			this->CtSemillas->BackColor = System::Drawing::Color::Transparent;
-			this->CtSemillas->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16));
-			this->CtSemillas->Location = System::Drawing::Point(228, 35);
+			this->CtSemillas->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->CtSemillas->Location = System::Drawing::Point(224, 34);
 			this->CtSemillas->Name = L"CtSemillas";
-			this->CtSemillas->Size = System::Drawing::Size(70, 26);
+			this->CtSemillas->Size = System::Drawing::Size(67, 25);
 			this->CtSemillas->TabIndex = 0;
 			this->CtSemillas->Text = L"label1";
 			// 
 			// timerEnemigos
 			// 
 			this->timerEnemigos->Enabled = true;
-			this->timerEnemigos->Interval = 5000; // 5 segundos
+			this->timerEnemigos->Interval = 5000;
 			this->timerEnemigos->Tick += gcnew System::EventHandler(this, &MyForm::timerEnemigos_Tick);
 			// 
 			// timerAgua
 			// 
 			this->timerAgua->Enabled = true;
-			this->timerAgua->Interval = 4000; // 4 segundos
+			this->timerAgua->Interval = 4000;
 			this->timerAgua->Tick += gcnew System::EventHandler(this, &MyForm::timerAgua_Tick);
 			// 
 			// timerSemillas
 			// 
 			this->timerSemillas->Enabled = true;
-			this->timerSemillas->Interval = 4000; // 4 segundos
+			this->timerSemillas->Interval = 4000;
 			this->timerSemillas->Tick += gcnew System::EventHandler(this, &MyForm::timerSemillas_Tick);
 			// 
 			// timerBasura
 			// 
 			this->timerBasura->Enabled = true;
-			this->timerBasura->Interval = 8000; // 8 segundos
+			this->timerBasura->Interval = 8000;
 			this->timerBasura->Tick += gcnew System::EventHandler(this, &MyForm::timerBasura_Tick);
 			// 
 			// MyForm
@@ -169,10 +221,14 @@ namespace ForestHero2 {
 		objGJuego->ColisionPersonaje(guardian);
 
 		objGJuego->MoverTodo(buffer->Graphics);
-
+		cantPuntos = guardian->getPuntos();
+		cantVidas = guardian->getCantVidas();
+		cantAguas = guardian->getCantAgua();
 		cantSemillas = guardian->getCantSemillas();
 		CtSemillas->Text = L"" + cantSemillas;
-
+		CtAgua->Text = L"" + cantAguas;
+		CtVidas->Text = L"" + cantVidas;
+		CtPuntos->Text = L"" + cantPuntos;
 		if (teclaW)
 		{
 			guardian->setDireccionActual(Direccion::Arriba);
