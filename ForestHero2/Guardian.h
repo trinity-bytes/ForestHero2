@@ -27,5 +27,4 @@ public:
 	void setCantSemillas(int i) { this->cantAgua = i; }
 	void setPuntos(int i) { this->puntos = i; }
 	void setCantVidas(int i) { this->cantVidas += i; }
-	/*void dispararSemillas(Semilla* semillas){}*/
 };

@@ -44,6 +44,8 @@ namespace ForestHero2 {
 		Graphics^ g;
 		BufferedGraphicsContext^ space;
 		BufferedGraphics^ buffer;
+	private: System::Windows::Forms::Label^ label1;
+
 	private: System::Windows::Forms::Panel^ panel1;
 		  
 
@@ -57,6 +59,8 @@ namespace ForestHero2 {
 			this->components = (gcnew System::ComponentModel::Container());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -67,10 +71,21 @@ namespace ForestHero2 {
 			// panel1
 			// 
 			this->panel1->BackColor = System::Drawing::SystemColors::Control;
+			this->panel1->Controls->Add(this->label1);
 			this->panel1->Location = System::Drawing::Point(0, 0);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(756, 426);
 			this->panel1->TabIndex = 0;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Location = System::Drawing::Point(279, 71);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(35, 13);
+			this->label1->TabIndex = 0;
+			this->label1->Text = L"label1";
 			// 
 			// MyForm1
 			// 
@@ -83,6 +98,8 @@ namespace ForestHero2 {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm1";
 			this->Text = L"Ranking";
+			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
