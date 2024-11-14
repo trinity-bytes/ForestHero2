@@ -1,6 +1,8 @@
 #pragma once
 #include "FuncionesCustom.h"
 #include "MyForm1.h"
+#include "MyForm2.h"
+//#include "MyForm3.h"
 #include "Guardian.h"
 #include "Enemigo.h"
 #include "Agua.h"
@@ -352,6 +354,10 @@ public:
 			cy = objGuardian->getY();
 			cx = objGuardian->getX() + objGuardian->getAncho();
 			break;
+		case Ninguna:
+			cy = objGuardian->getY() - objGuardian->getAlto();
+			cx = objGuardian->getX();
+			break;
 		}
 
 		Semilla* s = new Semilla(
@@ -368,6 +374,8 @@ public:
 	void DeterminarGanador() 
 	{
 		//Poner la funcion de determinar ganador
+		/*MyForm3^ win = gcnew MyForm3();
+			win->Show();*/
 	}
 
 	bool AnalizarGAMEOVER(Guardian* objGuardian, bool objetivoComletado)
@@ -375,6 +383,8 @@ public:
 		if (objGuardian->getCantVidas()==0)
 		{
 			//Poner GAMEOVER
+			/*MyForm2^ gameOver = gcnew MyForm2();
+			gameOver->Show();*/
 		}
 	}
 
