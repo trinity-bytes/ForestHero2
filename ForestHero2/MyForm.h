@@ -218,8 +218,8 @@ namespace ForestHero2 {
 			if (guardian->getCantSemillas() > 0)
 			{
 				objGJuego->DispararSemilla(
-					guardian->getX(),
-					guardian->getY(),
+					bmpSemilla->Width,
+					bmpSemilla->Height,
 					guardian
 				);
 				guardian->setCantSemillas(guardian->getCantSemillas() - 1);

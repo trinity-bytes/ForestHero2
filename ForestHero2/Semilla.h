@@ -25,7 +25,7 @@ public:
 
 	void Dibujar(Graphics^ g, Bitmap^ bmp) override 
 	{
-		g->DrawImage(bmp, x, y, ancho * 0.3, alto * 0.3);
+		g->DrawImage(bmp, x, y, ancho, alto);
 	}
 
 	void Mover(Graphics^ g) override
