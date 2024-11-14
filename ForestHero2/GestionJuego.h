@@ -22,11 +22,19 @@ private:
 	vector<Basura*> arregloBasuras;
 	vector<Enemigo*> arregloEnemigos;
 
-	// Definimos la cantidad inical de cada elemento del mapa
-	int cantidadInicialEnemigos;
-	int cantidadInicialAgua;
-	int cantidadInicialSemillas;
-	int limXizquierda, limXderecha, limYsuperior, limYinferior;
+	//! Definimos la cantidad inical de cada elemento del mapa
+	/// iniciando los recursos
+	const int cantidadInicialEnemigos = 6;
+	const int cantidadInicialAgua = 8;
+	const int cantidadInicialSemillas = 12;
+
+	/// Limites del escenario
+	const int limXizquierda = 40;
+	const int limXderecha = 1000;
+	const int limYsuperior = 90;
+	const int limYinferior = 730;
+
+	// para las coordenadas de los objetos que se van a generar
 	int cx, cy;
 public:
 	GestionJuego()
@@ -37,17 +45,6 @@ public:
 		arregloArboles = vector<Arbol*>();
 		arregloBasuras = vector<Basura*>();
 		arregloEnemigos = vector<Enemigo*>();
-
-		/// iniciando los recursos
-		cantidadInicialEnemigos = 6;
-		cantidadInicialAgua = 8;
-		cantidadInicialSemillas = 12;
-
-		/// Limites del escenario
-		limXizquierda = 40;
-		limXderecha = 1000;
-		limYsuperior = 90;
-		limYinferior = 730;
 	}
 
 	~GestionJuego() {}
@@ -157,99 +154,73 @@ public:
 				break;
 			}
 
-			arregloEnemigos[i]->Mover(g, arregloEnemigos[i]->getDireccionActual());
+			arregloEnemigos[i]->Mover(g);
 		}
 
 		//! Mover semillas
 		for (int i = 0; i < arregloSemillas.size(); i++)
 		{
-			arregloSemillas[i]->Mover(g, arregloSemillas[i]->getDireccionActual());
+			if (!arregloSemillas[i]->getSeMueve()) continue; /// ignoraos las semillas que no se mueven uwu
+
+			arregloSemillas[i]->Mover(g);
 		}
-	}
-
-	void RevisarColisiones(System::Drawing::Rectangle guardian) 
-	{
-		//for (int i = 0; i < objElementos->sizeBasura(); i++)
-		//{
-		//	for (int j = 0; j < objElementos->sizeSemilla(); j++)
-		//	{
-		//		if (objElementos->returnBasura(i)->getRectangle().IntersectsWith(objElementos->returnSemilla(j)->getRectangle()))
-		//		{
-		//			objElementos->deleteBasura(i);
-		//			objElementos->deleteSemilla(j);
-		//			//Eliminar la basura y la semilla al realizar la colision
-		//		}
-		//	}
-		//}
-
-		// Colision con los enemigos
-		for (int i = 0; i < arregloEnemigos.size(); i++)
-		{
-			if (i >= arregloEnemigos.size()) break;
-
-			if (arregloEnemigos[i]->getRectangle().IntersectsWith(guardian))
-			{
-				//Perder Vidas 
-				//objGuardian->setVidas(-1);
-				arregloEnemigos.erase(arregloEnemigos.begin() + i);
-				i--;
-			}
-			
-		}
-
-		//for (int i = 0; i < objElementos->sizeBasura(); i++)
-		//{
-		//	if (objElementos->returnBasura(i)->getRectangle().IntersectsWith(objGuardian->getRectangle()))
-		//	{
-		//		//Perder Vidas
-		//		objGuardian->setVidas(-1);
-		//	}
-		//}
-
-		// Colision con agua
-		for (int i = 0; i < arregloAgua.size(); i++)
-		{
-			if (i >= arregloAgua.size()) break;
-
-			if (arregloAgua[i]->getRectangle().IntersectsWith(guardian))
-			{
-				// incrementar el contador de agua del guardian
-				arregloAgua.erase(arregloAgua.begin() + i);
-				i--;
-			}
-		}
-		
-		//for (int i = 0; i < objElementos->sizeArbol(); i++)
-		//{
-		//	if (objElementos->returnArbol(i)->getRectangle().IntersectsWith(objGuardian->getRectangle()))
-		//	{
-		//		//No se si este es la semilla que se encuentra por el suelo, en ese caso en vez de ser
-		//		//return arbol, es return Semilla
-		//		//Aumentar semillas
-		//	}
-		//}
 	}
 
 	void ColisionPersonaje(Guardian* objGuardian)
 	{
+		/// colision con semillas
 		for (int i = 0; i < arregloSemillas.size(); i++)
 		{
+			if (arregloSemillas[i]->getSeMueve()) continue;
 			if (arregloSemillas[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				arregloSemillas.erase(arregloSemillas.begin() + i);
+
 				objGuardian->setCantSemillas(objGuardian->getCantSemillas() + 1);
 				i--;
 			}
 		}
-	}
-	/*void mostrarRaking() {
-		Guardian* objGuardian = objGuardian = new Guardian(200, 200, 256 , 256);
-		MyForm1^ ranking = gcnew MyForm1();
-		if (objGuardian->getVidas() == 0) {
-			
-			ranking->Show();
+
+		/// Colision con agua
+		for (int i = 0; i < arregloAgua.size(); i++)
+		{
+			if (i >= arregloAgua.size()) break;
+
+			if (arregloAgua[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
+			{
+				// incrementar el contador de agua del guardian
+				objGuardian->setCantAgua(objGuardian->getCantAgua() + 1);
+
+				arregloAgua.erase(arregloAgua.begin() + i);
+				i--;
+			}
 		}
-	}*/
+
+		/// Colision con basura
+		for (int i = 0; i < arregloBasuras.size(); i++)
+		{
+			if (arregloBasuras[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
+			{
+				//Perder Vidas
+				objGuardian->setVidas(objGuardian->getVidas() - 1);
+			}
+		}
+
+		/// Colision con los enemigos
+		for (int i = 0; i < arregloEnemigos.size(); i++)
+		{
+			if (i >= arregloEnemigos.size()) break;
+
+			if (arregloEnemigos[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
+			{
+				///Perder Vidas 
+				objGuardian->setVidas(objGuardian->getVidas() - 1);
+
+				arregloEnemigos.erase(arregloEnemigos.begin() + i);
+				i--;
+			}
+		}
+	}
 
 	void AgregarEnemigo(int anchoEnemigo, int altoEnemigo)
 	{
@@ -295,9 +266,37 @@ public:
 		arregloArboles.push_back(a);
 	}
 
-	void DispararSemilla(int anchoSemilla, int altoSemilla, int x, int y, Direccion d)
+	void DispararSemilla(int anchoSemilla, int altoSemilla, Guardian* objGuardian)
 	{
-		Semilla* s = new Semilla(x, y, anchoSemilla, altoSemilla, d);
+		switch (objGuardian->getDireccionActual()) {
+		case Arriba:
+			cy = objGuardian->getY() - objGuardian->getAlto();
+			cx = objGuardian->getX();
+			break;
+		case Abajo:
+			cy = objGuardian->getY() + objGuardian->getAlto();
+			cx = objGuardian->getX();
+			break;
+		case Izquierda:
+			cy = objGuardian->getY();
+			cx = objGuardian->getX() - objGuardian->getAncho();
+			break;
+		case Derecha:
+			cy = objGuardian->getY();
+			cx = objGuardian->getX() + objGuardian->getAncho();
+			break;
+		}
+
+		Semilla* s = new Semilla(
+			cx,
+			cy,
+			anchoSemilla, 
+			altoSemilla, 
+			objGuardian->getDireccionActual()
+		);
+
+		
+
 		arregloSemillas.push_back(s);
 	}
 
@@ -306,11 +305,11 @@ public:
 		//Poner la funcion de determinar ganador
 	}
 
-	//bool AnalizarGAMEOVER()
-	//{
-	//	if (objGuardian->getVidas()==0)
-	//	{
-	//		//Poner GAMEOVER
-	//	}
-	//}
+	bool AnalizarGAMEOVER(Guardian* objGuardian, bool objetivoComletado)
+	{
+		if (objGuardian->getVidas()==0)
+		{
+			//Poner GAMEOVER
+		}
+	}
 };

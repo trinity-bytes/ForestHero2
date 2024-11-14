@@ -27,75 +27,40 @@ public:
     void setDireccionActual(Direccion d) { this->direccionActual = d; }
     void setVelocidad(int velocidad) { this->velocidad = velocidad; }
 
-    void Mover(Graphics^ g, Direccion teclaPulsada)
+    virtual void Mover(Graphics^ g)
     {
-        switch (teclaPulsada)
+        dx = dy = 0;
+
+        switch (direccionActual)
         {
         case Arriba:
-            if (y > 90)
-            {
-                this->dx = 0;
-                this->dy = -velocidad;
-            }
-            else
-            {
-                teclaPulsada = Direccion::Ninguna;
-            }
-
+            if (y > 90) dy = -velocidad;
+            else direccionActual = Ninguna;
             idY = 3;
             break;
         case Abajo:
-            if (y + alto < 730)
-            {
-                this->dx = 0;
-                this->dy = velocidad;
-            }
-            else
-            {
-                teclaPulsada = Direccion::Ninguna;
-            }
-
+            if (y + alto < 730) dy = velocidad;
+            else direccionActual = Ninguna;
             idY = 0;
             break;
         case Izquierda:
-            if (x > 40)
-            {
-                this->dx = -velocidad;
-                this->dy = 0;
-            }
-            else
-            {
-                teclaPulsada = Direccion::Ninguna;
-            }
-
+            if (x > 40) dx = -velocidad;
+            else direccionActual = Ninguna;
             idY = 1;
             break;
         case Derecha:
-            if (x + ancho < 1000)
-            {
-                this->dx = velocidad;
-                this->dy = 0;
-            }
-            else
-            {
-                teclaPulsada = Direccion::Ninguna;
-            }
-
+            if (x + ancho < 1000) dx = velocidad;
+            else direccionActual = Ninguna;
             idY = 2;
             break;
         case Ninguna:
-            this->dx = 0;
-            this->dy = 0;
-
             idY = 0;
             break;
         }
 
-        if (teclaPulsada != Direccion::Ninguna)
+        if (direccionActual != Direccion::Ninguna)
         {
-            idX++;
-            if (idX > 3) idX = 0;
-
+            idX = (idX + 1) % 4;
             x += dx;
             y += dy;
         }

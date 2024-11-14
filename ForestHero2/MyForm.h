@@ -166,8 +166,8 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void timerJuego_Tick(System::Object^ sender, System::EventArgs^ e) {
-		objGJuego->RevisarColisiones(guardian->getRectangle());
 		objGJuego->ColisionPersonaje(guardian);
+
 		objGJuego->MoverTodo(buffer->Graphics);
 
 		cantSemillas = guardian->getCantSemillas();
@@ -176,23 +176,24 @@ namespace ForestHero2 {
 		if (teclaW)
 		{
 			guardian->setDireccionActual(Direccion::Arriba);
-			guardian->Mover(buffer->Graphics, Direccion::Arriba);
-		}
-		if (teclaA)
+		} 
+		else if (teclaA)
 		{
 			guardian->setDireccionActual(Direccion::Izquierda);
-			guardian->Mover(buffer->Graphics, Direccion::Izquierda);
 		}
-		if (teclaS)
+		else if (teclaS)
 		{
 			guardian->setDireccionActual(Direccion::Abajo);
-			guardian->Mover(buffer->Graphics, Direccion::Abajo);
 		}
-		if (teclaD)
+		else if (teclaD)
 		{
 			guardian->setDireccionActual(Direccion::Derecha);
-			guardian->Mover(buffer->Graphics, Direccion::Derecha);
 		}
+		else
+		{
+			guardian->setDireccionActual(Direccion::Ninguna);
+		}
+
 		if (teclaM)
 		{
 			// plantar arbol 
@@ -219,15 +220,15 @@ namespace ForestHero2 {
 				objGJuego->DispararSemilla(
 					guardian->getX(),
 					guardian->getY(),
-					bmpSemilla->Width,
-					bmpSemilla->Height,
-					guardian->getDireccionActual()
+					guardian
 				);
 				guardian->setCantSemillas(guardian->getCantSemillas() - 1);
 			}
 
 			teclaP = false;
 		}
+
+		guardian->Mover(buffer->Graphics);
 
 		buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
 		objGJuego->DibujarTodo(

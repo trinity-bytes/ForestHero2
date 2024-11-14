@@ -6,21 +6,13 @@
 
 #pragma comment(lib, "winmm.lib") // libreria de PlaySound
 
-
 int GenerarNumeroAleatorio(int m, int n) {
-    // Verificar que m sea menor que n
     if (m >= n) {
-        std::cerr << "Error: m debe ser menor que n" << std::endl;
         return m;  // Retornar m en caso de error
     }
 
-    // Inicializar el generador de números aleatorios
     static std::mt19937 gen(std::time(0));
-
-    // Crear una distribución uniforme en el rango [m, n]
     std::uniform_int_distribution<> dis(m, n);
-
-    // Generar y retornar el número aleatorio
     return dis(gen);
 }
 
