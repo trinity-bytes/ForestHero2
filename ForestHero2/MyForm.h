@@ -69,7 +69,8 @@ namespace ForestHero2 {
 		Guardian* guardian;
 		GestionJuego* objGJuego;
 		int cantSemillas;
-
+		int cantAguas;
+		int cantVidas;
 		// boleanos para capturar el estado de las teclas presionadas
 		bool teclaW = false;
 		bool teclaA = false;
@@ -84,6 +85,9 @@ namespace ForestHero2 {
 	private: System::Windows::Forms::Timer^ timerAgua;
 	private: System::Windows::Forms::Timer^ timerSemillas;
 	private: System::Windows::Forms::Label^ CtSemillas;
+	private: System::Windows::Forms::Label^ CtAgua;
+	private: System::Windows::Forms::Label^ CTVidas;
+
 	private: System::Windows::Forms::Timer^ timerBasura;
 
 #pragma region Windows Form Designer generated code
@@ -92,6 +96,8 @@ namespace ForestHero2 {
 			this->components = (gcnew System::ComponentModel::Container());
 			this->timerJuego = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panelCanvas = (gcnew System::Windows::Forms::Panel());
+			this->CTVidas = (gcnew System::Windows::Forms::Label());
+			this->CtAgua = (gcnew System::Windows::Forms::Label());
 			this->CtSemillas = (gcnew System::Windows::Forms::Label());
 			this->timerEnemigos = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timerAgua = (gcnew System::Windows::Forms::Timer(this->components));
@@ -107,18 +113,42 @@ namespace ForestHero2 {
 			// 
 			// panelCanvas
 			// 
+			this->panelCanvas->Controls->Add(this->CTVidas);
+			this->panelCanvas->Controls->Add(this->CtAgua);
 			this->panelCanvas->Controls->Add(this->CtSemillas);
 			this->panelCanvas->Location = System::Drawing::Point(0, 0);
 			this->panelCanvas->Name = L"panelCanvas";
 			this->panelCanvas->Size = System::Drawing::Size(1366, 768);
 			this->panelCanvas->TabIndex = 0;
 			// 
+			// CTVidas
+			// 
+			this->CTVidas->AutoSize = true;
+			this->CTVidas->BackColor = System::Drawing::Color::Transparent;
+			this->CTVidas->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16));
+			this->CTVidas->Location = System::Drawing::Point(786, 34);
+			this->CTVidas->Name = L"CTVidas";
+			this->CTVidas->Size = System::Drawing::Size(70, 26);
+			this->CTVidas->TabIndex = 2;
+			this->CTVidas->Text = L"label1";
+			// 
+			// CtAgua
+			// 
+			this->CtAgua->AutoSize = true;
+			this->CtAgua->BackColor = System::Drawing::Color::Transparent;
+			this->CtAgua->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16));
+			this->CtAgua->Location = System::Drawing::Point(504, 34);
+			this->CtAgua->Name = L"CtAgua";
+			this->CtAgua->Size = System::Drawing::Size(70, 26);
+			this->CtAgua->TabIndex = 1;
+			this->CtAgua->Text = L"label1";
+			// 
 			// CtSemillas
 			// 
 			this->CtSemillas->AutoSize = true;
 			this->CtSemillas->BackColor = System::Drawing::Color::Transparent;
 			this->CtSemillas->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16));
-			this->CtSemillas->Location = System::Drawing::Point(228, 35);
+			this->CtSemillas->Location = System::Drawing::Point(224, 34);
 			this->CtSemillas->Name = L"CtSemillas";
 			this->CtSemillas->Size = System::Drawing::Size(70, 26);
 			this->CtSemillas->TabIndex = 0;
@@ -127,25 +157,25 @@ namespace ForestHero2 {
 			// timerEnemigos
 			// 
 			this->timerEnemigos->Enabled = true;
-			this->timerEnemigos->Interval = 5000; // 5 segundos
+			this->timerEnemigos->Interval = 5000;
 			this->timerEnemigos->Tick += gcnew System::EventHandler(this, &MyForm::timerEnemigos_Tick);
 			// 
 			// timerAgua
 			// 
 			this->timerAgua->Enabled = true;
-			this->timerAgua->Interval = 4000; // 4 segundos
+			this->timerAgua->Interval = 4000;
 			this->timerAgua->Tick += gcnew System::EventHandler(this, &MyForm::timerAgua_Tick);
 			// 
 			// timerSemillas
 			// 
 			this->timerSemillas->Enabled = true;
-			this->timerSemillas->Interval = 4000; // 4 segundos
+			this->timerSemillas->Interval = 4000;
 			this->timerSemillas->Tick += gcnew System::EventHandler(this, &MyForm::timerSemillas_Tick);
 			// 
 			// timerBasura
 			// 
 			this->timerBasura->Enabled = true;
-			this->timerBasura->Interval = 8000; // 8 segundos
+			this->timerBasura->Interval = 8000;
 			this->timerBasura->Tick += gcnew System::EventHandler(this, &MyForm::timerBasura_Tick);
 			// 
 			// MyForm
@@ -169,10 +199,12 @@ namespace ForestHero2 {
 		objGJuego->ColisionPersonaje(guardian);
 
 		objGJuego->MoverTodo(buffer->Graphics);
-
+		cantVidas = guardian->getCantVidas();
+		cantAguas = guardian->getCantAgua();
 		cantSemillas = guardian->getCantSemillas();
 		CtSemillas->Text = L"" + cantSemillas;
-
+		CtAgua->Text = L"" + cantAguas;
+		CTVidas->Text = L"" + cantVidas;
 		if (teclaW)
 		{
 			guardian->setDireccionActual(Direccion::Arriba);

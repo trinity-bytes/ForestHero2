@@ -202,7 +202,7 @@ public:
 			if (arregloBasuras[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				//Perder Vidas
-				objGuardian->setVidas(objGuardian->getVidas() - 1);
+				objGuardian->setCantVidas(objGuardian->getCantVidas() - 1);
 			}
 		}
 
@@ -214,7 +214,7 @@ public:
 			if (arregloEnemigos[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				///Perder Vidas 
-				objGuardian->setVidas(objGuardian->getVidas() - 1);
+				objGuardian->setCantVidas(objGuardian->getCantVidas() - 1);
 
 				arregloEnemigos.erase(arregloEnemigos.begin() + i);
 				i--;
@@ -307,7 +307,7 @@ public:
 
 	bool AnalizarGAMEOVER(Guardian* objGuardian, bool objetivoComletado)
 	{
-		if (objGuardian->getVidas()==0)
+		if (objGuardian->getCantVidas()==0)
 		{
 			//Poner GAMEOVER
 		}
