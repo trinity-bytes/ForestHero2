@@ -199,15 +199,11 @@ namespace ForestHero2 {
 			// plantar arbol 
 			if (guardian->getCantSemillas() > 0 && guardian->getCantAgua() > 0)
 			{
-				objGJuego->AgregarArbol(
-					guardian->getX(),
-					guardian->getY(),
+				objGJuego->PlantarArbol(
+					guardian,
 					bmpArbol->Width,
 					bmpArbol->Height
 				);
-
-				guardian->setCantAgua(guardian->getCantAgua() - 1);
-				guardian->setCantSemillas(guardian->getCantSemillas() - 1);
 			}
 
 			teclaM = false;

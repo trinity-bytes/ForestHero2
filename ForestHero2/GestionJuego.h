@@ -8,6 +8,7 @@
 #include "Arbol.h"
 #include "Basura.h"
 #include "vector"
+#include "cmath" //todo para usar sqrt y pow en la funcion de calcular distancia
 
 using namespace std;
 using namespace System;
@@ -36,6 +37,16 @@ private:
 
 	// para las coordenadas de los objetos que se van a generar
 	int cx, cy;
+
+	//! Para definir las dimenciones de las celdas del escenario
+	const int anchoCelda = 80;
+	const int altoCelda = 80;
+	//! Definimo las filas y columnas
+	static const int filasMatriz = 8;
+	static const int columnasMatriz = 12;
+	//! Creamos la matriz que llevara el registro de los arboles plantados
+	bool matrizArboles[filasMatriz][columnasMatriz] = {false};
+
 public:
 	GestionJuego()
 	{
@@ -266,6 +277,60 @@ public:
 		arregloArboles.push_back(a);
 	}
 
+	void PlantarArbol(Guardian* objGuardian, int anchoArbol, int altoArbol)
+	{
+		int columnaActual = objGuardian->getX() / anchoCelda;
+		int filaActual = objGuardian->getY() / altoCelda;
+
+		/// Calcualmos el centro de la celda actual y las cercanas
+		int posiciones[4][2] = {
+		{ columnaActual * anchoCelda + anchoCelda / 2, filaActual * altoCelda + altoCelda / 2 },
+		{ (columnaActual + 1) * anchoCelda + anchoCelda / 2, filaActual * altoCelda + altoCelda / 2 },
+		{ columnaActual * anchoCelda + anchoCelda / 2, (filaActual + 1) * altoCelda + altoCelda / 2 },
+		{ (columnaActual + 1) * anchoCelda + anchoCelda / 2, (filaActual + 1) * altoCelda + altoCelda / 2 }
+		};
+
+		/// Determinamos cual es la celda mas cercana comparando sus distancias
+		int mejorColumna = columnaActual, mejorFila = filaActual;
+		double distanciaMinima = CalcularDistancia(
+									objGuardian->getX(), 
+									objGuardian->getY(), 
+									posiciones[0][0], 
+									posiciones[0][1]
+								);
+
+		for (int i = 1; i < 4; i++) {
+			int nuevaColumna = (i % 2 == 0) ? columnaActual : columnaActual + 1;
+			int nuevaFila = (i < 2) ? filaActual : filaActual + 1;
+
+			if (nuevaColumna < columnasMatriz && nuevaFila < filasMatriz) {
+				double distancia = CalcularDistancia(
+										objGuardian->getX(), 
+										objGuardian->getY(), 
+										posiciones[i][0], 
+										posiciones[i][1]
+									);
+				if (distancia < distanciaMinima) {
+					distanciaMinima = distancia;
+					mejorColumna = nuevaColumna;
+					mejorFila = nuevaFila;
+				}
+			}
+		}
+
+		/// Plantamos el arbol en la celda mas cercana, si es que esta libre
+		if (!matrizArboles[mejorFila][mejorColumna]) {
+			int xArbol = limXizquierda + mejorColumna * anchoCelda + anchoCelda / 2 - anchoArbol / 2;
+			int yArbol = mejorFila * altoCelda + altoCelda / 2 - altoArbol / 2;
+
+			AgregarArbol(xArbol, yArbol, anchoArbol, altoArbol);
+			matrizArboles[mejorFila][mejorColumna] = true;
+
+			objGuardian->setCantAgua(objGuardian->getCantAgua() - 1);
+			objGuardian->setCantSemillas(objGuardian->getCantSemillas() - 1);
+		}
+	}
+
 	void DispararSemilla(int anchoSemilla, int altoSemilla, Guardian* objGuardian)
 	{
 		switch (objGuardian->getDireccionActual()) {
@@ -295,8 +360,6 @@ public:
 			objGuardian->getDireccionActual()
 		);
 
-		
-
 		arregloSemillas.push_back(s);
 	}
 
@@ -311,5 +374,10 @@ public:
 		{
 			//Poner GAMEOVER
 		}
+	}
+
+	double CalcularDistancia(int x1, int y1, int x2, int y2) {
+		/// calculamos la distancia entre 2 coordenadas
+		return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 	}
 };
