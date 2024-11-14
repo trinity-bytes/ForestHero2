@@ -283,8 +283,14 @@ public:
 
 	void PlantarArbol(Guardian* objGuardian, int anchoArbol, int altoArbol)
 	{
-		int columnaActual = objGuardian->getX() / anchoCelda;
-		int filaActual = objGuardian->getY() / altoCelda;
+		/// Ajustamos la posicion x e y para evitar errores de calculo de las posiciones
+		/// en las celdas
+		int xAjustado = objGuardian->getX() - limXizquierda;
+		int yAjustado = objGuardian->getY() - limYsuperior;
+
+		///caclulamos la fil y columna actuales en base a la posicion ajustada
+		int columnaActual = xAjustado / anchoCelda;
+		int filaActual = yAjustado / altoCelda;
 
 		/// Calcualmos el centro de la celda actual y las cercanas
 		int posiciones[4][2] = {
@@ -297,20 +303,20 @@ public:
 		/// Determinamos cual es la celda mas cercana comparando sus distancias
 		int mejorColumna = columnaActual, mejorFila = filaActual;
 		double distanciaMinima = CalcularDistancia(
-									objGuardian->getX(), 
-									objGuardian->getY(), 
+									xAjustado,
+									yAjustado, 
 									posiciones[0][0], 
 									posiciones[0][1]
 								);
 
 		for (int i = 1; i < 4; i++) {
 			int nuevaColumna = (i % 2 == 0) ? columnaActual : columnaActual + 1;
-			int nuevaFila = (i < 2) ? filaActual : filaActual + 1;
+			int nuevaFila = (i < 2) ? filaActual : filaActual + 1; // ternario (recuerdos de vietnam XD)
 
 			if (nuevaColumna < columnasMatriz && nuevaFila < filasMatriz) {
 				double distancia = CalcularDistancia(
-										objGuardian->getX(), 
-										objGuardian->getY(), 
+										xAjustado, 
+										yAjustado, 
 										posiciones[i][0], 
 										posiciones[i][1]
 									);
@@ -324,8 +330,9 @@ public:
 
 		/// Plantamos el arbol en la celda mas cercana, si es que esta libre
 		if (!matrizArboles[mejorFila][mejorColumna]) {
+			// aqui le sumamos el espacio dejado a la izquierda para corregir el posicionmiento en x
 			int xArbol = limXizquierda + mejorColumna * anchoCelda + anchoCelda / 2 - anchoArbol / 2;
-			int yArbol = mejorFila * altoCelda + altoCelda / 2 - altoArbol / 2;
+			int yArbol = limYsuperior + mejorFila * altoCelda + altoCelda / 2 - altoArbol / 2;
 
 			AgregarArbol(xArbol, yArbol, anchoArbol, altoArbol);
 			matrizArboles[mejorFila][mejorColumna] = true;
