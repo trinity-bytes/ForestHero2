@@ -131,7 +131,7 @@ namespace ForestHero2 {
 			this->CtPuntos->AutoSize = true;
 			this->CtPuntos->BackColor = System::Drawing::Color::Transparent;
 			this->CtPuntos->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 30));
-			this->CtPuntos->Location = System::Drawing::Point(1261, 109);
+			this->CtPuntos->Location = System::Drawing::Point(1069, 107);
 			this->CtPuntos->Name = L"CtPuntos";
 			this->CtPuntos->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->CtPuntos->Size = System::Drawing::Size(45, 49);
