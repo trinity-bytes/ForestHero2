@@ -90,6 +90,7 @@ namespace ForestHero2 {
 	private: System::Windows::Forms::Label^ CtVidas;
 
 	private: System::Windows::Forms::Label^ CtPuntos;
+	private: System::Windows::Forms::Label^ labelPuntos;
 
 	private: System::Windows::Forms::Timer^ timerBasura;
 
@@ -107,6 +108,7 @@ namespace ForestHero2 {
 			this->timerAgua = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timerSemillas = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timerBasura = (gcnew System::Windows::Forms::Timer(this->components));
+			this->labelPuntos = (gcnew System::Windows::Forms::Label());
 			this->panelCanvas->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -117,6 +119,8 @@ namespace ForestHero2 {
 			// 
 			// panelCanvas
 			// 
+			this->panelCanvas->BackColor = System::Drawing::Color::Transparent;
+			this->panelCanvas->Controls->Add(this->labelPuntos);
 			this->panelCanvas->Controls->Add(this->CtPuntos);
 			this->panelCanvas->Controls->Add(this->CtVidas);
 			this->panelCanvas->Controls->Add(this->CtAgua);
@@ -129,9 +133,10 @@ namespace ForestHero2 {
 			// CtPuntos
 			// 
 			this->CtPuntos->AutoSize = true;
-			this->CtPuntos->BackColor = System::Drawing::Color::Transparent;
+			this->CtPuntos->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
+				static_cast<System::Int32>(static_cast<System::Byte>(132)));
 			this->CtPuntos->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 30));
-			this->CtPuntos->Location = System::Drawing::Point(1069, 107);
+			this->CtPuntos->Location = System::Drawing::Point(1060, 101);
 			this->CtPuntos->Name = L"CtPuntos";
 			this->CtPuntos->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->CtPuntos->Size = System::Drawing::Size(45, 49);
@@ -143,7 +148,8 @@ namespace ForestHero2 {
 			// CtVidas
 			// 
 			this->CtVidas->AutoSize = true;
-			this->CtVidas->BackColor = System::Drawing::Color::Transparent;
+			this->CtVidas->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
+				static_cast<System::Int32>(static_cast<System::Byte>(132)));
 			this->CtVidas->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->CtVidas->Location = System::Drawing::Point(792, 34);
@@ -155,7 +161,8 @@ namespace ForestHero2 {
 			// CtAgua
 			// 
 			this->CtAgua->AutoSize = true;
-			this->CtAgua->BackColor = System::Drawing::Color::Transparent;
+			this->CtAgua->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
+				static_cast<System::Int32>(static_cast<System::Byte>(132)));
 			this->CtAgua->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->CtAgua->Location = System::Drawing::Point(504, 34);
@@ -167,7 +174,8 @@ namespace ForestHero2 {
 			// CtSemillas
 			// 
 			this->CtSemillas->AutoSize = true;
-			this->CtSemillas->BackColor = System::Drawing::Color::Transparent;
+			this->CtSemillas->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
+				static_cast<System::Int32>(static_cast<System::Byte>(132)));
 			this->CtSemillas->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->CtSemillas->Location = System::Drawing::Point(224, 34);
@@ -199,6 +207,18 @@ namespace ForestHero2 {
 			this->timerBasura->Enabled = true;
 			this->timerBasura->Interval = 8000;
 			this->timerBasura->Tick += gcnew System::EventHandler(this, &MyForm::timerBasura_Tick);
+			// 
+			// labelPuntos
+			// 
+			this->labelPuntos->AutoSize = true;
+			this->labelPuntos->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
+				static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->labelPuntos->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18));
+			this->labelPuntos->Location = System::Drawing::Point(1064, 141);
+			this->labelPuntos->Name = L"labelPuntos";
+			this->labelPuntos->Size = System::Drawing::Size(97, 29);
+			this->labelPuntos->TabIndex = 4;
+			this->labelPuntos->Text = L"Puntos";
 			// 
 			// MyForm
 			// 
