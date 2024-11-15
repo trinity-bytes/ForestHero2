@@ -46,6 +46,8 @@ private:
 	int cx, cy;
 	// con este timer podemos dar un tiempo de inmunidad al guardian
 	int pseudoTimerInmunidad = 0;
+	const int timeOutBasura = 20;
+	const int timeOutPowerUp = 50;
 	// para controlar el estado de inmunidad del guardian
 	bool guardianInmune = false;
 
@@ -201,6 +203,10 @@ public:
 				i--;
 			}
 		}
+
+		//! MoverAliado
+		aliado->Mover(g);
+		if (aliado->getX() > 995 + aliado->getAlto()) aliado->setVisible(false);
 	}
 
 	void ColisionPersonaje(Guardian* objGuardian)
@@ -239,24 +245,24 @@ public:
 		}
 
 		/// Colision guardian - basura
-		if (guardianInmune == false)
+		
+		for (int i = 0; i < arregloBasuras.size(); i++)
 		{
-			guardianInmune = true;
-			for (int i = 0; i < arregloBasuras.size(); i++)
+			if (arregloBasuras[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
-				if (arregloBasuras[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
+				if (guardianInmune == false)
 				{
 					//Perder Vidas
-					if (objGuardian->getCantVidas() > 0) {
-						objGuardian->setCantVidas(-1);
-					}					
+					if (objGuardian->getCantVidas() > 0) objGuardian->setCantVidas(-1);
+					
+					guardianInmune = true;
+					// todo timeout de inmunidad para que el guardian no pierda vidas infinitamente
+					pseudoTimerInmunidad = timeOutBasura;
 				}
+				
 			}
-			// todo timeout de inmunidad para que el guardian no pierda vidas infinitamente
-			pseudoTimerInmunidad = 2000;
 		}
-		
-
+				
 		/// Colision guardian - enemigos
 		for (int i = 0; i < arregloEnemigos.size(); i++)
 		{
@@ -342,7 +348,7 @@ public:
 
 		/// Decrecentamos el pseudotimer si es mayor a 0
 		if (pseudoTimerInmunidad > 0) pseudoTimerInmunidad--;
-		if (pseudoTimerInmunidad <= 0) guardianInmune == false;
+		else guardianInmune = false;
 	}
 
 	void AgregarEnemigo(int anchoEnemigo, int altoEnemigo)
@@ -489,6 +495,15 @@ public:
 		);
 
 		arregloSemillas.push_back(s);
+	}
+
+	void InvocarAliado()
+	{
+		cy = GenerarNumeroAleatorio(limYsuperior, limYinferior - aliado->getAlto());
+
+		aliado->setX(limXizquierda);
+		aliado->setY(cy);
+		aliado->setVisible(true);
 	}
 
 	double PorcentajeReforestacion()

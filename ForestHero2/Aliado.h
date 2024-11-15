@@ -8,7 +8,8 @@ private:
 public:
 	Aliado(int px, int py, int pvelocidad, int pancho, int palto) : Agente(px, py, pvelocidad, pancho, palto) 
 	{ 
-		velocidad = 20; 
+		velocidad = 15; 
+		direccionActual = Derecha;
 	}
 
 	~Aliado() {}
