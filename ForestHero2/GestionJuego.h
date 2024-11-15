@@ -418,10 +418,6 @@ public:
 			cy = objGuardian->getY();
 			cx = objGuardian->getX() + objGuardian->getAncho();
 			break;
-		case Ninguna:
-			cy = objGuardian->getY() - objGuardian->getAlto();
-			cx = objGuardian->getX();
-			break;
 		}
 
 		Semilla* s = new Semilla(
