@@ -23,7 +23,7 @@ namespace ForestHero2 {
 
 			bmpEscenario1 = gcnew Bitmap("Resources/Images/Escenario1.png");
 			bmpGuardian = gcnew Bitmap("Resources/Images/personajeTemp.png");
-			bmpEnemigo = gcnew Bitmap("Resources/Images/enemigoTemp.png");
+			bmpEnemigo = gcnew Bitmap("Resources/Images/enemigo.png");
 			bmpAliado = gcnew Bitmap("Resources/Images/aliadoTemp.png");
 			bmpAgua = gcnew Bitmap("Resources/Images/aguaTemp.png");
 			bmpSemilla = gcnew Bitmap("Resources/Images/semilla.png");
