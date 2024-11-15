@@ -26,6 +26,10 @@ private:
 	vector<Basura*> arregloBasuras;
 	vector<Enemigo*> arregloEnemigos;
 	Aliado* aliado;
+
+	// para calcular el porcentaje de reforestacion
+	const int cantMaxArboles = 96;
+
 	//! Definimos la cantidad inical de cada elemento del mapa
 	/// iniciando los recursos
 	const int cantidadInicialEnemigos = 6;
@@ -487,15 +491,23 @@ public:
 		arregloSemillas.push_back(s);
 	}
 
-	void DeterminarGanador() 
+	double PorcentajeReforestacion()
 	{
-		//Poner la funcion de determinar ganador
-		/*MyForm3^ win = gcnew MyForm3();
-			win->Show();*/
+		int totalArboles = arregloArboles.size();
+		
+		return (totalArboles / cantMaxArboles) * 100;
+	}
+
+	bool DeterminarVictoria(Guardian* objGuardian)
+	{
+		if (PorcentajeReforestacion() >= 70 && objGuardian->getCantVidas() > 0) return true;
+		else return false;
 	}
 
 	bool AnalizarGAMEOVER(Guardian* objGuardian, bool objetivoComletado)
 	{
+		
+
 		if (objGuardian->getCantVidas()==0)
 		{
 			//Poner GAMEOVER
