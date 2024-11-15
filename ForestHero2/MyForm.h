@@ -258,7 +258,7 @@ namespace ForestHero2 {
 			// timerAliado
 			// 
 			this->timerAliado->Enabled = true;
-			this->timerBasura->Interval = 10000;
+			this->timerAliado->Interval = 8000;
 			this->timerAliado->Tick += gcnew System::EventHandler(this, &MyForm::timerAliado_Tick);
 			// 
 			// MyForm
@@ -390,9 +390,8 @@ namespace ForestHero2 {
 	}
 
 	private: System::Void timerAliado_Tick(System::Object^ sender, System::EventArgs^ e) {
-		if (guardian->getCantVidas() <= 3) {
+		if (guardian->getCantVidas() <= 3 && objGJuego->AliadoActivo() == false) 
 			objGJuego->InvocarAliado();
-		}
 	}
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		switch (e->KeyCode)

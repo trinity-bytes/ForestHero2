@@ -206,7 +206,7 @@ public:
 
 		//! MoverAliado
 		aliado->Mover(g);
-		if (aliado->getX() > 995 + aliado->getAlto()) aliado->setVisible(false);
+		if (aliado->getX() + aliado->getAncho() > 995) aliado->setVisible(false);
 	}
 
 	void ColisionPersonaje(Guardian* objGuardian)
@@ -504,6 +504,11 @@ public:
 		aliado->setX(limXizquierda);
 		aliado->setY(cy);
 		aliado->setVisible(true);
+	}
+
+	bool AliadoActivo()
+	{
+		return aliado->getVisible();
 	}
 
 	double PorcentajeReforestacion()
