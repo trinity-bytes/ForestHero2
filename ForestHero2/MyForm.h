@@ -240,13 +240,13 @@ namespace ForestHero2 {
 			// timerAgua
 			// 
 			this->timerAgua->Enabled = true;
-			this->timerAgua->Interval = 3500;
+			this->timerAgua->Interval = 5000;
 			this->timerAgua->Tick += gcnew System::EventHandler(this, &MyForm::timerAgua_Tick);
 			// 
 			// timerSemillas
 			// 
 			this->timerSemillas->Enabled = true;
-			this->timerSemillas->Interval = 2500;
+			this->timerSemillas->Interval = 3000;
 			this->timerSemillas->Tick += gcnew System::EventHandler(this, &MyForm::timerSemillas_Tick);
 			// 
 			// timerBasura

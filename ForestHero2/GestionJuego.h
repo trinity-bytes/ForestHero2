@@ -40,6 +40,10 @@ private:
 
 	// para las coordenadas de los objetos que se van a generar
 	int cx, cy;
+	// con este timer podemos dar un tiempo de inmunidad al guardian
+	int pseudoTimerInmunidad = 0;
+	// para controlar el estado de inmunidad del guardian
+	bool guardianInmune = false;
 
 	//! Para definir las dimenciones de las celdas del escenario
 	const int anchoCelda = 80;
@@ -59,7 +63,7 @@ public:
 		arregloArboles = vector<Arbol*>();
 		arregloBasuras = vector<Basura*>();
 		arregloEnemigos = vector<Enemigo*>();
-		aliado = new Aliado(50, 500, 20, 125, 125);
+		aliado = new Aliado(40, 500, 20, 125, 125);
 	}
 
 	~GestionJuego() {}
@@ -145,7 +149,7 @@ public:
 		}
 
 		//dibujar Aliado
-		aliado->Dibujar(g,bmpAliado);
+		if (aliado->getVisible() == true) aliado->Dibujar(g,bmpAliado);
 	}
 
 	void MoverTodo(Graphics^ g) 
@@ -231,18 +235,23 @@ public:
 		}
 
 		/// Colision guardian - basura
-		for (int i = 0; i < arregloBasuras.size(); i++)
+		if (guardianInmune == false)
 		{
-			if (arregloBasuras[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
+			guardianInmune = true;
+			for (int i = 0; i < arregloBasuras.size(); i++)
 			{
-				//Perder Vidas
-				if (objGuardian->getCantVidas() > 0) {
-					objGuardian->setCantVidas(-1);
+				if (arregloBasuras[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
+				{
+					//Perder Vidas
+					if (objGuardian->getCantVidas() > 0) {
+						objGuardian->setCantVidas(-1);
+					}					
 				}
-				
-				// todo timeout de inmunidad para que el guardian no pierda vidas infinitamente
 			}
+			// todo timeout de inmunidad para que el guardian no pierda vidas infinitamente
+			pseudoTimerInmunidad = 2000;
 		}
+		
 
 		/// Colision guardian - enemigos
 		for (int i = 0; i < arregloEnemigos.size(); i++)
@@ -308,6 +317,8 @@ public:
 		}
 
 		//todo Eliminamos los elementos fuera de los bucles
+		/// esta forma de for lo que hace es que busca desde el inicio al final de la matriz 
+		/// y compara sus valores para descartar valores duplicados
 		for (auto i = indicesSemillasEliminar.rbegin(); i != indicesSemillasEliminar.rend(); ++i)
 		{
 			arregloSemillas.erase(arregloSemillas.begin() + *i);
@@ -324,6 +335,10 @@ public:
 		{
 			arregloBasuras.erase(arregloBasuras.begin() + indicesBasuraEliminar[i]);
 		}
+
+		/// Decrecentamos el pseudotimer si es mayor a 0
+		if (pseudoTimerInmunidad > 0) pseudoTimerInmunidad--;
+		if (pseudoTimerInmunidad <= 0) guardianInmune == false;
 	}
 
 	void AgregarEnemigo(int anchoEnemigo, int altoEnemigo)
@@ -372,10 +387,14 @@ public:
 
 	void PlantarArbol(Guardian* objGuardian, int anchoArbol, int altoArbol)
 	{
+		/// Obtenemos el centro del personaje
+		int centroX = objGuardian->getX() + objGuardian->getAncho() / 2;
+		int centroY = objGuardian->getY() + objGuardian->getAlto() / 2;
+
 		/// Ajustamos la posicion x e y para evitar errores de calculo de las posiciones
 		/// en las celdas
-		int xAjustado = objGuardian->getX() - limXizquierda;
-		int yAjustado = objGuardian->getY() - limYsuperior;
+		int xAjustado = centroX - limXizquierda;
+		int yAjustado = centroY - limYsuperior;
 
 		///caclulamos la fila y columna actuales en base a la posicion ajustada
 		int columnaActual = xAjustado / anchoCelda;
@@ -403,6 +422,7 @@ public:
 			int nuevaColumna = (i % 2 == 0) ? columnaActual : columnaActual + 1;
 			int nuevaFila = (i < 2) ? filaActual : filaActual + 1; // ternario (recuerdos de vietnam XD)
 
+			/// validamos que la nueva celda este dentro de los limites de la matriz
 			if (nuevaColumna < columnasMatriz && nuevaFila < filasMatriz) 
 			{
 				double distancia = CalcularDistancia(
