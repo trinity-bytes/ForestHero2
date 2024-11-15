@@ -258,7 +258,15 @@ public:
 			{
 				if (arregloSemillas[i]->getRectangle().IntersectsWith(arregloBasuras[j]->getRectangle()))
 				{
-					indicesSemillasEliminar.push_back(i);
+					//todo Aqui lo que se hace es que se realiza una comprobacion 
+					//todo con el metodo find para corroborar que el indice que se 
+					//todo va a agregar al arreglo no haya sigo agregado previamente
+					/// Asi se evita que haya indices duplicados y ocurra un error de vector fuera de rango, de nada. UwU
+					// este tipo de comprobaciones se implementa mas adelante en la colision Semilla-Enemigo
+					if (std::find(indicesSemillasEliminar.begin(), indicesSemillasEliminar.end(), i) == indicesSemillasEliminar.end())	
+						indicesSemillasEliminar.push_back(i);
+
+					if (std::find(indicesBasuraEliminar.begin(), indicesBasuraEliminar.end(), j) == indicesBasuraEliminar.end())
 					indicesBasuraEliminar.push_back(j);
 					break; /// terminamos el ciclo ya que se elimino la semilla
 				}
@@ -274,14 +282,17 @@ public:
 			{
 				if (arregloSemillas[i]->getRectangle().IntersectsWith(arregloEnemigos[j]->getRectangle()))
 				{
-					indicesSemillasEliminar.push_back(i);
+					//todo Comprobacion de la existencia del indice (previamente explicado)
+					if (std::find(indicesSemillasEliminar.begin(), indicesSemillasEliminar.end(), i) == indicesSemillasEliminar.end())
+						indicesSemillasEliminar.push_back(i);
 
 					/// le restamos vidas al enemigo
 					arregloEnemigos[j]->setVidas(arregloEnemigos[j]->getVidas() - 1);
 
 					if (arregloEnemigos[j]->getVidas() <= 0) /// verificamos las vidas del enemigo
 					{
-						indicesEnemigosEliminar.push_back(j);
+						if (std::find(indicesEnemigosEliminar.begin(), indicesEnemigosEliminar.end(), j) == indicesEnemigosEliminar.end())
+							indicesEnemigosEliminar.push_back(j);
 					}
 					break; /// terminamos el ciclo ya que se elimino la semilla
 				}
