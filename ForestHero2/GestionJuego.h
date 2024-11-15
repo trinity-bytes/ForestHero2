@@ -259,7 +259,7 @@ public:
 				if (arregloSemillas[i]->getRectangle().IntersectsWith(arregloBasuras[j]->getRectangle()))
 				{
 					indicesSemillasEliminar.push_back(i);
-					indicesBasuraEliminar.push_back(i);
+					indicesBasuraEliminar.push_back(j);
 					break; /// terminamos el ciclo ya que se elimino la semilla
 				}
 			}
@@ -281,7 +281,7 @@ public:
 
 					if (arregloEnemigos[j]->getVidas() <= 0) /// verificamos las vidas del enemigo
 					{
-						indicesEnemigosEliminar.push_back(i);
+						indicesEnemigosEliminar.push_back(j);
 					}
 					break; /// terminamos el ciclo ya que se elimino la semilla
 				}
@@ -289,13 +289,13 @@ public:
 		}
 
 		//todo Eliminamos los elementos fuera de los bucles
-		for (int i = indicesSemillasEliminar.size() - 1; i >= 0; i--) 
+		for (auto i = indicesSemillasEliminar.rbegin(); i != indicesSemillasEliminar.rend(); ++i)
 		{
-			arregloSemillas.erase(arregloSemillas.begin() + indicesSemillasEliminar[i]);
+			arregloSemillas.erase(arregloSemillas.begin() + *i);
 		}
-		for (int i = indicesEnemigosEliminar.size() - 1; i >= 0; i--)
+		for (auto i = indicesEnemigosEliminar.rbegin(); i != indicesEnemigosEliminar.rend(); ++i)
 		{
-			arregloEnemigos.erase(arregloEnemigos.begin() + indicesEnemigosEliminar[i]);
+			arregloEnemigos.erase(arregloEnemigos.begin() + *i);
 		}
 		for (int i = indicesAguaEliminar.size() - 1; i >= 0; i--)
 		{
