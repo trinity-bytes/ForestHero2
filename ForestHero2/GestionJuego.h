@@ -1,10 +1,11 @@
 #pragma once
 #include "FuncionesCustom.h"
 #include "MyForm1.h"
-#include "MyForm2.h"
+//#include "MyForm2.h"
 //#include "MyForm3.h"
 #include "Guardian.h"
 #include "Enemigo.h"
+#include "Aliado.h"
 #include "Agua.h"
 #include "Semilla.h"
 #include "Arbol.h"
@@ -24,7 +25,7 @@ private:
 	vector<Arbol*> arregloArboles;
 	vector<Basura*> arregloBasuras;
 	vector<Enemigo*> arregloEnemigos;
-
+	Aliado* aliado;
 	//! Definimos la cantidad inical de cada elemento del mapa
 	/// iniciando los recursos
 	const int cantidadInicialEnemigos = 6;
@@ -58,6 +59,7 @@ public:
 		arregloArboles = vector<Arbol*>();
 		arregloBasuras = vector<Basura*>();
 		arregloEnemigos = vector<Enemigo*>();
+		aliado = new Aliado(50, 500, 20, 125, 125);
 	}
 
 	~GestionJuego() {}
@@ -93,7 +95,8 @@ public:
 		Bitmap^ bmpAgua,
 		Bitmap^ bmpSemilla,
 		Bitmap^ bmpBasura,
-		Bitmap^ bmpArbol
+		Bitmap^ bmpArbol,
+		Bitmap^ bmpAliado
 	)
 	{
 		// dibujamos los arboles
@@ -140,6 +143,9 @@ public:
 				arregloEnemigos[i]->Dibujar(g, bmpEnemigo);
 			}
 		}
+
+		//dibujar Aliado
+		aliado->Dibujar(g,bmpAliado);
 	}
 
 	void MoverTodo(Graphics^ g) 
@@ -230,7 +236,9 @@ public:
 			if (arregloBasuras[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				//Perder Vidas
-				objGuardian->setCantVidas(-1);
+				if (objGuardian->getCantVidas() > 0) {
+					objGuardian->setCantVidas(-1);
+				}
 				
 				// todo timeout de inmunidad para que el guardian no pierda vidas infinitamente
 			}
@@ -261,7 +269,7 @@ public:
 					//todo Aqui lo que se hace es que se realiza una comprobacion 
 					//todo con el metodo find para corroborar que el indice que se 
 					//todo va a agregar al arreglo no haya sigo agregado previamente
-					/// Asi se evita que haya indices duplicados y ocurra un error de vector fuera de rango, de nada. UwU
+					/// Asi se evita que haya indices duplicados y ocurra un error de vector fuera de rango, de nada.
 					// este tipo de comprobaciones se implementa mas adelante en la colision Semilla-Enemigo
 					if (std::find(indicesSemillasEliminar.begin(), indicesSemillasEliminar.end(), i) == indicesSemillasEliminar.end())	
 						indicesSemillasEliminar.push_back(i);

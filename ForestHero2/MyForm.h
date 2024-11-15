@@ -29,8 +29,9 @@ namespace ForestHero2 {
 			bmpSemilla = gcnew Bitmap("Resources/Images/semilla.png");
 			bmpBasura = gcnew Bitmap("Resources/Images/basura.png");
 			bmpArbol = gcnew Bitmap("Resources/Images/arbol.png");
-
+			aliado = new Aliado(50,500, 20, bmpAliado->Width / 4, bmpAliado->Height / 4);
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
+
 			objGJuego = new GestionJuego();
 
 			// inicializamos los elementos pasando los parametros de sus dimensiones
@@ -68,6 +69,7 @@ namespace ForestHero2 {
 
 		Guardian* guardian;
 		GestionJuego* objGJuego;
+		Aliado* aliado;
 		int cantSemillas;
 		int cantAguas;
 		int cantVidas;
@@ -95,6 +97,7 @@ namespace ForestHero2 {
 	private: System::Windows::Forms::Label^ labelPuntos;
 	private: System::Windows::Forms::Label^ labelTiempoRestante;
 	private: System::Windows::Forms::Label^ segundosRestantes;
+	private: System::Windows::Forms::Timer^ timerAliado;
 
 	private: System::Windows::Forms::Timer^ timerBasura;
 
@@ -115,6 +118,7 @@ namespace ForestHero2 {
 			this->timerAgua = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timerSemillas = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timerBasura = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timerAliado = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panelCanvas->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -143,10 +147,10 @@ namespace ForestHero2 {
 			this->segundosRestantes->AutoSize = true;
 			this->segundosRestantes->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)),
 				static_cast<System::Int32>(static_cast<System::Byte>(164)), static_cast<System::Int32>(static_cast<System::Byte>(132)));
-			this->segundosRestantes->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18));
+			this->segundosRestantes->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18));
 			this->segundosRestantes->Location = System::Drawing::Point(1065, 194);
 			this->segundosRestantes->Name = L"segundosRestantes";
-			this->segundosRestantes->Size = System::Drawing::Size(27, 29);
+			this->segundosRestantes->Size = System::Drawing::Size(26, 29);
 			this->segundosRestantes->TabIndex = 6;
 			this->segundosRestantes->Text = L"0";
 			// 
@@ -155,10 +159,10 @@ namespace ForestHero2 {
 			this->labelTiempoRestante->AutoSize = true;
 			this->labelTiempoRestante->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)),
 				static_cast<System::Int32>(static_cast<System::Byte>(164)), static_cast<System::Int32>(static_cast<System::Byte>(132)));
-			this->labelTiempoRestante->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18));
+			this->labelTiempoRestante->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18));
 			this->labelTiempoRestante->Location = System::Drawing::Point(1064, 170);
 			this->labelTiempoRestante->Name = L"labelTiempoRestante";
-			this->labelTiempoRestante->Size = System::Drawing::Size(214, 29);
+			this->labelTiempoRestante->Size = System::Drawing::Size(195, 29);
 			this->labelTiempoRestante->TabIndex = 5;
 			this->labelTiempoRestante->Text = L"Tiempo restante:";
 			// 
@@ -167,10 +171,10 @@ namespace ForestHero2 {
 			this->labelPuntos->AutoSize = true;
 			this->labelPuntos->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
 				static_cast<System::Int32>(static_cast<System::Byte>(132)));
-			this->labelPuntos->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18));
+			this->labelPuntos->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18));
 			this->labelPuntos->Location = System::Drawing::Point(1064, 141);
 			this->labelPuntos->Name = L"labelPuntos";
-			this->labelPuntos->Size = System::Drawing::Size(97, 29);
+			this->labelPuntos->Size = System::Drawing::Size(87, 29);
 			this->labelPuntos->TabIndex = 4;
 			this->labelPuntos->Text = L"Puntos";
 			// 
@@ -179,11 +183,11 @@ namespace ForestHero2 {
 			this->CtPuntos->AutoSize = true;
 			this->CtPuntos->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
 				static_cast<System::Int32>(static_cast<System::Byte>(132)));
-			this->CtPuntos->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 30));
+			this->CtPuntos->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 30));
 			this->CtPuntos->Location = System::Drawing::Point(1060, 101);
 			this->CtPuntos->Name = L"CtPuntos";
 			this->CtPuntos->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->CtPuntos->Size = System::Drawing::Size(45, 49);
+			this->CtPuntos->Size = System::Drawing::Size(42, 46);
 			this->CtPuntos->TabIndex = 3;
 			this->CtPuntos->Text = L"0";
 			this->CtPuntos->TextAlign = System::Drawing::ContentAlignment::TopRight;
@@ -193,11 +197,11 @@ namespace ForestHero2 {
 			this->CtVidas->AutoSize = true;
 			this->CtVidas->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
 				static_cast<System::Int32>(static_cast<System::Byte>(132)));
-			this->CtVidas->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->CtVidas->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->CtVidas->Location = System::Drawing::Point(792, 34);
 			this->CtVidas->Name = L"CtVidas";
-			this->CtVidas->Size = System::Drawing::Size(67, 25);
+			this->CtVidas->Size = System::Drawing::Size(70, 25);
 			this->CtVidas->TabIndex = 2;
 			this->CtVidas->Text = L"label1";
 			// 
@@ -206,11 +210,11 @@ namespace ForestHero2 {
 			this->CtAgua->AutoSize = true;
 			this->CtAgua->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
 				static_cast<System::Int32>(static_cast<System::Byte>(132)));
-			this->CtAgua->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->CtAgua->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->CtAgua->Location = System::Drawing::Point(504, 34);
 			this->CtAgua->Name = L"CtAgua";
-			this->CtAgua->Size = System::Drawing::Size(67, 25);
+			this->CtAgua->Size = System::Drawing::Size(70, 25);
 			this->CtAgua->TabIndex = 1;
 			this->CtAgua->Text = L"label1";
 			// 
@@ -219,11 +223,11 @@ namespace ForestHero2 {
 			this->CtSemillas->AutoSize = true;
 			this->CtSemillas->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
 				static_cast<System::Int32>(static_cast<System::Byte>(132)));
-			this->CtSemillas->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->CtSemillas->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->CtSemillas->Location = System::Drawing::Point(224, 34);
 			this->CtSemillas->Name = L"CtSemillas";
-			this->CtSemillas->Size = System::Drawing::Size(67, 25);
+			this->CtSemillas->Size = System::Drawing::Size(70, 25);
 			this->CtSemillas->TabIndex = 0;
 			this->CtSemillas->Text = L"label1";
 			// 
@@ -250,6 +254,11 @@ namespace ForestHero2 {
 			this->timerBasura->Enabled = true;
 			this->timerBasura->Interval = 8000;
 			this->timerBasura->Tick += gcnew System::EventHandler(this, &MyForm::timerBasura_Tick);
+			// 
+			// timerAliado
+			// 
+			this->timerAliado->Enabled = true;
+			this->timerAliado->Tick += gcnew System::EventHandler(this, &MyForm::timerAliado_Tick);
 			// 
 			// MyForm
 			// 
@@ -350,10 +359,11 @@ namespace ForestHero2 {
 			bmpAgua,
 			bmpSemilla,
 			bmpBasura,
-			bmpArbol
+			bmpArbol,
+			bmpAliado
 		);
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
-
+		
 		buffer->Render(g);
 	}
 
@@ -378,6 +388,11 @@ namespace ForestHero2 {
 		objGJuego->AgregarBasura(bmpBasura->Width, bmpBasura->Height);
 	}
 
+	private: System::Void timerAliado_Tick(System::Object^ sender, System::EventArgs^ e) {
+		if (guardian->getCantVidas() <= 3) {
+
+		}
+	}
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		switch (e->KeyCode)
 		{
@@ -402,5 +417,6 @@ namespace ForestHero2 {
 		case Keys::P: teclaP = false; break;
 		}
 	}
+
 };
 }
