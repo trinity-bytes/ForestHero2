@@ -369,7 +369,8 @@ namespace ForestHero2 {
 
 	private: System::Void timerSemillas_Tick(System::Object^ sender, System::EventArgs^ e)
 	{
-		objGJuego->AgregarSemilla(bmpSemilla->Width / 4, bmpSemilla->Height / 4);
+		// no se necesita dividir el tamano de la semilla
+		objGJuego->AgregarSemilla(bmpSemilla->Width, bmpSemilla->Height);
 	}
 
 	private: System::Void timerBasura_Tick(System::Object^ sender, System::EventArgs^ e)
