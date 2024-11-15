@@ -191,16 +191,20 @@ public:
 
 	void ColisionPersonaje(Guardian* objGuardian)
 	{
+		vector<int> indicesSemillasEliminar;
+		vector<int> indicesEnemigosEliminar;
+		vector<int> indicesAguaEliminar;
+		vector<int> indicesBasuraEliminar;
+
 		/// colision Guardian - semillas
 		for (int i = 0; i < arregloSemillas.size(); i++)
 		{
 			if (arregloSemillas[i]->getSeMueve()) continue; /// ignoramos a las semillas que se mueven (asi como ella me ignora pipipi)
 			if (arregloSemillas[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
-				arregloSemillas.erase(arregloSemillas.begin() + i);
+				indicesSemillasEliminar.push_back(i);
 
 				objGuardian->setCantSemillas(objGuardian->getCantSemillas() + 1);
-				i--;
 				objGuardian->setPuntos(1000);
 			}
 		}
@@ -214,10 +218,9 @@ public:
 			{
 				// incrementar el contador de agua del guardian
 				objGuardian->setCantAgua(objGuardian->getCantAgua() + 1);
-
-				arregloAgua.erase(arregloAgua.begin() + i);
-				i--;
 				objGuardian->setPuntos(1000);
+
+				indicesAguaEliminar.push_back(i);				
 			}
 		}
 
@@ -233,7 +236,7 @@ public:
 			}
 		}
 
-		/// Colision guardina - enemigos
+		/// Colision guardian - enemigos
 		for (int i = 0; i < arregloEnemigos.size(); i++)
 		{
 			if (i >= arregloEnemigos.size()) break;
@@ -241,8 +244,7 @@ public:
 			if (arregloEnemigos[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				///Perder Vidas
-				arregloEnemigos.erase(arregloEnemigos.begin() + i);
-				i--;
+				indicesEnemigosEliminar.push_back(i);
 				objGuardian->setCantVidas(-1);
 			}
 		}
@@ -256,9 +258,16 @@ public:
 			{
 				if (arregloSemillas[i]->getRectangle().IntersectsWith(arregloBasuras[j]->getRectangle()))
 				{
-					arregloSemillas.erase(arregloSemillas.begin() + i);
-					arregloBasuras.erase(arregloBasuras.begin() + j);
-					i--;
+					//todo Aqui lo que se hace es que se realiza una comprobacion 
+					//todo con el metodo find para corroborar que el indice que se 
+					//todo va a agregar al arreglo no haya sigo agregado previamente
+					/// Asi se evita que haya indices duplicados y ocurra un error de vector fuera de rango, de nada. UwU
+					// este tipo de comprobaciones se implementa mas adelante en la colision Semilla-Enemigo
+					if (std::find(indicesSemillasEliminar.begin(), indicesSemillasEliminar.end(), i) == indicesSemillasEliminar.end())	
+						indicesSemillasEliminar.push_back(i);
+
+					if (std::find(indicesBasuraEliminar.begin(), indicesBasuraEliminar.end(), j) == indicesBasuraEliminar.end())
+					indicesBasuraEliminar.push_back(j);
 					break; /// terminamos el ciclo ya que se elimino la semilla
 				}
 			}
@@ -273,20 +282,39 @@ public:
 			{
 				if (arregloSemillas[i]->getRectangle().IntersectsWith(arregloEnemigos[j]->getRectangle()))
 				{
-					arregloSemillas.erase(arregloSemillas.begin() + i);
+					//todo Comprobacion de la existencia del indice (previamente explicado)
+					if (std::find(indicesSemillasEliminar.begin(), indicesSemillasEliminar.end(), i) == indicesSemillasEliminar.end())
+						indicesSemillasEliminar.push_back(i);
 
 					/// le restamos vidas al enemigo
-					arregloEnemigos[i]->setVidas(arregloEnemigos[i]->getVidas() - 1);
+					arregloEnemigos[j]->setVidas(arregloEnemigos[j]->getVidas() - 1);
 
-					if (arregloEnemigos[i]->getVidas() <= 0) /// verificamos las vidas del enemigo
+					if (arregloEnemigos[j]->getVidas() <= 0) /// verificamos las vidas del enemigo
 					{
-						arregloSemillas.erase(arregloSemillas.begin() + j);
+						if (std::find(indicesEnemigosEliminar.begin(), indicesEnemigosEliminar.end(), j) == indicesEnemigosEliminar.end())
+							indicesEnemigosEliminar.push_back(j);
 					}
-										
-					i--;
 					break; /// terminamos el ciclo ya que se elimino la semilla
 				}
 			}
+		}
+
+		//todo Eliminamos los elementos fuera de los bucles
+		for (auto i = indicesSemillasEliminar.rbegin(); i != indicesSemillasEliminar.rend(); ++i)
+		{
+			arregloSemillas.erase(arregloSemillas.begin() + *i);
+		}
+		for (auto i = indicesEnemigosEliminar.rbegin(); i != indicesEnemigosEliminar.rend(); ++i)
+		{
+			arregloEnemigos.erase(arregloEnemigos.begin() + *i);
+		}
+		for (int i = indicesAguaEliminar.size() - 1; i >= 0; i--)
+		{
+			arregloAgua.erase(arregloAgua.begin() + indicesAguaEliminar[i]);
+		}
+		for (int i = indicesBasuraEliminar.size() - 1; i >= 0; i--)
+		{
+			arregloBasuras.erase(arregloBasuras.begin() + indicesBasuraEliminar[i]);
 		}
 	}
 
