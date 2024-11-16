@@ -159,9 +159,8 @@ namespace ForestHero2 {
 	}
 	private: System::Void botonRanking_Click(System::Object^ sender, System::EventArgs^ e) {
 		//// mostrar ranking 
-		//MyForm1^ MyFormJuego = gcnew MyForm1();
-		//MyFormJuego->Show();
-		//this->Hide();
+		MyForm1^ MyFormJuego = gcnew MyForm1();
+		MyFormJuego->Show();
 	}
 private: System::Void botonRanking_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
 	botonRanking->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/rankingblanco.png");
