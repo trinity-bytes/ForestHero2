@@ -59,6 +59,7 @@ namespace ForestHero2 {
 			// 
 			// panel1
 			// 
+			this->panel1->BackColor = System::Drawing::Color::Transparent;
 			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel1.BackgroundImage")));
 			this->panel1->Controls->Add(this->button1);
 			this->panel1->Location = System::Drawing::Point(0, 0);
@@ -69,22 +70,29 @@ namespace ForestHero2 {
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::Color::Transparent;
+			this->button1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.BackgroundImage")));
 			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->button1->Cursor = System::Windows::Forms::Cursors::Default;
 			this->button1->FlatAppearance->BorderSize = 0;
+			this->button1->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->button1->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Location = System::Drawing::Point(518, 318);
+			this->button1->Location = System::Drawing::Point(511, 317);
 			this->button1->Name = L"button1";
 			this->button1->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->button1->Size = System::Drawing::Size(332, 132);
+			this->button1->Size = System::Drawing::Size(338, 132);
 			this->button1->TabIndex = 0;
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &MenuJuego::button1_Click);
+			this->button1->MouseEnter += gcnew System::EventHandler(this, &MenuJuego::button1_MouseEnter);
+			this->button1->MouseLeave += gcnew System::EventHandler(this, &MenuJuego::button1_MouseLeave);
 			// 
 			// MenuJuego
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(1366, 768);
 			this->ControlBox = false;
 			this->Controls->Add(this->panel1);
@@ -99,6 +107,12 @@ namespace ForestHero2 {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		MyForm^ MyFormJuego = gcnew MyForm();
 		MyFormJuego->Show();
+	}
+	private: System::Void button1_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+		button1->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/jugarblanco.png");
+	}
+	private: System::Void button1_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+		button1->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/jugarcopy.png");
 	}
 	};
 }
