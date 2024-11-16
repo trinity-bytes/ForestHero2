@@ -37,6 +37,8 @@ namespace ForestHero2 {
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Button^ botonJugar;
 	private: System::Windows::Forms::Button^ botonRanking;
+	private: System::Windows::Forms::Button^ botonClose;
+
 
 	protected:
 
@@ -55,6 +57,7 @@ namespace ForestHero2 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MenuJuego::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->botonClose = (gcnew System::Windows::Forms::Button());
 			this->botonRanking = (gcnew System::Windows::Forms::Button());
 			this->botonJugar = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
@@ -64,12 +67,30 @@ namespace ForestHero2 {
 			// 
 			this->panel1->BackColor = System::Drawing::Color::Transparent;
 			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel1.BackgroundImage")));
+			this->panel1->Controls->Add(this->botonClose);
 			this->panel1->Controls->Add(this->botonRanking);
 			this->panel1->Controls->Add(this->botonJugar);
 			this->panel1->Location = System::Drawing::Point(0, 0);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1366, 768);
 			this->panel1->TabIndex = 0;
+			// 
+			// botonClose
+			// 
+			this->botonClose->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"botonClose.BackgroundImage")));
+			this->botonClose->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->botonClose->FlatAppearance->BorderSize = 0;
+			this->botonClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->botonClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->botonClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->botonClose->Location = System::Drawing::Point(1257, 21);
+			this->botonClose->Name = L"botonClose";
+			this->botonClose->Size = System::Drawing::Size(97, 94);
+			this->botonClose->TabIndex = 2;
+			this->botonClose->UseVisualStyleBackColor = false;
+			this->botonClose->Click += gcnew System::EventHandler(this, &MenuJuego::botonClose_Click);
+			this->botonClose->MouseEnter += gcnew System::EventHandler(this, &MenuJuego::botonClose_MouseEnter);
+			this->botonClose->MouseLeave += gcnew System::EventHandler(this, &MenuJuego::botonClose_MouseLeave);
 			// 
 			// botonRanking
 			// 
@@ -128,6 +149,7 @@ namespace ForestHero2 {
 	private: System::Void botonJugar_Click(System::Object^ sender, System::EventArgs^ e) {
 		MyForm^ MyFormJuego = gcnew MyForm();
 		MyFormJuego->Show();
+		this->Hide();
 	}
 	private: System::Void botonJugar_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
 		botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/jugarblanco.png");
@@ -143,6 +165,15 @@ private: System::Void botonRanking_MouseEnter(System::Object^ sender, System::Ev
 }
 private: System::Void botonRanking_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
 	botonRanking->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/rankingcopy.png");
+}
+private: System::Void botonClose_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
+private: System::Void botonClose_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+	botonClose->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/closeblanco.png");
+}
+private: System::Void botonClose_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+	botonClose->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/closecopy.png");
 }
 };
 }
