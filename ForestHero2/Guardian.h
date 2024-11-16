@@ -1,9 +1,11 @@
 #pragma once
 #include "Agente.h"
-
-class Guardian : public Agente 
+#include <string>
+using std::string;
+class Guardian : public Agente
 {
 private:
+	std::string nombre;
 	int cantVidas;
 	int cantAgua;
 	int cantSemillas;
@@ -16,13 +18,15 @@ public:
 		this->cantSemillas = 20;
 		this->puntos = 0;
 		velocidad = 12;
+		this->nombre = " ";
 	}
 	~Guardian() {}
 	int getCantVidas() { return this->cantVidas; }
 	int getCantAgua() { return this->cantSemillas; }
 	int getCantSemillas() { return this->cantAgua; }
 	int getPuntos() { return this->puntos; }
-	
+	string getNombre(){ return this->nombre; }
+	void setNombre(string _nombre) {nombre = _nombre; }
 	void setCantAgua(int i) { this->cantSemillas = i; }
 	void setCantSemillas(int i) { this->cantAgua = i; }
 	void setPuntos(int i) { this->puntos += i; }

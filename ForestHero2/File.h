@@ -19,12 +19,12 @@ public:
 	~File() {}
 
 	void CargarDatos() {
-		fileRead.open("posiciones.txt", ios::in);
+		fileRead.open("JugadorPuntaje.txt", ios::in);
 
 		if (fileRead.fail()) {
 			fileRead.close();
 
-			fileWrite.open("posiciones.txt", ios::out);
+			fileWrite.open("JugadorPuntaje.txt", ios::out);
 			fileWrite << "100" << endl;
 			fileWrite << "300" << endl;
 			fileWrite << "30" << endl;
@@ -33,7 +33,7 @@ public:
 			fileWrite << "400" << endl;
 			fileWrite.close();
 
-			fileRead.open("posiciones.txt", ios::in);
+			fileRead.open("JugadorPuntaje.txt", ios::in);
 		}
 
 		getline(fileRead, texto);
