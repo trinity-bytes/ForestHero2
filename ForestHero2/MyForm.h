@@ -366,6 +366,20 @@ namespace ForestHero2 {
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
 		
 		buffer->Render(g);
+
+		/// analoizamos si termino la partida
+		if (segundos <= 0 || objGJuego->AnalizarGAMEOVER(guardian) == true)
+		{
+			/// Analisamos si el jugarod ha ganado
+			if (objGJuego->DeterminarVictoria(guardian) == true)
+			{
+				//! VICTORIA DEL JUGADOR	
+			}
+			else
+			{
+				//! dERROTA DEL JUGADOR
+			}
+		}
 	}
 
 	private: System::Void timerEnemigos_Tick(System::Object^ sender, System::EventArgs^ e) 
@@ -389,10 +403,12 @@ namespace ForestHero2 {
 		objGJuego->AgregarBasura(bmpBasura->Width, bmpBasura->Height);
 	}
 
-	private: System::Void timerAliado_Tick(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void timerAliado_Tick(System::Object^ sender, System::EventArgs^ e) 
+	{
 		if (guardian->getCantVidas() <= 3 && objGJuego->AliadoActivo() == false) 
 			objGJuego->InvocarAliado();
 	}
+
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		switch (e->KeyCode)
 		{
@@ -417,6 +433,5 @@ namespace ForestHero2 {
 		case Keys::P: teclaP = false; break;
 		}
 	}
-
 };
 }

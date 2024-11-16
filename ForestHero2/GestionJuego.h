@@ -503,6 +503,7 @@ public:
 
 		aliado->setX(limXizquierda);
 		aliado->setY(cy);
+		aliado->setDireccionActual(Derecha);
 		aliado->setVisible(true);
 	}
 
@@ -524,15 +525,19 @@ public:
 		else return false;
 	}
 
-	bool AnalizarGAMEOVER(Guardian* objGuardian, bool objetivoComletado)
+	bool AnalizarGAMEOVER(Guardian* objGuardian)
 	{
-		
-
-		if (objGuardian->getCantVidas()==0)
+		if (objGuardian->getCantVidas() <= 0)
 		{
-			//Poner GAMEOVER
-			/*MyForm2^ gameOver = gcnew MyForm2();
-			gameOver->Show();*/
+			return true;
+		}
+		else if (PorcentajeReforestacion() >= 70)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
