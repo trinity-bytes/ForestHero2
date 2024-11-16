@@ -72,9 +72,9 @@ namespace ForestHero2 {
 			// 
 			this->panel1->BackColor = System::Drawing::SystemColors::Control;
 			this->panel1->Controls->Add(this->label1);
-			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Location = System::Drawing::Point(0, -1);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(756, 426);
+			this->panel1->Size = System::Drawing::Size(756, 428);
 			this->panel1->TabIndex = 0;
 			// 
 			// label1
@@ -93,6 +93,7 @@ namespace ForestHero2 {
 			this->AccessibleRole = System::Windows::Forms::AccessibleRole::TitleBar;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoValidate = System::Windows::Forms::AutoValidate::Disable;
 			this->BackColor = System::Drawing::SystemColors::Control;
 			this->ClientSize = System::Drawing::Size(756, 426);
 			this->Controls->Add(this->panel1);
