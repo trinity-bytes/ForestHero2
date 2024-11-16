@@ -18,7 +18,7 @@ namespace ForestHero2 {
 		MyForm1(void)
 		{
 			InitializeComponent();
-			bmpRanking = gcnew Bitmap("Resources/Images/Ranking.png");
+			bmpRanking = gcnew Bitmap("Resources/Images/menuRanking.png");
 			g = panel1->CreateGraphics();
 			space = BufferedGraphicsManager::Current;
 			buffer = space->Allocate(g, panel1->ClientRectangle);
