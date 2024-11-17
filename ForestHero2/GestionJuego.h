@@ -608,6 +608,8 @@ public:
 
 		/// reiniciamos el estado del aliado y el powerup
 		aliado->setVisible(false);
+		powerUp->setX(2000);
+		powerUp->setY(2000);
 		powerUp->setVisible(false);
 	}
 };

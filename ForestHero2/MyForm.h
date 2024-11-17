@@ -580,6 +580,8 @@ namespace ForestHero2 {
 		teclaM = false;
 		teclaP = false;
 
+		ultimoTramo = false;
+
 		// Reiniciar y habilitar temporizadores
 		timerJuego->Start();
 		timerEnemigos->Start();
