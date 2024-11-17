@@ -167,79 +167,79 @@ namespace ForestHero2 {
 			// CtPorcentaje
 			// 
 			this->CtPorcentaje->AutoSize = true;
-			this->CtPorcentaje->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
-				static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->CtPorcentaje->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(248)), static_cast<System::Int32>(static_cast<System::Byte>(222)),
+				static_cast<System::Int32>(static_cast<System::Byte>(180)));
 			this->CtPorcentaje->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->CtPorcentaje->Location = System::Drawing::Point(1065, 247);
+			this->CtPorcentaje->Location = System::Drawing::Point(1067, 332);
 			this->CtPorcentaje->Name = L"CtPorcentaje";
-			this->CtPorcentaje->Size = System::Drawing::Size(27, 29);
+			this->CtPorcentaje->Size = System::Drawing::Size(35, 37);
 			this->CtPorcentaje->TabIndex = 8;
 			this->CtPorcentaje->Text = L"0";
 			// 
 			// CtReforestacion
 			// 
 			this->CtReforestacion->AutoSize = true;
-			this->CtReforestacion->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
-				static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->CtReforestacion->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(248)), static_cast<System::Int32>(static_cast<System::Byte>(222)),
+				static_cast<System::Int32>(static_cast<System::Byte>(180)));
 			this->CtReforestacion->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->CtReforestacion->Location = System::Drawing::Point(1065, 223);
+			this->CtReforestacion->Location = System::Drawing::Point(1059, 303);
 			this->CtReforestacion->Name = L"CtReforestacion";
-			this->CtReforestacion->Size = System::Drawing::Size(190, 29);
+			this->CtReforestacion->Size = System::Drawing::Size(244, 37);
 			this->CtReforestacion->TabIndex = 7;
 			this->CtReforestacion->Text = L"Reforestacion:";
 			// 
 			// segundosRestantes
 			// 
 			this->segundosRestantes->AutoSize = true;
-			this->segundosRestantes->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)),
-				static_cast<System::Int32>(static_cast<System::Byte>(164)), static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->segundosRestantes->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(248)),
+				static_cast<System::Int32>(static_cast<System::Byte>(222)), static_cast<System::Int32>(static_cast<System::Byte>(180)));
 			this->segundosRestantes->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->segundosRestantes->Location = System::Drawing::Point(1066, 194);
+			this->segundosRestantes->Location = System::Drawing::Point(1066, 272);
 			this->segundosRestantes->Name = L"segundosRestantes";
-			this->segundosRestantes->Size = System::Drawing::Size(27, 29);
+			this->segundosRestantes->Size = System::Drawing::Size(35, 37);
 			this->segundosRestantes->TabIndex = 6;
 			this->segundosRestantes->Text = L"0";
 			// 
 			// labelTiempoRestante
 			// 
 			this->labelTiempoRestante->AutoSize = true;
-			this->labelTiempoRestante->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)),
-				static_cast<System::Int32>(static_cast<System::Byte>(164)), static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->labelTiempoRestante->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(248)),
+				static_cast<System::Int32>(static_cast<System::Byte>(222)), static_cast<System::Int32>(static_cast<System::Byte>(180)));
 			this->labelTiempoRestante->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->labelTiempoRestante->Location = System::Drawing::Point(1064, 170);
+			this->labelTiempoRestante->Location = System::Drawing::Point(1059, 242);
 			this->labelTiempoRestante->Name = L"labelTiempoRestante";
-			this->labelTiempoRestante->Size = System::Drawing::Size(214, 29);
+			this->labelTiempoRestante->Size = System::Drawing::Size(275, 37);
 			this->labelTiempoRestante->TabIndex = 5;
 			this->labelTiempoRestante->Text = L"Tiempo restante:";
 			// 
 			// labelPuntos
 			// 
 			this->labelPuntos->AutoSize = true;
-			this->labelPuntos->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
-				static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->labelPuntos->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(248)), static_cast<System::Int32>(static_cast<System::Byte>(222)),
+				static_cast<System::Int32>(static_cast<System::Byte>(180)));
 			this->labelPuntos->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->labelPuntos->Location = System::Drawing::Point(1067, 141);
+			this->labelPuntos->Location = System::Drawing::Point(1214, 191);
 			this->labelPuntos->Name = L"labelPuntos";
-			this->labelPuntos->Size = System::Drawing::Size(97, 29);
+			this->labelPuntos->Size = System::Drawing::Size(124, 37);
 			this->labelPuntos->TabIndex = 4;
 			this->labelPuntos->Text = L"Puntos";
 			// 
 			// CtPuntos
 			// 
 			this->CtPuntos->AutoSize = true;
-			this->CtPuntos->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
-				static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->CtPuntos->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(248)), static_cast<System::Int32>(static_cast<System::Byte>(222)),
+				static_cast<System::Int32>(static_cast<System::Byte>(180)));
 			this->CtPuntos->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 30, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->CtPuntos->Location = System::Drawing::Point(1060, 101);
+			this->CtPuntos->Location = System::Drawing::Point(1056, 151);
 			this->CtPuntos->Name = L"CtPuntos";
 			this->CtPuntos->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->CtPuntos->Size = System::Drawing::Size(45, 49);
+			this->CtPuntos->Size = System::Drawing::Size(54, 60);
 			this->CtPuntos->TabIndex = 3;
 			this->CtPuntos->Text = L"0";
 			this->CtPuntos->TextAlign = System::Drawing::ContentAlignment::TopRight;
@@ -247,39 +247,40 @@ namespace ForestHero2 {
 			// CtVidas
 			// 
 			this->CtVidas->AutoSize = true;
-			this->CtVidas->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
-				static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->CtVidas->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(248)), static_cast<System::Int32>(static_cast<System::Byte>(222)),
+				static_cast<System::Int32>(static_cast<System::Byte>(180)));
 			this->CtVidas->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->CtVidas->Location = System::Drawing::Point(792, 34);
+			this->CtVidas->Location = System::Drawing::Point(728, 33);
 			this->CtVidas->Name = L"CtVidas";
-			this->CtVidas->Size = System::Drawing::Size(70, 25);
+			this->CtVidas->Size = System::Drawing::Size(86, 31);
 			this->CtVidas->TabIndex = 2;
 			this->CtVidas->Text = L"label1";
 			// 
 			// CtAgua
 			// 
 			this->CtAgua->AutoSize = true;
-			this->CtAgua->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
-				static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->CtAgua->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(248)), static_cast<System::Int32>(static_cast<System::Byte>(222)),
+				static_cast<System::Int32>(static_cast<System::Byte>(180)));
 			this->CtAgua->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->CtAgua->Location = System::Drawing::Point(504, 34);
+			this->CtAgua->Location = System::Drawing::Point(471, 34);
 			this->CtAgua->Name = L"CtAgua";
-			this->CtAgua->Size = System::Drawing::Size(70, 25);
+			this->CtAgua->Size = System::Drawing::Size(86, 31);
 			this->CtAgua->TabIndex = 1;
 			this->CtAgua->Text = L"label1";
 			// 
 			// CtSemillas
 			// 
 			this->CtSemillas->AutoSize = true;
-			this->CtSemillas->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
-				static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->CtSemillas->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(248)), static_cast<System::Int32>(static_cast<System::Byte>(222)),
+				static_cast<System::Int32>(static_cast<System::Byte>(180)));
+			this->CtSemillas->CausesValidation = false;
 			this->CtSemillas->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->CtSemillas->Location = System::Drawing::Point(224, 34);
+			this->CtSemillas->Location = System::Drawing::Point(225, 34);
 			this->CtSemillas->Name = L"CtSemillas";
-			this->CtSemillas->Size = System::Drawing::Size(70, 25);
+			this->CtSemillas->Size = System::Drawing::Size(86, 31);
 			this->CtSemillas->TabIndex = 0;
 			this->CtSemillas->Text = L"label1";
 			// 
