@@ -74,10 +74,10 @@
     <ClInclude Include="File.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyForm2.h">
+    <ClInclude Include="MenuJuego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MenuJuego.h">
+    <ClInclude Include="Derrota.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

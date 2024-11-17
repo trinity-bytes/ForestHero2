@@ -127,6 +127,9 @@
     <ClInclude Include="Aliado.h" />
     <ClInclude Include="Arbol.h" />
     <ClInclude Include="Basura.h" />
+    <ClInclude Include="Derrota.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="GestionJuego.h" />
@@ -135,9 +138,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MyForm1.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="MyForm2.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Semilla.h" />
@@ -149,6 +149,9 @@
     <ClInclude Include="Agente.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Derrota.resx">
+      <DependentUpon>Derrota.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuJuego.resx">
       <DependentUpon>MenuJuego.h</DependentUpon>
     </EmbeddedResource>
@@ -157,9 +160,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm1.resx">
       <DependentUpon>MyForm1.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MyForm2.resx">
-      <DependentUpon>MyForm2.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm3.resx">
       <DependentUpon>MyForm3.h</DependentUpon>
