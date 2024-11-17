@@ -44,7 +44,9 @@ namespace ForestHero2 {
 
 	private:
 		MyForm^ MyFormJuego = gcnew MyForm();
-		/// <summary>
+	private: System::Windows::Forms::Button^ botonCreditos;
+	private: System::Windows::Forms::Button^ botonInstruciones;
+		   /// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
 		System::ComponentModel::Container ^components;
@@ -58,6 +60,8 @@ namespace ForestHero2 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MenuJuego::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->botonCreditos = (gcnew System::Windows::Forms::Button());
+			this->botonInstruciones = (gcnew System::Windows::Forms::Button());
 			this->botonClose = (gcnew System::Windows::Forms::Button());
 			this->botonRanking = (gcnew System::Windows::Forms::Button());
 			this->botonJugar = (gcnew System::Windows::Forms::Button());
@@ -69,6 +73,8 @@ namespace ForestHero2 {
 			this->panel1->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->panel1->BackColor = System::Drawing::Color::Transparent;
 			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel1.BackgroundImage")));
+			this->panel1->Controls->Add(this->botonCreditos);
+			this->panel1->Controls->Add(this->botonInstruciones);
 			this->panel1->Controls->Add(this->botonClose);
 			this->panel1->Controls->Add(this->botonRanking);
 			this->panel1->Controls->Add(this->botonJugar);
@@ -77,6 +83,40 @@ namespace ForestHero2 {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1366, 768);
 			this->panel1->TabIndex = 0;
+			// 
+			// botonCreditos
+			// 
+			this->botonCreditos->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"botonCreditos.BackgroundImage")));
+			this->botonCreditos->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->botonCreditos->FlatAppearance->BorderSize = 0;
+			this->botonCreditos->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->botonCreditos->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->botonCreditos->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->botonCreditos->Location = System::Drawing::Point(1099, 619);
+			this->botonCreditos->Name = L"botonCreditos";
+			this->botonCreditos->Size = System::Drawing::Size(97, 95);
+			this->botonCreditos->TabIndex = 4;
+			this->botonCreditos->UseVisualStyleBackColor = true;
+			this->botonCreditos->Click += gcnew System::EventHandler(this, &MenuJuego::botonCreditos_Click);
+			this->botonCreditos->MouseEnter += gcnew System::EventHandler(this, &MenuJuego::botonCreditos_MouseEnter);
+			this->botonCreditos->MouseLeave += gcnew System::EventHandler(this, &MenuJuego::botonCreditos_MouseLeave);
+			// 
+			// botonInstruciones
+			// 
+			this->botonInstruciones->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"botonInstruciones.BackgroundImage")));
+			this->botonInstruciones->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->botonInstruciones->FlatAppearance->BorderSize = 0;
+			this->botonInstruciones->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->botonInstruciones->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->botonInstruciones->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->botonInstruciones->Location = System::Drawing::Point(1220, 620);
+			this->botonInstruciones->Name = L"botonInstruciones";
+			this->botonInstruciones->Size = System::Drawing::Size(96, 98);
+			this->botonInstruciones->TabIndex = 3;
+			this->botonInstruciones->UseVisualStyleBackColor = true;
+			this->botonInstruciones->Click += gcnew System::EventHandler(this, &MenuJuego::botonInstruciones_Click);
+			this->botonInstruciones->MouseEnter += gcnew System::EventHandler(this, &MenuJuego::botonInstruciones_MouseEnter);
+			this->botonInstruciones->MouseLeave += gcnew System::EventHandler(this, &MenuJuego::botonInstruciones_MouseLeave);
 			// 
 			// botonClose
 			// 
@@ -104,10 +144,10 @@ namespace ForestHero2 {
 			this->botonRanking->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->botonRanking->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->botonRanking->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->botonRanking->Location = System::Drawing::Point(48, 625);
+			this->botonRanking->Location = System::Drawing::Point(59, 621);
 			this->botonRanking->Margin = System::Windows::Forms::Padding(4);
 			this->botonRanking->Name = L"botonRanking";
-			this->botonRanking->Size = System::Drawing::Size(235, 91);
+			this->botonRanking->Size = System::Drawing::Size(235, 110);
 			this->botonRanking->TabIndex = 1;
 			this->botonRanking->UseVisualStyleBackColor = false;
 			this->botonRanking->Click += gcnew System::EventHandler(this, &MenuJuego::botonRanking_Click);
@@ -182,6 +222,22 @@ private: System::Void botonClose_MouseEnter(System::Object^ sender, System::Even
 }
 private: System::Void botonClose_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
 	botonClose->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/closecopy.png");
+}
+private: System::Void botonInstruciones_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void botonInstruciones_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+	botonInstruciones->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/instruccionesblanco.png");
+}
+private: System::Void botonInstruciones_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+	botonInstruciones->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/instruccionescopy.png");
+}
+private: System::Void botonCreditos_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void botonCreditos_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+	botonCreditos->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/preguntablanco.png");
+}
+private: System::Void botonCreditos_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+	botonCreditos->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/preguntacopy.png");
 }
 };
 }
