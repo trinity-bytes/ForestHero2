@@ -71,8 +71,9 @@ namespace ForestHero2 {
 			this->panel1->Controls->Add(this->botonRanking);
 			this->panel1->Controls->Add(this->botonJugar);
 			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1366, 768);
+			this->panel1->Size = System::Drawing::Size(1821, 945);
 			this->panel1->TabIndex = 0;
 			// 
 			// botonClose
@@ -83,9 +84,10 @@ namespace ForestHero2 {
 			this->botonClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->botonClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->botonClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->botonClose->Location = System::Drawing::Point(1257, 21);
+			this->botonClose->Location = System::Drawing::Point(1676, 26);
+			this->botonClose->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->botonClose->Name = L"botonClose";
-			this->botonClose->Size = System::Drawing::Size(97, 94);
+			this->botonClose->Size = System::Drawing::Size(129, 116);
 			this->botonClose->TabIndex = 2;
 			this->botonClose->UseVisualStyleBackColor = false;
 			this->botonClose->Click += gcnew System::EventHandler(this, &MenuJuego::botonClose_Click);
@@ -100,9 +102,10 @@ namespace ForestHero2 {
 			this->botonRanking->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->botonRanking->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->botonRanking->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->botonRanking->Location = System::Drawing::Point(62, 629);
+			this->botonRanking->Location = System::Drawing::Point(83, 774);
+			this->botonRanking->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->botonRanking->Name = L"botonRanking";
-			this->botonRanking->Size = System::Drawing::Size(235, 94);
+			this->botonRanking->Size = System::Drawing::Size(313, 116);
 			this->botonRanking->TabIndex = 1;
 			this->botonRanking->UseVisualStyleBackColor = false;
 			this->botonRanking->Click += gcnew System::EventHandler(this, &MenuJuego::botonRanking_Click);
@@ -119,10 +122,11 @@ namespace ForestHero2 {
 			this->botonJugar->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->botonJugar->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->botonJugar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->botonJugar->Location = System::Drawing::Point(511, 317);
+			this->botonJugar->Location = System::Drawing::Point(681, 390);
+			this->botonJugar->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->botonJugar->Name = L"botonJugar";
 			this->botonJugar->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->botonJugar->Size = System::Drawing::Size(338, 132);
+			this->botonJugar->Size = System::Drawing::Size(451, 162);
 			this->botonJugar->TabIndex = 0;
 			this->botonJugar->UseVisualStyleBackColor = false;
 			this->botonJugar->Click += gcnew System::EventHandler(this, &MenuJuego::botonJugar_Click);
@@ -131,15 +135,17 @@ namespace ForestHero2 {
 			// 
 			// MenuJuego
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
-			this->ClientSize = System::Drawing::Size(1366, 768);
+			this->ClientSize = System::Drawing::Size(1821, 945);
 			this->ControlBox = false;
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"MenuJuego";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MenuJuego";
 			this->panel1->ResumeLayout(false);
 			this->ResumeLayout(false);

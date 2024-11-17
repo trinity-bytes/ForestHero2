@@ -80,5 +80,8 @@
     <ClInclude Include="MenuJuego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PowerUp.h">
+      <Filter>Header Files\Clases Objetos\Recursos</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

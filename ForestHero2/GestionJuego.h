@@ -6,6 +6,7 @@
 #include "Guardian.h"
 #include "Enemigo.h"
 #include "Aliado.h"
+#include "PowerUp.h"
 #include "Agua.h"
 #include "Semilla.h"
 #include "Arbol.h"
@@ -26,6 +27,7 @@ private:
 	vector<Basura*> arregloBasuras;
 	vector<Enemigo*> arregloEnemigos;
 	Aliado* aliado;
+	PowerUp* powerUp;
 
 	// para calcular el porcentaje de reforestacion
 	const int cantMaxArboles = 96;
@@ -70,6 +72,7 @@ public:
 		arregloBasuras = vector<Basura*>();
 		arregloEnemigos = vector<Enemigo*>();
 		aliado = new Aliado(40, 500, 20, 125, 125);
+		powerUp = new PowerUp(20, 20, 50, 50);
 	}
 
 	~GestionJuego() {}
@@ -106,7 +109,9 @@ public:
 		Bitmap^ bmpSemilla,
 		Bitmap^ bmpBasura,
 		Bitmap^ bmpArbol,
-		Bitmap^ bmpAliado
+		Bitmap^ bmpAliado,
+		Bitmap^ bmpPowerUp
+
 	)
 	{
 		// dibujamos los arboles
@@ -145,6 +150,9 @@ public:
 			}
 		}
 		
+		// dibujar powerup
+		if (powerUp->getVisible() == true) powerUp->Dibujar(g, bmpPowerUp);
+
 		// dibujamos a los enemigos
 		if (arregloEnemigos.size() > 0)
 		{
@@ -203,9 +211,12 @@ public:
 				i--;
 			}
 		}
-
+		
 		//! MoverAliado
 		aliado->Mover(g);
+
+		if (aliado->getX() > 475 && aliado->getX() < 491) InvocarPowerUp();
+
 		if (aliado->getX() + aliado->getAncho() > 995) aliado->setVisible(false);
 	}
 
@@ -248,6 +259,8 @@ public:
 		
 		for (int i = 0; i < arregloBasuras.size(); i++)
 		{
+			if (i >= arregloBasuras.size()) break;
+
 			if (arregloBasuras[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
 				if (guardianInmune == false)
@@ -270,9 +283,12 @@ public:
 
 			if (arregloEnemigos[i]->getRectangle().IntersectsWith(objGuardian->getRectangle()))
 			{
-				///Perder Vidas
-				indicesEnemigosEliminar.push_back(i);
-				objGuardian->setCantVidas(-1);
+				if (guardianInmune == false)
+				{
+					///Perder Vidas
+					indicesEnemigosEliminar.push_back(i);
+					objGuardian->setCantVidas(-1);
+				}
 			}
 		}
 
@@ -323,6 +339,21 @@ public:
 					}
 					break; /// terminamos el ciclo ya que se elimino la semilla
 				}
+			}
+		}
+
+		/// Colision guardian - powerup
+		if (powerUp->getVisible() == true)
+		{
+			if (powerUp->getRectangle().IntersectsWith(objGuardian->getRectangle()))
+			{
+				///Incrementar una Vidas
+				objGuardian->setCantVidas(1);
+
+				/// volver inmune por un tiempo
+				guardianInmune = true;
+				pseudoTimerInmunidad = timeOutPowerUp;
+				powerUp->setVisible(false);
 			}
 		}
 
@@ -505,6 +536,13 @@ public:
 		aliado->setY(cy);
 		aliado->setDireccionActual(Derecha);
 		aliado->setVisible(true);
+	}
+
+	void InvocarPowerUp()
+	{
+		powerUp->setX(aliado->getX());
+		powerUp->setY(aliado->getY());
+		powerUp->setVisible(true);
 	}
 
 	bool AliadoActivo()
