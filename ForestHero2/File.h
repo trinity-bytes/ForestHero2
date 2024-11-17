@@ -13,13 +13,14 @@ private:
 	ifstream fileRead;
 	string texto;
 	Guardian* guardian;
-	int x1, y1, x2, y2;
 
 public:
 	File() {
-		guardian = new Guardian(200, 200, 64,64);
+		guardian = new Guardian(200, 200, 64, 64);
 	}
-	~File() {}
+	~File() {
+		delete guardian;
+	}
 
 	void CargarDatos() {
 		fileRead.open("JugadorPuntaje.txt", ios::in);
@@ -35,20 +36,9 @@ public:
 		}
 
 		getline(fileRead, texto);
-		x1 = atoi(texto.c_str());
+		guardian->getNombre() = atoi(texto.c_str());
 		getline(fileRead, texto);
-		y1 = atoi(texto.c_str());
-		getline(fileRead, texto);
-		x2 = atoi(texto.c_str());
-		getline(fileRead, texto);
-		y2 = atoi(texto.c_str());
-		getline(fileRead, texto);
+		guardian->setPuntos(atoi(texto.c_str()));
+		fileRead.close();
 	}
-
-	int getX1() { return x1; }
-	int getY1() { return y1; }
-
-	int getX2() { return x2; }
-	int getY2() { return y2; }
-
 };
