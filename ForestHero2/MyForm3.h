@@ -61,9 +61,10 @@ namespace ForestHero2 {
 			// 
 			// panel1
 			// 
-			this->panel1->Location = System::Drawing::Point(-2, -2);
+			this->panel1->Location = System::Drawing::Point(-3, -2);
+			this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1366, 768);
+			this->panel1->Size = System::Drawing::Size(1821, 945);
 			this->panel1->TabIndex = 0;
 			// 
 			// timerWin
@@ -73,12 +74,13 @@ namespace ForestHero2 {
 			// 
 			// MyForm3
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1366, 768);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"MyForm3";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm3";
 			this->ResumeLayout(false);
 

@@ -459,7 +459,7 @@ namespace ForestHero2 {
 				reproducirMusicaDerrota();
 				
 				Derrota^ gameOver = gcnew Derrota();
-				this->Hide(); /// oculta el forms
+				//this->Hide(); /// oculta el forms
 
 				gameOver->FormClosed += gcnew FormClosedEventHandler(this, &MyForm::OnGameFormClosed);
 				gameOver->ShowDialog();
