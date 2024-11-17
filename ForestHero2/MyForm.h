@@ -293,6 +293,8 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void timerJuego_Tick(System::Object^ sender, System::EventArgs^ e) {
+		buffer->Graphics->Clear(Color::Transparent);
+		
 		//! Reproducimos musica para la parte final del juego
 		if (objGJuego->PorcentajeReforestacion() > 50)
 		{
@@ -414,8 +416,10 @@ namespace ForestHero2 {
 		}
 	}
 
-	void OnGameFormClosed(Object^ sender, FormClosedEventArgs^ e) {
-		this->Close();
+	void OnGameFormClosed(Object^ sender, FormClosedEventArgs^ e) 
+	{
+		ReiniciarJuego();
+		this->Show();
 	}
 
 	private: System::Void timerEnemigos_Tick(System::Object^ sender, System::EventArgs^ e) 
@@ -472,7 +476,8 @@ namespace ForestHero2 {
 		}
 	}
 
-	private: void DetenerTimers() {
+	private: void DetenerTimers() 
+	{
 		timerJuego->Enabled = false;
 		timerEnemigos->Enabled = false;
 		timerAgua->Enabled = false;
@@ -481,13 +486,44 @@ namespace ForestHero2 {
 		timerAliado->Enabled = false;
 	}
 
-	private: void ReactivarTimers() {
+	private: void ReactivarTimers() 
+	{
 		timerJuego->Enabled = true;
 		timerEnemigos->Enabled = true;
 		timerAgua->Enabled = true;
 		timerSemillas->Enabled = true;
 		timerBasura->Enabled = true;
 		timerAliado->Enabled = true;
+	}
+
+	private: void ReiniciarJuego() 
+	{
+		// Reiniciar temporizadores
+		timerJuego->Stop();
+		timerEnemigos->Stop();
+		timerAgua->Stop();
+		timerSemillas->Stop();
+		timerBasura->Stop();
+		timerAliado->Stop();
+
+		// reiniciamos el tiempo
+		milisegundos = 0;
+		segundos = 360;
+
+		guardian->ReiniciarEstado();
+		objGJuego->ReiniciarEstado();
+
+		// Redibujar escenario limpio
+		//buffer->Graphics->Clear(Color::Transparent);
+		//buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
+
+		// Reiniciar y habilitar temporizadores
+		timerJuego->Start();
+		timerEnemigos->Start();
+		timerAgua->Start();
+		timerSemillas->Start();
+		timerBasura->Start();
+		timerAliado->Start();
 	}
 };
 }

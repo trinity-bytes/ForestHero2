@@ -583,4 +583,9 @@ public:
 		/// calculamos la distancia entre 2 coordenadas
 		return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 	}
+
+	void ReiniciarEstado()
+	{
+
+	}
 };

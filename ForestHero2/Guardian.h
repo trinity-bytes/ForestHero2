@@ -31,4 +31,16 @@ public:
 	void setCantSemillas(int i) { this->cantAgua = i; }
 	void setPuntos(int i) { this->puntos += i; }
 	void setCantVidas(int i) { this->cantVidas += i; }
+
+	void ReiniciarEstado()
+	{
+		this->x = 200;
+		this->y = 200;
+		this->cantVidas = 5;
+		this->cantAgua = 15;
+		this->cantSemillas = 20;
+		this->puntos = 0;
+		velocidad = 12;
+		this->nombre = " ";
+	}
 };
