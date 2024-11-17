@@ -140,9 +140,6 @@
     <ClInclude Include="MyForm2.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MyForm3.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="Semilla.h" />
     <ClInclude Include="Entidad.h" />
     <ClInclude Include="FuncionesCustom.h" />

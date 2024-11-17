@@ -32,7 +32,8 @@ namespace ForestHero2 {
 			bmpSemilla = gcnew Bitmap("Resources/Images/semilla.png");
 			bmpBasura = gcnew Bitmap("Resources/Images/basura.png");
 			bmpArbol = gcnew Bitmap("Resources/Images/arbol.png");
-			aliado = new Aliado(50,500, 20, bmpAliado->Width / 4, bmpAliado->Height / 4);
+			bmpPowerUp = gcnew Bitmap("Resources/Images/corazon.png");
+			//aliado = new Aliado(50,500, 20, bmpAliado->Width / 4, bmpAliado->Height / 4);
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
 			gameOver = gcnew MyForm2();
 			win = gcnew MyForm3();
@@ -70,13 +71,11 @@ namespace ForestHero2 {
 		Bitmap^ bmpSemilla;
 		Bitmap^ bmpBasura;
 		Bitmap^ bmpArbol;
+		Bitmap^ bmpPowerUp;
 
 		Guardian* guardian;
 		GestionJuego* objGJuego;
 		Aliado* aliado;
-		File* file;
-		MyForm2^ gameOver;
-		MyForm3^ win;
 		int cantSemillas;
 		int cantAguas;
 		int cantVidas;
@@ -241,7 +240,7 @@ namespace ForestHero2 {
 			// timerEnemigos
 			// 
 			this->timerEnemigos->Enabled = true;
-			this->timerEnemigos->Interval = 10000;
+			this->timerEnemigos->Interval = 15000;
 			this->timerEnemigos->Tick += gcnew System::EventHandler(this, &MyForm::timerEnemigos_Tick);
 			// 
 			// timerAgua
@@ -265,7 +264,7 @@ namespace ForestHero2 {
 			// timerAliado
 			// 
 			this->timerAliado->Enabled = true;
-			this->timerAliado->Interval = 8000;
+			this->timerAliado->Interval = 15000;
 			this->timerAliado->Tick += gcnew System::EventHandler(this, &MyForm::timerAliado_Tick);
 			// 
 			// MyForm
@@ -368,7 +367,8 @@ namespace ForestHero2 {
 			bmpSemilla,
 			bmpBasura,
 			bmpArbol,
-			bmpAliado
+			bmpAliado,
+			bmpPowerUp
 		);
 		guardian->Dibujar(buffer->Graphics, bmpGuardian);
 		

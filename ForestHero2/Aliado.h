@@ -8,7 +8,7 @@ private:
 public:
 	Aliado(int px, int py, int pvelocidad, int pancho, int palto) : Agente(px, py, pvelocidad, pancho, palto) 
 	{ 
-		velocidad = 15; 
+		velocidad = 16; 
 	}
 
 	~Aliado() {}
