@@ -73,8 +73,9 @@ namespace ForestHero2 {
 			this->panel1->BackColor = System::Drawing::SystemColors::Control;
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Location = System::Drawing::Point(0, -1);
+			this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1366, 768);
+			this->panel1->Size = System::Drawing::Size(1821, 945);
 			this->panel1->TabIndex = 0;
 			// 
 			// label1
@@ -84,23 +85,25 @@ namespace ForestHero2 {
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::Sienna;
-			this->label1->Location = System::Drawing::Point(353, 196);
+			this->label1->Location = System::Drawing::Point(471, 241);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(64, 25);
+			this->label1->Size = System::Drawing::Size(81, 29);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"label1";
 			// 
 			// MyForm1
 			// 
 			this->AccessibleRole = System::Windows::Forms::AccessibleRole::TitleBar;
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->AutoValidate = System::Windows::Forms::AutoValidate::Disable;
 			this->BackColor = System::Drawing::SystemColors::Control;
 			this->ClientSize = System::Drawing::Size(1366, 768);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"MyForm1";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Ranking";
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();

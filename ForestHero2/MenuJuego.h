@@ -21,6 +21,8 @@ namespace ForestHero2 {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			botonJugarNormal = Image::FromFile("Resources/Buttons/menuPrincipal-assets/jugarcopy.png");
+			botonJugarHover = Image::FromFile("Resources/Buttons/menuPrincipal-assets/jugarblanco.png");
 		}
 
 	protected:
@@ -43,7 +45,10 @@ namespace ForestHero2 {
 	protected:
 
 	private:
-		MyForm^ MyFormJuego = gcnew MyForm();
+	
+	Image^ botonJugarNormal;
+	Image^ botonJugarHover;
+
 	private: System::Windows::Forms::Button^ botonCreditos;
 	private: System::Windows::Forms::Button^ botonInstruciones;
 		   /// <summary>
@@ -194,19 +199,28 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void botonJugar_Click(System::Object^ sender, System::EventArgs^ e) {
-		MyFormJuego->Show();
+		MyForm^ MyFormJuego = gcnew MyForm();
 		this->Hide();
+
+		MyFormJuego->FormClosed += gcnew FormClosedEventHandler(this, &MenuJuego::JuegoForm_Closed);
+		MyFormJuego->Show();
 	}
+
+	private: System::Void JuegoForm_Closed(System::Object^ sender, FormClosedEventArgs^ e) {
+		this->Show(); // Mostrar el menú cuando se cierra el form del juego
+	}
+
 	private: System::Void botonJugar_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-		botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/jugarblanco.png");
+		botonJugar->BackgroundImage = botonJugarHover;
 	}
 	private: System::Void botonJugar_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-		botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/jugarcopy.png");
+		botonJugar->BackgroundImage = botonJugarNormal;
 	}
 	private: System::Void botonRanking_Click(System::Object^ sender, System::EventArgs^ e) {
 		//// mostrar ranking 
 		MyForm1^ MyFormJuego = gcnew MyForm1();
 		MyFormJuego->Show();
+		//this->Hide();
 	}
 private: System::Void botonRanking_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
 	botonRanking->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/rankingblanco.png");

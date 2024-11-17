@@ -1,5 +1,6 @@
 #pragma once
 #include "MyForm.h"
+#include "MenuJuego.h"
 namespace ForestHero2 {
 
 	using namespace System;
@@ -119,20 +120,24 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void botonJugar_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		this->Close();
 	}
 	private: System::Void botonJugar_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
 		botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/jugar de nuevo blanco.png");
 	}
-private: System::Void botonJugar_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-	botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/jugar de nuevo copy.png");
-}
-private: System::Void botonMenu_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void botonMenu_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-	botonMenu->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/menu principal blanco.png");
-}
-private: System::Void botonMenu_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-	botonMenu->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/menu principal copy.png");
-}
+	private: System::Void botonJugar_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+		botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/jugar de nuevo copy.png");
+	}
+	private: System::Void botonMenu_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+		this->Close();
+	}
+	private: System::Void botonMenu_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+		botonMenu->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/menu principal blanco.png");
+	}
+	private: System::Void botonMenu_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+		botonMenu->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/menu principal copy.png");
+	}
 };
 }
