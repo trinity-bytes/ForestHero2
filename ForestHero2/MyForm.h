@@ -290,6 +290,12 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void timerJuego_Tick(System::Object^ sender, System::EventArgs^ e) {
+		//! Reproducimos musica para la parte final del juego
+		if (objGJuego->PorcentajeReforestacion() > 50)
+		{
+
+		}
+		
 		objGJuego->ColisionPersonaje(guardian);
 
 		objGJuego->MoverTodo(buffer->Graphics);
@@ -390,7 +396,7 @@ namespace ForestHero2 {
 			}
 			else
 			{
-				//! dERROTA DEL JUGADOR
+				//! DERROTA DEL JUGADOR
 				gameOver->Show();
 			}
 		}
