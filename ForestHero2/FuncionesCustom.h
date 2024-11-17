@@ -39,6 +39,11 @@ void reproducirMusicaMenu() {
     PlaySound(TEXT("Resources/Sounds/musicaMenu.wav"), NULL, SND_ASYNC | SND_LOOP);
 }
 
+void reproducirMusicaJuego() {
+    detenerMusica();
+    PlaySound(TEXT("Resources/Sounds/musicaJuego.wav"), NULL, SND_ASYNC | SND_LOOP);
+}
+
 void reproducirMusicaUltimoTramo() {
     detenerMusica();
     PlaySound(TEXT("Resources/Sounds/musicaUltimoTramo.wav"), NULL, SND_ASYNC | SND_LOOP);

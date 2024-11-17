@@ -45,6 +45,8 @@ namespace ForestHero2 {
 				bmpAgua->Width, bmpAgua->Height,
 				bmpSemilla->Width, bmpSemilla->Height
 			);
+
+			reproducirMusicaJuego();
 		}
 
 	protected:
@@ -439,14 +441,14 @@ namespace ForestHero2 {
 		{
 			DetenerTimers();
 			/// Analisamos si el jugarod ha ganado
-			if (true)
-			//if (objGJuego->DeterminarVictoria(guardian) == true)
+			//if (true)
+			if (objGJuego->DeterminarVictoria(guardian) == true)
 			{
 				//! VICTORIA DEL JUGADOR
 				reproducirMusicaVictoria();
 				
 				MyForm3^ win = gcnew MyForm3();
-				this->Hide(); /// cierra el forms
+				this->Hide(); /// oculta el forms
 
 				win->FormClosed += gcnew FormClosedEventHandler(this, &MyForm::OnGameFormClosed);
 				win->Show();
@@ -457,7 +459,7 @@ namespace ForestHero2 {
 				reproducirMusicaDerrota();
 				
 				Derrota^ gameOver = gcnew Derrota();
-				this->Hide(); /// cierra el forms
+				this->Hide(); /// oculta el forms
 
 				gameOver->FormClosed += gcnew FormClosedEventHandler(this, &MyForm::OnGameFormClosed);
 				gameOver->ShowDialog();
@@ -591,6 +593,8 @@ namespace ForestHero2 {
 		timerSemillas->Start();
 		timerBasura->Start();
 		timerAliado->Start();
+
+		reproducirMusicaJuego();
 	}
 };
 }
