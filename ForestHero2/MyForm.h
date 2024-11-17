@@ -434,8 +434,8 @@ namespace ForestHero2 {
 		{
 			DetenerTimers();
 			/// Analisamos si el jugarod ha ganado
-			if (true)
-			//if (objGJuego->DeterminarVictoria(guardian) == true)
+			//if (true)
+			if (objGJuego->DeterminarVictoria(guardian) == true)
 			{
 				//! VICTORIA DEL JUGADOR
 				MyForm3^ win = gcnew MyForm3();
@@ -451,14 +451,21 @@ namespace ForestHero2 {
 				this->Hide(); /// cierra el forms
 
 				gameOver->FormClosed += gcnew FormClosedEventHandler(this, &MyForm::OnGameFormClosed);
-				gameOver->Show();
+				gameOver->ShowDialog();
+
+				if (gameOver->reiniciar) 
+				{
+					ReiniciarJuego(); 
+				}
+				else {
+					this->Close(); 
+				}
 			}
 		}
 	}
 
 	void OnGameFormClosed(Object^ sender, FormClosedEventArgs^ e) 
 	{
-		ReiniciarJuego();
 		this->Show();
 	}
 
@@ -573,7 +580,6 @@ namespace ForestHero2 {
 		timerSemillas->Start();
 		timerBasura->Start();
 		timerAliado->Start();
-
 	}
 };
 }

@@ -14,6 +14,7 @@ namespace ForestHero2 {
 	/// </summary>
 	public ref class Derrota : public System::Windows::Forms::Form
 	{
+	public: bool reiniciar = false;
 	public:
 		Derrota(void)
 		{
@@ -120,7 +121,7 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void botonJugar_Click(System::Object^ sender, System::EventArgs^ e) {
-
+		reiniciar = true;
 		this->Close();
 	}
 	private: System::Void botonJugar_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
@@ -130,7 +131,7 @@ namespace ForestHero2 {
 		botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/jugar de nuevo copy.png");
 	}
 	private: System::Void botonMenu_Click(System::Object^ sender, System::EventArgs^ e) {
-		
+		reiniciar = false;
 		this->Close();
 	}
 	private: System::Void botonMenu_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
