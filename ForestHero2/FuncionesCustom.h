@@ -44,6 +44,11 @@ void reproducirMusicaUltimoTramo() {
     PlaySound(TEXT("Resources/Sounds/musicaUltimoTramo.wav"), NULL, SND_ASYNC | SND_LOOP);
 }
 
+void reproducirMusicaVictoria() {
+    detenerMusica();
+    PlaySound(TEXT("Resources/Sounds/musicaVictoria.wav"), NULL, SND_ASYNC | SND_LOOP);
+}
+
 void reproducirMusicaDerrota() {
     detenerMusica();
     PlaySound(TEXT("Resources/Sounds/musicaDerrota.wav"), NULL, SND_ASYNC | SND_LOOP);
