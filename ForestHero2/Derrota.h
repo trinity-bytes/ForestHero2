@@ -66,8 +66,9 @@ namespace ForestHero2 {
 			this->panel1->Controls->Add(this->botonMenu);
 			this->panel1->Controls->Add(this->botonJugar);
 			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1366, 728);
+			this->panel1->Size = System::Drawing::Size(1821, 896);
 			this->panel1->TabIndex = 0;
 			// 
 			// botonMenu
@@ -104,12 +105,13 @@ namespace ForestHero2 {
 			// 
 			// Derrota
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1366, 728);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
+			this->ClientSize = System::Drawing::Size(1366, 768);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"Derrota";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Derrota";
 			this->panel1->ResumeLayout(false);
 			this->ResumeLayout(false);

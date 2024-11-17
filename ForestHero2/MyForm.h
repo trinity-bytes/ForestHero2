@@ -395,12 +395,13 @@ namespace ForestHero2 {
 			{
 				//! VICTORIA DEL JUGADOR
 				win->Show();
+				this->Close(); /// cierra el forms
 			}
 			else
 			{
 				//! DERROTA DEL JUGADOR
 				gameOver->Show();
-				this->Close();
+				this->Close(); /// cierra el forms
 			}
 		}
 	}
