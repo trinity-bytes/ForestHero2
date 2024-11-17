@@ -111,6 +111,7 @@ namespace ForestHero2 {
 	private: System::Windows::Forms::Label^ labelTiempoRestante;
 	private: System::Windows::Forms::Label^ segundosRestantes;
 	private: System::Windows::Forms::Timer^ timerAliado;
+	private: System::Windows::Forms::Button^ botonSalir;
 
 	private: System::Windows::Forms::Timer^ timerBasura;
 
@@ -118,8 +119,10 @@ namespace ForestHero2 {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->timerJuego = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panelCanvas = (gcnew System::Windows::Forms::Panel());
+			this->botonSalir = (gcnew System::Windows::Forms::Button());
 			this->segundosRestantes = (gcnew System::Windows::Forms::Label());
 			this->labelTiempoRestante = (gcnew System::Windows::Forms::Label());
 			this->labelPuntos = (gcnew System::Windows::Forms::Label());
@@ -143,6 +146,8 @@ namespace ForestHero2 {
 			// panelCanvas
 			// 
 			this->panelCanvas->BackColor = System::Drawing::Color::Transparent;
+			this->panelCanvas->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panelCanvas.BackgroundImage")));
+			this->panelCanvas->Controls->Add(this->botonSalir);
 			this->panelCanvas->Controls->Add(this->segundosRestantes);
 			this->panelCanvas->Controls->Add(this->labelTiempoRestante);
 			this->panelCanvas->Controls->Add(this->labelPuntos);
@@ -154,6 +159,23 @@ namespace ForestHero2 {
 			this->panelCanvas->Name = L"panelCanvas";
 			this->panelCanvas->Size = System::Drawing::Size(1366, 768);
 			this->panelCanvas->TabIndex = 0;
+			// 
+			// botonSalir
+			// 
+			this->botonSalir->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"botonSalir.BackgroundImage")));
+			this->botonSalir->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->botonSalir->FlatAppearance->BorderSize = 0;
+			this->botonSalir->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->botonSalir->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->botonSalir->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->botonSalir->Location = System::Drawing::Point(1167, 14);
+			this->botonSalir->Name = L"botonSalir";
+			this->botonSalir->Size = System::Drawing::Size(161, 68);
+			this->botonSalir->TabIndex = 7;
+			this->botonSalir->UseVisualStyleBackColor = true;
+			this->botonSalir->Click += gcnew System::EventHandler(this, &MyForm::botonSalir_Click);
+			this->botonSalir->MouseEnter += gcnew System::EventHandler(this, &MyForm::botonSalir_MouseEnter);
+			this->botonSalir->MouseLeave += gcnew System::EventHandler(this, &MyForm::botonSalir_MouseLeave);
 			// 
 			// segundosRestantes
 			// 
@@ -457,5 +479,14 @@ namespace ForestHero2 {
 		case Keys::P: teclaP = false; break;
 		}
 	}
+private: System::Void botonSalir_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
+private: System::Void botonSalir_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+	botonSalir->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/salirblanco.png");
+}
+private: System::Void botonSalir_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+	botonSalir->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/salir.png");
+}
 };
 }
