@@ -85,10 +85,10 @@ namespace ForestHero2 {
 			this->botonClose->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->botonClose->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->botonClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->botonClose->Location = System::Drawing::Point(1253, 20);
+			this->botonClose->Location = System::Drawing::Point(1256, 22);
 			this->botonClose->Margin = System::Windows::Forms::Padding(4);
 			this->botonClose->Name = L"botonClose";
-			this->botonClose->Size = System::Drawing::Size(91, 96);
+			this->botonClose->Size = System::Drawing::Size(97, 96);
 			this->botonClose->TabIndex = 2;
 			this->botonClose->UseVisualStyleBackColor = false;
 			this->botonClose->Click += gcnew System::EventHandler(this, &MenuJuego::botonClose_Click);
@@ -103,7 +103,7 @@ namespace ForestHero2 {
 			this->botonRanking->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->botonRanking->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->botonRanking->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->botonRanking->Location = System::Drawing::Point(44, 625);
+			this->botonRanking->Location = System::Drawing::Point(48, 625);
 			this->botonRanking->Margin = System::Windows::Forms::Padding(4);
 			this->botonRanking->Name = L"botonRanking";
 			this->botonRanking->Size = System::Drawing::Size(235, 91);
@@ -123,11 +123,11 @@ namespace ForestHero2 {
 			this->botonJugar->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->botonJugar->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->botonJugar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->botonJugar->Location = System::Drawing::Point(513, 316);
+			this->botonJugar->Location = System::Drawing::Point(511, 317);
 			this->botonJugar->Margin = System::Windows::Forms::Padding(4);
 			this->botonJugar->Name = L"botonJugar";
 			this->botonJugar->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->botonJugar->Size = System::Drawing::Size(336, 135);
+			this->botonJugar->Size = System::Drawing::Size(342, 137);
 			this->botonJugar->TabIndex = 0;
 			this->botonJugar->UseVisualStyleBackColor = false;
 			this->botonJugar->Click += gcnew System::EventHandler(this, &MenuJuego::botonJugar_Click);
