@@ -1,6 +1,9 @@
 #pragma once
 #include "GestionJuego.h"
 #include "Guardian.h"
+#include "File.h"
+#include "MyForm2.h"
+#include "MyForm3.h"
 namespace ForestHero2 {
 
 	using namespace System;
@@ -31,9 +34,10 @@ namespace ForestHero2 {
 			bmpArbol = gcnew Bitmap("Resources/Images/arbol.png");
 			aliado = new Aliado(50,500, 20, bmpAliado->Width / 4, bmpAliado->Height / 4);
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
-
+			gameOver = gcnew MyForm2();
+			win = gcnew MyForm3();
 			objGJuego = new GestionJuego();
-
+			file = new File();
 			// inicializamos los elementos pasando los parametros de sus dimensiones
 			objGJuego->IniciarElementos(
 				bmpEnemigo->Width / 4, bmpEnemigo->Height / 4,
@@ -70,6 +74,9 @@ namespace ForestHero2 {
 		Guardian* guardian;
 		GestionJuego* objGJuego;
 		Aliado* aliado;
+		File* file;
+		MyForm2^ gameOver;
+		MyForm3^ win;
 		int cantSemillas;
 		int cantAguas;
 		int cantVidas;
@@ -373,11 +380,13 @@ namespace ForestHero2 {
 			/// Analisamos si el jugarod ha ganado
 			if (objGJuego->DeterminarVictoria(guardian) == true)
 			{
-				//! VICTORIA DEL JUGADOR	
+				//! VICTORIA DEL JUGADOR
+				win->Show();
 			}
 			else
 			{
 				//! dERROTA DEL JUGADOR
+				gameOver->Show();
 			}
 		}
 	}

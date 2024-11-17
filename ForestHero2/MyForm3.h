@@ -10,15 +10,15 @@ namespace ForestHero2 {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Resumen de MyForm2
+	/// Resumen de MyForm3
 	/// </summary>
-	public ref class MyForm2 : public System::Windows::Forms::Form
+	public ref class MyForm3 : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm2(void)
+		MyForm3(void)
 		{
 			InitializeComponent();
-			bmpGameOver = gcnew Bitmap("Resources/Images/menuDerrota.png");
+			bmpWin = gcnew Bitmap("Resources/Images/menuVictoria.png");
 			g = panel1->CreateGraphics();
 			space = BufferedGraphicsManager::Current;
 			buffer = space->Allocate(g, panel1->ClientRectangle);
@@ -28,25 +28,23 @@ namespace ForestHero2 {
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
 		/// </summary>
-		~MyForm2()
+		~MyForm3()
 		{
 			if (components)
 			{
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Timer^ timer1;
-	protected:
+	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::Timer^ timerWin;
 	private: System::ComponentModel::IContainer^ components;
+	protected:
 
 	private:
-		Bitmap^ bmpGameOver;
+		Bitmap^ bmpWin;
 		Graphics^ g;
 		BufferedGraphicsContext^ space;
 		BufferedGraphics^ buffer;
-	private: System::Windows::Forms::Timer^ timer2;
-	private: System::Windows::Forms::Panel^ panel1;
-		   
 
 
 #pragma region Windows Form Designer generated code
@@ -57,40 +55,39 @@ namespace ForestHero2 {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
-			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->timerWin = (gcnew System::Windows::Forms::Timer(this->components));
 			this->SuspendLayout();
-			// 
-			// timer1
-			// 
-			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm2::timer1_Tick);
 			// 
 			// panel1
 			// 
-			this->panel1->Location = System::Drawing::Point(-1, -2);
+			this->panel1->Location = System::Drawing::Point(-2, -2);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1366, 768);
 			this->panel1->TabIndex = 0;
 			// 
-			// MyForm2
+			// timerWin
+			// 
+			this->timerWin->Enabled = true;
+			this->timerWin->Tick += gcnew System::EventHandler(this, &MyForm3::timerWin_Tick);
+			// 
+			// MyForm3
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1366, 768);
 			this->Controls->Add(this->panel1);
-			this->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Name = L"MyForm2";
-			this->Text = L"MyForm2";
+			this->Name = L"MyForm3";
+			this->Text = L"MyForm3";
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-		buffer->Graphics->DrawImage(bmpGameOver, 0, 0, bmpGameOver->Width, bmpGameOver->Height);
+	private: System::Void timerWin_Tick(System::Object^ sender, System::EventArgs^ e) {
+		//winner
+		buffer->Graphics->DrawImage(bmpWin, 0, 0, bmpWin->Width, bmpWin->Height);
 		buffer->Render(g);
-
 	}
 	};
 }

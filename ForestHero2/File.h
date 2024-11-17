@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 //#include <stdlib.h>
+#include "Guardian.h"
 #include <string>
 
 using namespace std;
@@ -11,11 +12,13 @@ private:
 	ofstream fileWrite;
 	ifstream fileRead;
 	string texto;
-
+	Guardian* guardian;
 	int x1, y1, x2, y2;
 
 public:
-	File() {}
+	File() {
+		guardian = new Guardian(200, 200, 64,64);
+	}
 	~File() {}
 
 	void CargarDatos() {
@@ -25,12 +28,7 @@ public:
 			fileRead.close();
 
 			fileWrite.open("JugadorPuntaje.txt", ios::out);
-			fileWrite << "100" << endl;
-			fileWrite << "300" << endl;
-			fileWrite << "30" << endl;
-			fileWrite << "150" << endl;
-			fileWrite << "200" << endl;
-			fileWrite << "400" << endl;
+			fileWrite << guardian->getNombre() << " " << guardian->getPuntos() << endl;
 			fileWrite.close();
 
 			fileRead.open("JugadorPuntaje.txt", ios::in);

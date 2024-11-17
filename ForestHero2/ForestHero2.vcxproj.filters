@@ -80,5 +80,8 @@
     <ClInclude Include="MenuJuego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyForm3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
