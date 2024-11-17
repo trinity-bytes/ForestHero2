@@ -80,7 +80,9 @@ namespace ForestHero2 {
 		File* file;
 		MyForm2^ gameOver;
 		MyForm3^ win;
-
+		/// <summary>
+		///  sos
+		/// </summary>
 		int cantSemillas;
 		int cantAguas;
 		int cantVidas;
