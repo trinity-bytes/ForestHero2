@@ -76,6 +76,11 @@ namespace ForestHero2 {
 		Guardian* guardian;
 		GestionJuego* objGJuego;
 		Aliado* aliado;
+
+		File* file;
+		MyForm2^ gameOver;
+		MyForm3^ win;
+
 		int cantSemillas;
 		int cantAguas;
 		int cantVidas;
