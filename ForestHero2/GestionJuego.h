@@ -29,8 +29,6 @@ private:
 	Aliado* aliado;
 	PowerUp* powerUp;
 
-	// para calcular el porcentaje de reforestacion
-	const int cantMaxArboles = 96;
 
 	//! Definimos la cantidad inical de cada elemento del mapa
 	/// iniciando los recursos
@@ -552,9 +550,11 @@ public:
 
 	double PorcentajeReforestacion()
 	{
-		int totalArboles = arregloArboles.size();
-		
-		return (totalArboles / cantMaxArboles) * 100;
+		double retornarPorcentaje;
+		double totalArboles = arregloArboles.size();
+		retornarPorcentaje = totalArboles / 96;
+
+		return retornarPorcentaje * 100;
 	}
 
 	bool DeterminarVictoria(Guardian* objGuardian)
