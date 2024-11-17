@@ -35,8 +35,7 @@ namespace ForestHero2 {
 			bmpPowerUp = gcnew Bitmap("Resources/Images/corazon.png");
 			//aliado = new Aliado(50,500, 20, bmpAliado->Width / 4, bmpAliado->Height / 4);
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
-			gameOver = gcnew Derrota();
-			win = gcnew MyForm3();
+						
 			objGJuego = new GestionJuego();
 			file = new File();
 			// inicializamos los elementos pasando los parametros de sus dimensiones
@@ -78,8 +77,7 @@ namespace ForestHero2 {
 		Aliado* aliado;
 
 		File* file;
-		Derrota^ gameOver;
-		MyForm3^ win;
+		
 		/// <summary>
 		///  sos
 		/// </summary>
@@ -393,20 +391,31 @@ namespace ForestHero2 {
 		/// analoizamos si termino la partida
 		if (segundos <= 0 || objGJuego->AnalizarGAMEOVER(guardian) == true)
 		{
+			DetenerTimers();
 			/// Analisamos si el jugarod ha ganado
 			if (objGJuego->DeterminarVictoria(guardian) == true)
 			{
 				//! VICTORIA DEL JUGADOR
+				MyForm3^ win = gcnew MyForm3();
+				this->Hide(); /// cierra el forms
+
+				win->FormClosed += gcnew FormClosedEventHandler(this, &MyForm::OnGameFormClosed);
 				win->Show();
-				this->Close(); /// cierra el forms
 			}
 			else
 			{
 				//! DERROTA DEL JUGADOR
+				Derrota^ gameOver = gcnew Derrota();
+				this->Hide(); /// cierra el forms
+
+				gameOver->FormClosed += gcnew FormClosedEventHandler(this, &MyForm::OnGameFormClosed);
 				gameOver->Show();
-				this->Close(); /// cierra el forms
 			}
 		}
+	}
+
+	void OnGameFormClosed(Object^ sender, FormClosedEventArgs^ e) {
+		this->Close();
 	}
 
 	private: System::Void timerEnemigos_Tick(System::Object^ sender, System::EventArgs^ e) 
@@ -444,7 +453,9 @@ namespace ForestHero2 {
 		case Keys::S: teclaS = true; break;
 		case Keys::D: teclaD = true; break;
 		case Keys::M: teclaM = true; break;
-		case Keys::P: teclaP = true; break;
+		case Keys::K: teclaP = true; break;
+		case Keys::P: DetenerTimers(); break;
+		case Keys::O: ReactivarTimers(); break;
 		case Keys::Escape: this->Close(); break;
 		}
 	}
@@ -459,6 +470,24 @@ namespace ForestHero2 {
 		case Keys::M: teclaM = false; break;
 		case Keys::P: teclaP = false; break;
 		}
+	}
+
+	private: void DetenerTimers() {
+		timerJuego->Enabled = false;
+		timerEnemigos->Enabled = false;
+		timerAgua->Enabled = false;
+		timerSemillas->Enabled = false;
+		timerBasura->Enabled = false;
+		timerAliado->Enabled = false;
+	}
+
+	private: void ReactivarTimers() {
+		timerJuego->Enabled = true;
+		timerEnemigos->Enabled = true;
+		timerAgua->Enabled = true;
+		timerSemillas->Enabled = true;
+		timerBasura->Enabled = true;
+		timerAliado->Enabled = true;
 	}
 };
 }
