@@ -85,6 +85,7 @@ namespace ForestHero2 {
 		int cantAguas;
 		int cantVidas;
 		int cantPuntos;
+		int cantReforestacion;
 		int milisegundos = 0;
 		int segundos = 360;
 		// boleanos para capturar el estado de las teclas presionadas
@@ -109,6 +110,9 @@ namespace ForestHero2 {
 	private: System::Windows::Forms::Label^ labelTiempoRestante;
 	private: System::Windows::Forms::Label^ segundosRestantes;
 	private: System::Windows::Forms::Timer^ timerAliado;
+	private: System::Windows::Forms::Label^ CtPorcentaje;
+
+	private: System::Windows::Forms::Label^ CtReforestacion;
 
 
 	private: System::Windows::Forms::Timer^ timerBasura;
@@ -120,6 +124,8 @@ namespace ForestHero2 {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->timerJuego = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panelCanvas = (gcnew System::Windows::Forms::Panel());
+			this->CtPorcentaje = (gcnew System::Windows::Forms::Label());
+			this->CtReforestacion = (gcnew System::Windows::Forms::Label());
 			this->segundosRestantes = (gcnew System::Windows::Forms::Label());
 			this->labelTiempoRestante = (gcnew System::Windows::Forms::Label());
 			this->labelPuntos = (gcnew System::Windows::Forms::Label());
@@ -144,6 +150,8 @@ namespace ForestHero2 {
 			// 
 			this->panelCanvas->BackColor = System::Drawing::Color::Transparent;
 			this->panelCanvas->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panelCanvas.BackgroundImage")));
+			this->panelCanvas->Controls->Add(this->CtPorcentaje);
+			this->panelCanvas->Controls->Add(this->CtReforestacion);
 			this->panelCanvas->Controls->Add(this->segundosRestantes);
 			this->panelCanvas->Controls->Add(this->labelTiempoRestante);
 			this->panelCanvas->Controls->Add(this->labelPuntos);
@@ -156,15 +164,42 @@ namespace ForestHero2 {
 			this->panelCanvas->Size = System::Drawing::Size(1366, 768);
 			this->panelCanvas->TabIndex = 0;
 			// 
+			// CtPorcentaje
+			// 
+			this->CtPorcentaje->AutoSize = true;
+			this->CtPorcentaje->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
+				static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->CtPorcentaje->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->CtPorcentaje->Location = System::Drawing::Point(1065, 247);
+			this->CtPorcentaje->Name = L"CtPorcentaje";
+			this->CtPorcentaje->Size = System::Drawing::Size(27, 29);
+			this->CtPorcentaje->TabIndex = 8;
+			this->CtPorcentaje->Text = L"0";
+			// 
+			// CtReforestacion
+			// 
+			this->CtReforestacion->AutoSize = true;
+			this->CtReforestacion->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
+				static_cast<System::Int32>(static_cast<System::Byte>(132)));
+			this->CtReforestacion->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->CtReforestacion->Location = System::Drawing::Point(1065, 223);
+			this->CtReforestacion->Name = L"CtReforestacion";
+			this->CtReforestacion->Size = System::Drawing::Size(190, 29);
+			this->CtReforestacion->TabIndex = 7;
+			this->CtReforestacion->Text = L"Reforestacion:";
+			// 
 			// segundosRestantes
 			// 
 			this->segundosRestantes->AutoSize = true;
 			this->segundosRestantes->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)),
 				static_cast<System::Int32>(static_cast<System::Byte>(164)), static_cast<System::Int32>(static_cast<System::Byte>(132)));
-			this->segundosRestantes->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18));
-			this->segundosRestantes->Location = System::Drawing::Point(1065, 194);
+			this->segundosRestantes->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->segundosRestantes->Location = System::Drawing::Point(1066, 194);
 			this->segundosRestantes->Name = L"segundosRestantes";
-			this->segundosRestantes->Size = System::Drawing::Size(26, 29);
+			this->segundosRestantes->Size = System::Drawing::Size(27, 29);
 			this->segundosRestantes->TabIndex = 6;
 			this->segundosRestantes->Text = L"0";
 			// 
@@ -173,10 +208,11 @@ namespace ForestHero2 {
 			this->labelTiempoRestante->AutoSize = true;
 			this->labelTiempoRestante->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)),
 				static_cast<System::Int32>(static_cast<System::Byte>(164)), static_cast<System::Int32>(static_cast<System::Byte>(132)));
-			this->labelTiempoRestante->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18));
+			this->labelTiempoRestante->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->labelTiempoRestante->Location = System::Drawing::Point(1064, 170);
 			this->labelTiempoRestante->Name = L"labelTiempoRestante";
-			this->labelTiempoRestante->Size = System::Drawing::Size(195, 29);
+			this->labelTiempoRestante->Size = System::Drawing::Size(214, 29);
 			this->labelTiempoRestante->TabIndex = 5;
 			this->labelTiempoRestante->Text = L"Tiempo restante:";
 			// 
@@ -185,10 +221,11 @@ namespace ForestHero2 {
 			this->labelPuntos->AutoSize = true;
 			this->labelPuntos->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
 				static_cast<System::Int32>(static_cast<System::Byte>(132)));
-			this->labelPuntos->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18));
-			this->labelPuntos->Location = System::Drawing::Point(1064, 141);
+			this->labelPuntos->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->labelPuntos->Location = System::Drawing::Point(1067, 141);
 			this->labelPuntos->Name = L"labelPuntos";
-			this->labelPuntos->Size = System::Drawing::Size(87, 29);
+			this->labelPuntos->Size = System::Drawing::Size(97, 29);
 			this->labelPuntos->TabIndex = 4;
 			this->labelPuntos->Text = L"Puntos";
 			// 
@@ -197,11 +234,12 @@ namespace ForestHero2 {
 			this->CtPuntos->AutoSize = true;
 			this->CtPuntos->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(199)), static_cast<System::Int32>(static_cast<System::Byte>(164)),
 				static_cast<System::Int32>(static_cast<System::Byte>(132)));
-			this->CtPuntos->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 30));
+			this->CtPuntos->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 30, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->CtPuntos->Location = System::Drawing::Point(1060, 101);
 			this->CtPuntos->Name = L"CtPuntos";
 			this->CtPuntos->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->CtPuntos->Size = System::Drawing::Size(42, 46);
+			this->CtPuntos->Size = System::Drawing::Size(45, 49);
 			this->CtPuntos->TabIndex = 3;
 			this->CtPuntos->Text = L"0";
 			this->CtPuntos->TextAlign = System::Drawing::ContentAlignment::TopRight;
@@ -308,11 +346,12 @@ namespace ForestHero2 {
 		cantVidas = guardian->getCantVidas();
 		cantAguas = guardian->getCantAgua();
 		cantSemillas = guardian->getCantSemillas();
+		cantReforestacion = objGJuego->PorcentajeReforestacion();
 		CtSemillas->Text = L"" + cantSemillas;
 		CtAgua->Text = L"" + cantAguas;
 		CtVidas->Text = L"" + cantVidas;
 		CtPuntos->Text = L"" + cantPuntos;
-
+		CtPorcentaje->Text = L"" + cantReforestacion + L"%";
 		milisegundos++;
 		if (milisegundos == 10)
 		{
