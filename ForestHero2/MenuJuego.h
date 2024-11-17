@@ -43,6 +43,7 @@ namespace ForestHero2 {
 	protected:
 
 	private:
+		MyForm^ MyFormJuego = gcnew MyForm();
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
@@ -153,7 +154,6 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void botonJugar_Click(System::Object^ sender, System::EventArgs^ e) {
-		MyForm^ MyFormJuego = gcnew MyForm();
 		MyFormJuego->Show();
 		this->Hide();
 	}

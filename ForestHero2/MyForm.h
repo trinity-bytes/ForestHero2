@@ -2,7 +2,7 @@
 #include "GestionJuego.h"
 #include "Guardian.h"
 #include "File.h"
-#include "MyForm2.h"
+#include "Derrota.h"
 #include "MyForm3.h"
 namespace ForestHero2 {
 
@@ -35,7 +35,7 @@ namespace ForestHero2 {
 			bmpPowerUp = gcnew Bitmap("Resources/Images/corazon.png");
 			//aliado = new Aliado(50,500, 20, bmpAliado->Width / 4, bmpAliado->Height / 4);
 			guardian = new Guardian(200, 200, bmpGuardian->Width / 4, bmpGuardian->Height / 4);
-			gameOver = gcnew MyForm2();
+			gameOver = gcnew Derrota();
 			win = gcnew MyForm3();
 			objGJuego = new GestionJuego();
 			file = new File();
@@ -78,7 +78,7 @@ namespace ForestHero2 {
 		Aliado* aliado;
 
 		File* file;
-		MyForm2^ gameOver;
+		Derrota^ gameOver;
 		MyForm3^ win;
 		/// <summary>
 		///  sos
