@@ -1,5 +1,5 @@
 #pragma once
-#include "MenuJuego.h"
+#include "MyForm.h"
 namespace ForestHero2 {
 
 	using namespace System;
@@ -73,30 +73,35 @@ namespace ForestHero2 {
 			// 
 			// botonMenu
 			// 
+			this->botonMenu->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"botonMenu.BackgroundImage")));
 			this->botonMenu->FlatAppearance->BorderSize = 0;
 			this->botonMenu->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->botonMenu->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->botonMenu->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->botonMenu->Location = System::Drawing::Point(1259, 649);
-			this->botonMenu->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->botonMenu->Location = System::Drawing::Point(938, 527);
 			this->botonMenu->Name = L"botonMenu";
-			this->botonMenu->Size = System::Drawing::Size(447, 166);
+			this->botonMenu->Size = System::Drawing::Size(345, 146);
 			this->botonMenu->TabIndex = 1;
 			this->botonMenu->UseVisualStyleBackColor = true;
+			this->botonMenu->Click += gcnew System::EventHandler(this, &Derrota::botonMenu_Click);
+			this->botonMenu->MouseEnter += gcnew System::EventHandler(this, &Derrota::botonMenu_MouseEnter);
+			this->botonMenu->MouseLeave += gcnew System::EventHandler(this, &Derrota::botonMenu_MouseLeave);
 			// 
 			// botonJugar
 			// 
+			this->botonJugar->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"botonJugar.BackgroundImage")));
 			this->botonJugar->FlatAppearance->BorderSize = 0;
 			this->botonJugar->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->botonJugar->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->botonJugar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->botonJugar->Location = System::Drawing::Point(115, 649);
-			this->botonJugar->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->botonJugar->Location = System::Drawing::Point(82, 527);
 			this->botonJugar->Name = L"botonJugar";
-			this->botonJugar->Size = System::Drawing::Size(447, 166);
+			this->botonJugar->Size = System::Drawing::Size(338, 135);
 			this->botonJugar->TabIndex = 0;
 			this->botonJugar->UseVisualStyleBackColor = true;
 			this->botonJugar->Click += gcnew System::EventHandler(this, &Derrota::botonJugar_Click);
+			this->botonJugar->MouseEnter += gcnew System::EventHandler(this, &Derrota::botonJugar_MouseEnter);
+			this->botonJugar->MouseLeave += gcnew System::EventHandler(this, &Derrota::botonJugar_MouseLeave);
 			// 
 			// Derrota
 			// 
@@ -114,7 +119,20 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void botonJugar_Click(System::Object^ sender, System::EventArgs^ e) {
-
 	}
-	};
+	private: System::Void botonJugar_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+		botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/jugar de nuevo blanco.png");
+	}
+private: System::Void botonJugar_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+	botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/jugar de nuevo copy.png");
+}
+private: System::Void botonMenu_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void botonMenu_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+	botonMenu->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/menu principal blanco.png");
+}
+private: System::Void botonMenu_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+	botonMenu->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/menu principal copy.png");
+}
+};
 }
