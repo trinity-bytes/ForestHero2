@@ -54,8 +54,8 @@ namespace ForestHero2 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Derrota::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->botonJugar = (gcnew System::Windows::Forms::Button());
 			this->botonMenu = (gcnew System::Windows::Forms::Button());
+			this->botonJugar = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -66,22 +66,10 @@ namespace ForestHero2 {
 			this->panel1->Controls->Add(this->botonMenu);
 			this->panel1->Controls->Add(this->botonJugar);
 			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1366, 728);
+			this->panel1->Size = System::Drawing::Size(1821, 896);
 			this->panel1->TabIndex = 0;
-			// 
-			// botonJugar
-			// 
-			this->botonJugar->FlatAppearance->BorderSize = 0;
-			this->botonJugar->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
-			this->botonJugar->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
-			this->botonJugar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->botonJugar->Location = System::Drawing::Point(86, 527);
-			this->botonJugar->Name = L"botonJugar";
-			this->botonJugar->Size = System::Drawing::Size(335, 135);
-			this->botonJugar->TabIndex = 0;
-			this->botonJugar->UseVisualStyleBackColor = true;
-			this->botonJugar->Click += gcnew System::EventHandler(this, &Derrota::botonJugar_Click);
 			// 
 			// botonMenu
 			// 
@@ -89,20 +77,36 @@ namespace ForestHero2 {
 			this->botonMenu->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
 			this->botonMenu->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
 			this->botonMenu->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->botonMenu->Location = System::Drawing::Point(944, 527);
+			this->botonMenu->Location = System::Drawing::Point(1259, 649);
+			this->botonMenu->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->botonMenu->Name = L"botonMenu";
-			this->botonMenu->Size = System::Drawing::Size(335, 135);
+			this->botonMenu->Size = System::Drawing::Size(447, 166);
 			this->botonMenu->TabIndex = 1;
 			this->botonMenu->UseVisualStyleBackColor = true;
 			// 
+			// botonJugar
+			// 
+			this->botonJugar->FlatAppearance->BorderSize = 0;
+			this->botonJugar->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->botonJugar->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->botonJugar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->botonJugar->Location = System::Drawing::Point(115, 649);
+			this->botonJugar->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->botonJugar->Name = L"botonJugar";
+			this->botonJugar->Size = System::Drawing::Size(447, 166);
+			this->botonJugar->TabIndex = 0;
+			this->botonJugar->UseVisualStyleBackColor = true;
+			this->botonJugar->Click += gcnew System::EventHandler(this, &Derrota::botonJugar_Click);
+			// 
 			// Derrota
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1366, 728);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
+			this->ClientSize = System::Drawing::Size(1366, 768);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"Derrota";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Derrota";
 			this->panel1->ResumeLayout(false);
 			this->ResumeLayout(false);
