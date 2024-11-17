@@ -35,7 +35,7 @@ public:
 
 	System::Drawing::Rectangle getRectangle()
 	{
-		return System::Drawing::Rectangle(x, y, ancho * 0.8, alto * 0.8);
+		return System::Drawing::Rectangle(x, y, ancho * 0.9, alto * 0.9);
 	}
 };
 

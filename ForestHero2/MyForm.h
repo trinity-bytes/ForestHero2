@@ -26,7 +26,7 @@ namespace ForestHero2 {
 			buffer = space->Allocate(g, panelCanvas->ClientRectangle);
 
 			bmpEscenario1 = gcnew Bitmap("Resources/Images/Escenario1.png");
-			bmpGuardian = gcnew Bitmap("Resources/Images/personajeTemp.png");
+			bmpGuardian = gcnew Bitmap("Resources/Images/guardian.png");
 			bmpEnemigo = gcnew Bitmap("Resources/Images/enemigo.png");
 			bmpAliado = gcnew Bitmap("Resources/Images/aliadoTemp.png");
 			bmpAgua = gcnew Bitmap("Resources/Images/aguaTemp.png");
