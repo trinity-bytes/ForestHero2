@@ -434,7 +434,8 @@ namespace ForestHero2 {
 		{
 			DetenerTimers();
 			/// Analisamos si el jugarod ha ganado
-			if (objGJuego->DeterminarVictoria(guardian) == true)
+			if (true)
+			//if (objGJuego->DeterminarVictoria(guardian) == true)
 			{
 				//! VICTORIA DEL JUGADOR
 				MyForm3^ win = gcnew MyForm3();
@@ -496,9 +497,9 @@ namespace ForestHero2 {
 		case Keys::S: teclaS = true; break;
 		case Keys::D: teclaD = true; break;
 		case Keys::M: teclaM = true; break;
-		case Keys::K: teclaP = true; break;
-		case Keys::P: DetenerTimers(); break;
-		case Keys::O: ReactivarTimers(); break;
+		case Keys::P: teclaP = true; break;
+		case Keys::U: DetenerTimers(); break;
+		case Keys::Y: ReactivarTimers(); break;
 		case Keys::Escape: this->Close(); break;
 		}
 	}
@@ -551,10 +552,19 @@ namespace ForestHero2 {
 
 		guardian->ReiniciarEstado();
 		objGJuego->ReiniciarEstado();
+		objGJuego->IniciarElementos(
+			bmpEnemigo->Width / 4, bmpEnemigo->Height / 4,
+			bmpAgua->Width, bmpAgua->Height,
+			bmpSemilla->Width, bmpSemilla->Height
+		);
 
-		// Redibujar escenario limpio
-		//buffer->Graphics->Clear(Color::Transparent);
-		//buffer->Graphics->DrawImage(bmpEscenario1, 0, 0, bmpEscenario1->Width, bmpEscenario1->Height);
+		// reiniciamos el estado de las teclas presionadas
+		teclaW = false;
+		teclaA = false;
+		teclaS = false;
+		teclaD = false;
+		teclaM = false;
+		teclaP = false;
 
 		// Reiniciar y habilitar temporizadores
 		timerJuego->Start();
@@ -563,6 +573,7 @@ namespace ForestHero2 {
 		timerSemillas->Start();
 		timerBasura->Start();
 		timerAliado->Start();
+
 	}
 };
 }

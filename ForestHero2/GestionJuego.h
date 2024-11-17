@@ -586,6 +586,28 @@ public:
 
 	void ReiniciarEstado()
 	{
+		/// limpiamos todos los vectores de elementos
+		arregloAgua.clear();
+		arregloSemillas.clear();
+		arregloArboles.clear();
+		arregloBasuras.clear();
+		arregloEnemigos.clear();
 
+		/// reiniciammos la matriz de árboles
+		for (int i = 0; i < filasMatriz; i++)
+		{
+			for (int j = 0; j < columnasMatriz; j++)
+			{
+				matrizArboles[i][j] = false;
+			}
+		}
+
+		/// reiniciamos el estado de inmunidad
+		guardianInmune = false;
+		pseudoTimerInmunidad = 0;
+
+		/// reiniciamos el estado del aliado y el powerup
+		aliado->setVisible(false);
+		powerUp->setVisible(false);
 	}
 };
