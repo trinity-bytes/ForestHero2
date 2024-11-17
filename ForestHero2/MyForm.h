@@ -97,7 +97,7 @@ namespace ForestHero2 {
 		bool teclaM = false;
 		bool teclaP = false;
 
-		
+		bool ultimoTramo = false;
 
 	private: System::Windows::Forms::Panel^ panelCanvas;
 	private: System::Windows::Forms::Timer^ timerJuego;
@@ -338,9 +338,10 @@ namespace ForestHero2 {
 		buffer->Graphics->Clear(Color::Transparent);
 		
 		//! Reproducimos musica para la parte final del juego
-		if (objGJuego->PorcentajeReforestacion() > 50)
+		if (objGJuego->PorcentajeReforestacion() > 50 && ultimoTramo == false)
 		{
-
+			reproducirMusicaUltimoTramo();
+			ultimoTramo = true;
 		}
 		
 		objGJuego->ColisionPersonaje(guardian);
@@ -451,6 +452,8 @@ namespace ForestHero2 {
 			else
 			{
 				//! DERROTA DEL JUGADOR
+				reproducirMusicaDerrota();
+				
 				Derrota^ gameOver = gcnew Derrota();
 				this->Hide(); /// cierra el forms
 
