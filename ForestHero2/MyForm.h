@@ -400,6 +400,7 @@ namespace ForestHero2 {
 			{
 				//! DERROTA DEL JUGADOR
 				gameOver->Show();
+				this->Close();
 			}
 		}
 	}
