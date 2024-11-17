@@ -23,6 +23,8 @@ namespace ForestHero2 {
 			//
 			botonJugarNormal = Image::FromFile("Resources/Buttons/menuPrincipal-assets/jugarcopy.png");
 			botonJugarHover = Image::FromFile("Resources/Buttons/menuPrincipal-assets/jugarblanco.png");
+
+			reproducirMusicaMenu();
 		}
 
 	protected:
@@ -45,7 +47,8 @@ namespace ForestHero2 {
 	protected:
 
 	private:
-	
+	bool musicaMenu = false;
+
 	Image^ botonJugarNormal;
 	Image^ botonJugarHover;
 
@@ -207,6 +210,7 @@ namespace ForestHero2 {
 	}
 
 	private: System::Void JuegoForm_Closed(System::Object^ sender, FormClosedEventArgs^ e) {
+		reproducirMusicaMenu();
 		this->Show(); // Mostrar el menú cuando se cierra el form del juego
 	}
 

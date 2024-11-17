@@ -1,4 +1,5 @@
 #pragma once
+#include "FuncionesCustom.h"
 #include "GestionJuego.h"
 #include "Guardian.h"
 #include "File.h"
@@ -95,6 +96,8 @@ namespace ForestHero2 {
 		bool teclaD = false;
 		bool teclaM = false;
 		bool teclaP = false;
+
+		
 
 	private: System::Windows::Forms::Panel^ panelCanvas;
 	private: System::Windows::Forms::Timer^ timerJuego;

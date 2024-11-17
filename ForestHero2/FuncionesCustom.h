@@ -29,7 +29,12 @@ int GenerarNumeroAleatorio(int m, int n) {
 //void reproducirSonidoColisionBasura() {
 //    PlaySound(TEXT("sonidoColisionBasura.wav"), NULL, SND_ASYNC);
 //}
-//
-//void detenerMusica() {
-//    PlaySound(NULL, 0, 0);  // Detener cualquier sonido en reproducción
-//}
+
+void detenerMusica() {
+    PlaySound(NULL, 0, 0);  // Detener cualquier sonido en reproducción
+}
+
+void reproducirMusicaMenu() {
+    detenerMusica();
+    PlaySound(TEXT("Resources/Sounds/musicaMenu.wav"), NULL, SND_ASYNC | SND_LOOP);
+}
