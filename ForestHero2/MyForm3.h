@@ -7,10 +7,7 @@
 #include <msclr/marshal_cppstd.h>
 using System::String;
 
-typedef struct {
-	int puntaje;
-	char nombre[60];
-}pJugador;
+
 
 namespace ForestHero2 {
 
@@ -176,28 +173,7 @@ private: System::Void textBox1_KeyDown(System::Object^ sender, System::Windows::
 		nombre = textBox1->Text;
 		puntaje = guardian->getPuntos();
 
-		ofstream ranked;
-		pJugador jugador;
-
-		// Convertir System::String^ a std::string
-		msclr::interop::marshal_context context;
-		std::string stdNombre = context.marshal_as<std::string>(nombre);
-
-		// Copiar el nombre al array de chars de forma segura
-		strncpy_s(jugador.nombre, stdNombre.c_str(), sizeof(jugador.nombre) - 1);
-		jugador.nombre[sizeof(jugador.nombre) - 1] = '\0'; // Asegurar terminación null
-
-		ranked.open("Resources/Data/JugadorPuntaje.dat", ios::out | ios::app | ios::binary);
-
-		jugador.puntaje = puntaje;
-
-		if (ranked.is_open())
-		{
-			ranked << stdNombre << std::endl; // Nombre del jugador
-			ranked << puntaje << std::endl;  // Puntaje del jugador
-			ranked.close();
-		}
-		break;
+		
 	}
 }
 };

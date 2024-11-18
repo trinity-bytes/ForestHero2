@@ -126,7 +126,7 @@ namespace ForestHero2 {
 				Label^ nuevoLabel = gcnew Label();
 				nuevoLabel->AutoSize = true;
 				nuevoLabel->BackColor = System::Drawing::Color::Transparent;
-				nuevoLabel->ForeColor = System::Drawing::Color::White;
+				nuevoLabel->ForeColor = System::Drawing::Color::Black;
 				nuevoLabel->Font = gcnew System::Drawing::Font("Arial", 16, FontStyle::Bold);
 
 				// Ajustar la posición (50 de margen izquierdo, espacio entre líneas de 40)
@@ -143,7 +143,8 @@ namespace ForestHero2 {
 				listaLabels->Add(nuevoLabel);
 			}
 
-			MessageBox::Show("Labels creados: " + listaLabels->Count, "Debug");
+			/// para hacer debbigin
+			//MessageBox::Show("Labels creados: " + listaLabels->Count, "Debug");
 		}
 
 #pragma region Windows Form Designer generated code

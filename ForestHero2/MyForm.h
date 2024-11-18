@@ -5,6 +5,12 @@
 #include "File.h"
 #include "Derrota.h"
 #include "MyForm3.h"
+
+typedef struct {
+	int puntaje;
+	char nombre[60];
+}pJugador;
+
 namespace ForestHero2 {
 
 	using namespace System;
@@ -455,10 +461,53 @@ namespace ForestHero2 {
 
 				if (win->reiniciar)
 				{
+					ofstream ranked;
+					pJugador jugador;
+
+					// Convertir System::String^ a std::string
+					msclr::interop::marshal_context context;
+					std::string stdNombre = context.marshal_as<std::string>(win->nombre);
+
+					// Copiar el nombre al array de chars de forma segura
+					strncpy_s(jugador.nombre, stdNombre.c_str(), sizeof(jugador.nombre) - 1);
+					jugador.nombre[sizeof(jugador.nombre) - 1] = '\0'; // Asegurar terminación null
+
+					ranked.open("Resources/Data/JugadorPuntaje.dat", ios::out | ios::app | ios::binary);
+
+					int puntaje = guardian->getPuntos();
+
+					if (ranked.is_open())
+					{
+						ranked << stdNombre << std::endl; // Nombre del jugador
+						ranked << puntaje << std::endl;  // Puntaje del jugador
+						ranked.close();
+					}
+					
 					ReiniciarJuego();
 				}
 				else
 				{
+					ofstream ranked;
+					pJugador jugador;
+
+					// Convertir System::String^ a std::string
+					msclr::interop::marshal_context context;
+					std::string stdNombre = context.marshal_as<std::string>(win->nombre);
+
+					// Copiar el nombre al array de chars de forma segura
+					strncpy_s(jugador.nombre, stdNombre.c_str(), sizeof(jugador.nombre) - 1);
+					jugador.nombre[sizeof(jugador.nombre) - 1] = '\0'; // Asegurar terminación null
+
+					ranked.open("Resources/Data/JugadorPuntaje.dat", ios::out | ios::app | ios::binary);
+
+					int puntaje = guardian->getPuntos();
+
+					if (ranked.is_open())
+					{
+						ranked << stdNombre << std::endl; // Nombre del jugador
+						ranked << puntaje << std::endl;  // Puntaje del jugador
+						ranked.close();
+					}
 					this->Close();
 				}
 			}
