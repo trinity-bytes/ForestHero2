@@ -448,8 +448,8 @@ namespace ForestHero2 {
 		{
 			DetenerTimers();
 			/// Analisamos si el jugarod ha ganado
-			if (true)
-			//if (objGJuego->DeterminarVictoria(guardian) == true)
+			//if (true)
+			if (objGJuego->DeterminarVictoria(guardian) == true)
 			{
 				//! VICTORIA DEL JUGADOR
 				reproducirMusicaVictoria();
