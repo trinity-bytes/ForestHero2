@@ -130,7 +130,7 @@ namespace ForestHero2 {
 				nuevoLabel->Font = gcnew System::Drawing::Font("Arial", 16, FontStyle::Bold);
 
 				// Ajustar la posición (50 de margen izquierdo, espacio entre líneas de 40)
-				nuevoLabel->Location = System::Drawing::Point(50, 50 + (i * 40));
+				nuevoLabel->Location = System::Drawing::Point(250, 170 + (i * 40));
 
 				// Configurar el texto del label
 				nuevoLabel->Text = String::Format("{0}. {1} - {2}",
