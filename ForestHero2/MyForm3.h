@@ -36,6 +36,7 @@ namespace ForestHero2 {
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Button^ botonMenu;
 	private: System::Windows::Forms::Button^ botonJugar;
+	private: System::Windows::Forms::TextBox^ textBox1;
 
 	private: System::ComponentModel::IContainer^ components;
 	protected:
@@ -52,6 +53,7 @@ namespace ForestHero2 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm3::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->botonMenu = (gcnew System::Windows::Forms::Button());
 			this->botonJugar = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
@@ -61,6 +63,7 @@ namespace ForestHero2 {
 			// 
 			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel1.BackgroundImage")));
 			this->panel1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->panel1->Controls->Add(this->textBox1);
 			this->panel1->Controls->Add(this->botonMenu);
 			this->panel1->Controls->Add(this->botonJugar);
 			this->panel1->Location = System::Drawing::Point(0, 0);
@@ -68,6 +71,16 @@ namespace ForestHero2 {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1366, 768);
 			this->panel1->TabIndex = 0;
+			// 
+			// textBox1
+			// 
+			this->textBox1->Font = (gcnew System::Drawing::Font(L"Pixelify Sans", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->textBox1->Location = System::Drawing::Point(543, 276);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(483, 40);
+			this->textBox1->TabIndex = 2;
+			this->textBox1->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm3::textBox1_KeyDown);
 			// 
 			// botonMenu
 			// 
@@ -116,6 +129,7 @@ namespace ForestHero2 {
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm3";
 			this->panel1->ResumeLayout(false);
+			this->panel1->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
@@ -138,6 +152,14 @@ private: System::Void botonJugar_MouseEnter(System::Object^ sender, System::Even
 }
 private: System::Void botonJugar_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
 	botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/jugar de nuevo copy.png");
+}
+private: System::Void textBox1_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+	switch (e->KeyCode)
+	{
+	case Keys::Enter:
+		textBox1->ReadOnly = true;
+		break;
+	}
 }
 };
 }
