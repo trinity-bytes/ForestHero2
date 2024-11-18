@@ -309,6 +309,7 @@ public:
 
 					if (std::find(indicesBasuraEliminar.begin(), indicesBasuraEliminar.end(), j) == indicesBasuraEliminar.end())
 					indicesBasuraEliminar.push_back(j);
+					objGuardian->setPuntos(15000);
 					break; /// terminamos el ciclo ya que se elimino la semilla
 				}
 			}
@@ -334,6 +335,7 @@ public:
 					{
 						if (std::find(indicesEnemigosEliminar.begin(), indicesEnemigosEliminar.end(), j) == indicesEnemigosEliminar.end())
 							indicesEnemigosEliminar.push_back(j);
+						objGuardian->setPuntos(50000);
 					}
 					break; /// terminamos el ciclo ya que se elimino la semilla
 				}
@@ -422,6 +424,7 @@ public:
 	{
 		Arbol* a = new Arbol(x, y, anchoArbol, altoArbol);
 		arregloArboles.push_back(a);
+
 	}
 
 	void PlantarArbol(Guardian* objGuardian, int anchoArbol, int altoArbol)
@@ -559,7 +562,7 @@ public:
 
 	bool DeterminarVictoria(Guardian* objGuardian)
 	{
-		if (PorcentajeReforestacion() >= 1 && objGuardian->getCantVidas() > 0) return true;
+		if (PorcentajeReforestacion() >= 70 && objGuardian->getCantVidas() > 0) return true;
 		else return false;
 	}
 
@@ -569,7 +572,7 @@ public:
 		{
 			return true;
 		}
-		else if (PorcentajeReforestacion() >= 1)
+		else if (PorcentajeReforestacion() >= 70)
 		{
 			return true;
 		}
