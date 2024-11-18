@@ -1,6 +1,7 @@
 #pragma once
 #include "MyForm.h"
 #include "Instrucciones.h"
+#include "Creditos.h"
 namespace ForestHero2 {
 
 	using namespace System;
@@ -259,6 +260,11 @@ private: System::Void botonInstruciones_MouseLeave(System::Object^ sender, Syste
 	botonInstruciones->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/instruccionescopy.png");
 }
 private: System::Void botonCreditos_Click(System::Object^ sender, System::EventArgs^ e) {
+	Creditos^ MyCreditos = gcnew Creditos();
+	this->Hide();
+
+	MyCreditos->FormClosed += gcnew FormClosedEventHandler(this, &MenuJuego::JuegoForm_Closed);
+	MyCreditos->Show();
 }
 private: System::Void botonCreditos_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
 	botonCreditos->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/preguntablanco.png");

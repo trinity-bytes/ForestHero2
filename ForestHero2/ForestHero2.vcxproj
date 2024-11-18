@@ -120,7 +120,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Instrucciones.cpp" />
+    <ClCompile Include="Creditos.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +128,9 @@
     <ClInclude Include="Aliado.h" />
     <ClInclude Include="Arbol.h" />
     <ClInclude Include="Basura.h" />
+    <ClInclude Include="Creditos.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Derrota.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -156,6 +159,9 @@
     <ClInclude Include="Agente.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Creditos.resx">
+      <DependentUpon>Creditos.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Derrota.resx">
       <DependentUpon>Derrota.h</DependentUpon>
     </EmbeddedResource>
