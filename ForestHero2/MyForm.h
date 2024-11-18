@@ -448,10 +448,17 @@ namespace ForestHero2 {
 				reproducirMusicaVictoria();
 				
 				MyForm3^ win = gcnew MyForm3();
-				this->Hide(); /// oculta el forms
 
 				win->FormClosed += gcnew FormClosedEventHandler(this, &MyForm::OnGameFormClosed);
-				win->Show();
+				win->ShowDialog();
+				if (win->reiniciar)
+				{
+					ReiniciarJuego();
+				}
+				else
+				{
+					this->Close();
+				}
 			}
 			else
 			{

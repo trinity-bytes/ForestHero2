@@ -6,12 +6,12 @@ using namespace System;
 using namespace System::Drawing;
 using namespace System::Collections::Generic;
 
-public ref class jugadorPuntaje
-{
-public:
-	String^ nombre;  // Ahora usando String^
-	String^ puntaje; // Ahora usando String^
-};
+	public ref class jugadorPuntaje
+	{
+	public:
+		String^ nombre;  // Ahora usando String^
+		String^ puntaje; // Ahora usando String^
+	};
 
 namespace ForestHero2 {
 
