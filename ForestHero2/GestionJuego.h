@@ -559,7 +559,7 @@ public:
 
 	bool DeterminarVictoria(Guardian* objGuardian)
 	{
-		if (PorcentajeReforestacion() >= 70 && objGuardian->getCantVidas() > 0) return true;
+		if (PorcentajeReforestacion() >= 1 && objGuardian->getCantVidas() > 0) return true;
 		else return false;
 	}
 
@@ -569,7 +569,7 @@ public:
 		{
 			return true;
 		}
-		else if (PorcentajeReforestacion() >= 70)
+		else if (PorcentajeReforestacion() >= 1)
 		{
 			return true;
 		}

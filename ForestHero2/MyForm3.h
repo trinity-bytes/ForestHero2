@@ -1,5 +1,6 @@
 #pragma once
-
+#include "MyForm.h"
+#include "MenuJuego.h"
 namespace ForestHero2 {
 
 	using namespace System;
@@ -14,14 +15,11 @@ namespace ForestHero2 {
 	/// </summary>
 	public ref class MyForm3 : public System::Windows::Forms::Form
 	{
+	public: bool reiniciar = false;
 	public:
 		MyForm3(void)
 		{
 			InitializeComponent();
-			bmpWin = gcnew Bitmap("Resources/Images/menuVictoria.png");
-			g = panel1->CreateGraphics();
-			space = BufferedGraphicsManager::Current;
-			buffer = space->Allocate(g, panel1->ClientRectangle);
 		}
 
 	protected:
@@ -36,15 +34,13 @@ namespace ForestHero2 {
 			}
 		}
 	private: System::Windows::Forms::Panel^ panel1;
-	private: System::Windows::Forms::Timer^ timerWin;
+	private: System::Windows::Forms::Button^ botonMenu;
+	private: System::Windows::Forms::Button^ botonJugar;
+
 	private: System::ComponentModel::IContainer^ components;
 	protected:
 
 	private:
-		Bitmap^ bmpWin;
-		Graphics^ g;
-		BufferedGraphicsContext^ space;
-		BufferedGraphics^ buffer;
 
 
 #pragma region Windows Form Designer generated code
@@ -54,23 +50,60 @@ namespace ForestHero2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = (gcnew System::ComponentModel::Container());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm3::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->timerWin = (gcnew System::Windows::Forms::Timer(this->components));
+			this->botonMenu = (gcnew System::Windows::Forms::Button());
+			this->botonJugar = (gcnew System::Windows::Forms::Button());
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// panel1
 			// 
-			this->panel1->Location = System::Drawing::Point(-3, -2);
-			this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->panel1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel1.BackgroundImage")));
+			this->panel1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->panel1->Controls->Add(this->botonMenu);
+			this->panel1->Controls->Add(this->botonJugar);
+			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Margin = System::Windows::Forms::Padding(4);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1821, 945);
+			this->panel1->Size = System::Drawing::Size(1366, 768);
 			this->panel1->TabIndex = 0;
 			// 
-			// timerWin
+			// botonMenu
 			// 
-			this->timerWin->Enabled = true;
-			this->timerWin->Tick += gcnew System::EventHandler(this, &MyForm3::timerWin_Tick);
+			this->botonMenu->BackColor = System::Drawing::Color::Transparent;
+			this->botonMenu->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"botonMenu.BackgroundImage")));
+			this->botonMenu->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->botonMenu->FlatAppearance->BorderSize = 0;
+			this->botonMenu->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->botonMenu->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->botonMenu->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->botonMenu->Location = System::Drawing::Point(939, 511);
+			this->botonMenu->Name = L"botonMenu";
+			this->botonMenu->Size = System::Drawing::Size(340, 135);
+			this->botonMenu->TabIndex = 1;
+			this->botonMenu->UseVisualStyleBackColor = false;
+			this->botonMenu->Click += gcnew System::EventHandler(this, &MyForm3::botonMenu_Click);
+			this->botonMenu->MouseEnter += gcnew System::EventHandler(this, &MyForm3::botonMenu_MouseEnter);
+			this->botonMenu->MouseLeave += gcnew System::EventHandler(this, &MyForm3::botonMenu_MouseLeave);
+			// 
+			// botonJugar
+			// 
+			this->botonJugar->BackColor = System::Drawing::Color::Transparent;
+			this->botonJugar->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"botonJugar.BackgroundImage")));
+			this->botonJugar->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->botonJugar->FlatAppearance->BorderSize = 0;
+			this->botonJugar->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->botonJugar->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Transparent;
+			this->botonJugar->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->botonJugar->Location = System::Drawing::Point(83, 511);
+			this->botonJugar->Name = L"botonJugar";
+			this->botonJugar->Size = System::Drawing::Size(341, 135);
+			this->botonJugar->TabIndex = 0;
+			this->botonJugar->UseVisualStyleBackColor = false;
+			this->botonJugar->Click += gcnew System::EventHandler(this, &MyForm3::botonJugar_Click);
+			this->botonJugar->MouseEnter += gcnew System::EventHandler(this, &MyForm3::botonJugar_MouseEnter);
+			this->botonJugar->MouseLeave += gcnew System::EventHandler(this, &MyForm3::botonJugar_MouseLeave);
 			// 
 			// MyForm3
 			// 
@@ -78,18 +111,33 @@ namespace ForestHero2 {
 			this->ClientSize = System::Drawing::Size(1366, 768);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"MyForm3";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm3";
+			this->panel1->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
-#pragma endregion
-	private: System::Void timerWin_Tick(System::Object^ sender, System::EventArgs^ e) {
-		//winner
-		buffer->Graphics->DrawImage(bmpWin, 0, 0, bmpWin->Width, bmpWin->Height);
-		buffer->Render(g);
+	private: System::Void botonMenu_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+		botonMenu->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/menu principal blanco.png");
 	}
-	};
+	private: System::Void botonMenu_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+		botonMenu->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/menu principal copy.png");
+	}
+private: System::Void botonMenu_Click(System::Object^ sender, System::EventArgs^ e) {
+	reiniciar = false;
+	this->Close();
+}
+private: System::Void botonJugar_Click(System::Object^ sender, System::EventArgs^ e) {
+	reiniciar = true;
+	this->Close();
+}
+private: System::Void botonJugar_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+	botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/jugar de nuevo blanco.png");
+}
+private: System::Void botonJugar_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+	botonJugar->BackgroundImage = Image::FromFile("Resources/Buttons/menuVictoria-assets/jugar de nuevo copy.png");
+}
+};
 }
