@@ -451,6 +451,7 @@ namespace ForestHero2 {
 
 				win->FormClosed += gcnew FormClosedEventHandler(this, &MyForm::OnGameFormClosed);
 				win->ShowDialog();
+
 				if (win->reiniciar)
 				{
 					ReiniciarJuego();
