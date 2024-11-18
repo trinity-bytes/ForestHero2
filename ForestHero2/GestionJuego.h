@@ -539,7 +539,7 @@ public:
 	void InvocarPowerUp()
 	{
 		powerUp->setX(aliado->getX());
-		powerUp->setY(aliado->getY() + 40);
+		powerUp->setY(aliado->getY() + 50);
 		powerUp->setVisible(true);
 	}
 
