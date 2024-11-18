@@ -49,6 +49,15 @@ namespace ForestHero2 {
 			file = new File();
 			guardian = new Guardian(200, 200, 64, 64);
 			jugadores = gcnew List<jugadorPuntaje^>();
+			listaLabels = gcnew List<System::Windows::Forms::Label^>();
+
+			// Configurar el panel
+			panel1->BackColor = System::Drawing::Color::Transparent;
+			panel1->BringToFront();
+
+			// Cargar datos iniciales
+			CargarDatos();
+			CrearLabels();
 		}
 		// Método estático de comparación para ordenar por puntaje descendente
 		
@@ -79,6 +88,73 @@ namespace ForestHero2 {
 		int puntos;
 		bool labelsCreados = false;
 		List<jugadorPuntaje^>^ jugadores;
+
+		void CargarDatos() {
+			jugadores->Clear();
+			std::ifstream leerRanked;
+			leerRanked.open("Resources/Data/JugadorPuntaje.dat");
+
+			if (!leerRanked.is_open()) {
+				MessageBox::Show("Error al abrir el archivo de ranking", "Error",
+					MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
+			}
+
+			std::string linea;
+			while (std::getline(leerRanked, linea)) {
+				if (linea.empty()) continue;
+
+				jugadorPuntaje^ nuevoJugador = gcnew jugadorPuntaje();
+				nuevoJugador->nombre = gcnew String(linea.c_str());
+
+				if (std::getline(leerRanked, linea)) {
+					nuevoJugador->puntaje = gcnew String(linea.c_str());
+					jugadores->Add(nuevoJugador);
+				}
+			}
+
+			leerRanked.close();
+			jugadores->Sort(gcnew Comparison<jugadorPuntaje^>(&jugadorPuntaje::CompararPuntajes));
+		}
+
+		void CrearLabels() {
+			// Limpiar labels existentes
+			for each (Label ^ label in listaLabels) {
+				if (label != nullptr) {
+					panel1->Controls->Remove(label);
+					delete label;
+				}
+			}
+			listaLabels->Clear();
+
+			// Crear nuevos labels
+			for (int i = 0; i < jugadores->Count; i++) {
+				Label^ nuevoLabel = gcnew Label();
+
+				// Configurar propiedades del label
+				nuevoLabel->AutoSize = true;
+				nuevoLabel->BackColor = System::Drawing::Color::Transparent;
+				nuevoLabel->ForeColor = System::Drawing::Color::White;
+				nuevoLabel->Font = gcnew System::Drawing::Font("Arial", 16, FontStyle::Bold);
+				nuevoLabel->Location = System::Drawing::Point(400, 200 + (i * 50));
+				nuevoLabel->Text = String::Format("{0}. {1} - {2}",
+					i + 1,
+					jugadores[i]->nombre,
+					jugadores[i]->puntaje);
+
+				// Asegurar que el label sea visible
+				nuevoLabel->Visible = true;
+				nuevoLabel->BringToFront();
+
+				// Agregar el label al panel y a la lista
+				panel1->Controls->Add(nuevoLabel);
+				listaLabels->Add(nuevoLabel);
+			}
+
+			// Forzar el redibujado del panel
+			panel1->Refresh();
+		}
+
 
 	private: System::Windows::Forms::Panel^ panel1;
 		   
@@ -130,157 +206,22 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-		jugadores->Clear();
-		
-		std::ifstream leerRanked;
-		leerRanked.open("Resources/Data/JugadorPuntaje.dat");
-
-		if (!leerRanked.is_open()) {
-			MessageBox::Show("Error al abrir el archivo de ranking", "Error",
-				MessageBoxButtons::OK, MessageBoxIcon::Error);
-			return;
-		}
-
-		std::string linea;
-		while (std::getline(leerRanked, linea)) {
-			if (linea.empty()) continue;  // Saltar líneas vacías
-
-			jugadorPuntaje^ nuevoJugador = gcnew jugadorPuntaje();
-
-			// La primera línea es el nombre
-			nuevoJugador->nombre = gcnew String(linea.c_str());
-
-			// La segunda línea es el puntaje
-			if (std::getline(leerRanked, linea)) {
-				nuevoJugador->puntaje = gcnew String(linea.c_str());
-				jugadores->Add(nuevoJugador);
-			}
-		}
-
-		leerRanked.close();
-
-		// Ordenar la lista usando el comparador
-		jugadores->Sort(gcnew Comparison<jugadorPuntaje^>(&jugadorPuntaje::CompararPuntajes));
-
-		// Dibujar el fondo
 		buffer->Graphics->DrawImage(bmpRanking, 0, 0, bmpRanking->Width, bmpRanking->Height);
 		buffer->Render(g);
 
-		// Crear o actualizar los labels
-		if (!labelsCreados) {
-			listaLabels = gcnew List<System::Windows::Forms::Label^>();
+		// Actualizar datos y labels
+		CargarDatos();
 
-			// Crear solo los labels necesarios basados en la cantidad de jugadores
-			for (int i = 0; i < jugadores->Count; i++) {
-				System::Windows::Forms::Label^ nuevoLabel = gcnew System::Windows::Forms::Label();
-				nuevoLabel->AutoSize = true;
-				nuevoLabel->Location = System::Drawing::Point(400, 200 + (i * 40));
-				nuevoLabel->Font = gcnew System::Drawing::Font("Arial", 12);
-				nuevoLabel->ForeColor = System::Drawing::Color::Brown;
-				panel1->Controls->Add(nuevoLabel);
-				listaLabels->Add(nuevoLabel);
-			}
-
-			labelsCreados = true;
-		}
-
-		// Actualizar los labels existentes
+		// Actualizar texto de labels existentes
 		for (int i = 0; i < jugadores->Count && i < listaLabels->Count; i++) {
-			listaLabels[i]->Text = String::Format("{0}. {1} - {2}",
-				i + 1,
-				jugadores[i]->nombre,
-				jugadores[i]->puntaje);
-			listaLabels[i]->Visible = true;
+			if (listaLabels[i] != nullptr) {
+				listaLabels[i]->Text = String::Format("{0}. {1} - {2}",
+					i + 1,
+					jugadores[i]->nombre,
+					jugadores[i]->puntaje);
+				listaLabels[i]->BringToFront();
+			}
 		}
-
-		//int numJugadores = 1000;
-		//
-		//string texto;
-		//System::String^ nombre;
-		//System::String^ puntaje;
-
-		//ifstream leerRanked;
-		//leerRanked.open("Resources/Data/JugadorPuntaje.dat", ios::in | ios::out);
-		//			
-		//if (leerRanked.fail()) exit(1);
-
-		////pJugador jugador;
-
-		////leerRanked.read((char*)&jugador, sizeof(jugador));
-
-		//int k = 0;
-
-		////while (!leerRanked.eof()) {
-		////	// Crear un nuevo objeto jugadorPuntaje para cada jugador
-		////	jugadorPuntaje^ nuevoJugador = gcnew jugadorPuntaje();
-
-		////	// Leer el nombre y asignarlo al objeto
-		////	getline(leerRanked, texto);
-		////	nuevoJugador->nombre = gcnew String(texto.c_str());
-
-		////	// Leer el puntaje y convertirlo a entero
-		////	getline(leerRanked, texto);
-		////	nuevoJugador->puntaje = gcnew String(texto.c_str());
-
-		////	// Agregar el jugador a la lista
-		////	jugadores->Add(nuevoJugador);
-		////	k++;
-		////}
-		////leerRanked.close();
-
-
-		//// Ordenar la lista de jugadores de forma descendente por el puntaje
-		////jugadores->Sort(gcnew Comparison<jugadorPuntaje^>(&jugadorPuntaje::CompararPuntajes));
-		//
-
-
-		////for (int i = 1; i < jugadores->Count-1; i++) {
-		////	for (int j = 1; j < jugadores->Count-1; j++) {
-		////		int puntaje1 = Convert::ToInt32(jugadores[j]->puntaje);
-		////		int puntaje2 = Convert::ToInt32(jugadores[j+1]->puntaje);
-
-		////		if (puntaje1 > puntaje2) {
-		////			// Intercambio de objetos jugadorPuntaje^
-		////			jugadorPuntaje^ temp = gcnew jugadorPuntaje();
-		////			temp->nombre = jugadores[j]->nombre;
-		////			temp->puntaje = jugadores[j]->puntaje;
-
-		////			jugadores[j]->nombre = jugadores[j+1]->nombre;
-		////			jugadores[j]->puntaje = jugadores[j+1]->puntaje;
-
-		////			jugadores[j+1]->nombre = temp->nombre;
-		////			jugadores[j+1]->puntaje = temp->puntaje;
-		////		}
-		////	}
-		////}
-		//// Crear un delegado de comparación
-
-		//buffer->Graphics->DrawImage(bmpRanking, 0, 0, bmpRanking->Width, bmpRanking->Height);
-		//buffer->Render(g);
-
-		//if (!labelsCreados) {
-		//	listaLabels = gcnew System::Collections::Generic::List<System::Windows::Forms::Label^>();
-
-		//	for (int i = 0; i < k; i++) {
-		//		System::Windows::Forms::Label^ nuevoLabel = gcnew System::Windows::Forms::Label();
-
-		//		nuevoLabel->Visible = true;
-		//		nuevoLabel->Text = "Texto inicial del Label #" + i.ToString();
-		//		nuevoLabel->Location = System::Drawing::Point(400, 200 + (i * 40)); // Posición dinámica
-		//		nuevoLabel->Size = System::Drawing::Size(200, 30);
-		//		nuevoLabel->Font = gcnew System::Drawing::Font("Arial", 12);
-		//		panel1->Controls->Add(nuevoLabel);
-		//		listaLabels->Add(nuevoLabel);
-		//	}
-
-		//	labelsCreados = true;
-		//}
-		////ordemar la lista descendente por puntaje
-		//for (int i = 0; i < listaLabels->Count; i++) {
-		//	listaLabels[i]->Text = (i + 1).ToString() + ". " + jugadores[i]->nombre + " " + jugadores[i]->puntaje;
-		//	listaLabels[i]->ForeColor = System::Drawing::Color::Brown;
-		//	listaLabels[i]->Visible = true;
-		//}
 	}
 
 	};
