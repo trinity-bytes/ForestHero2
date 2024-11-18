@@ -4,3 +4,5 @@ Tobby
 300
 Pedro
 2000
+Angel
+1200

@@ -2,6 +2,7 @@
 #include "File.h"
 #include "Guardian.h"
 #include <string>
+#include <vector>
 using namespace System;
 using namespace System::Drawing;
 using namespace System::Collections::Generic;
@@ -10,7 +11,16 @@ public ref class jugadorPuntaje
 {
 public:
 	String^ nombre;  // Ahora usando String^
-	String^ puntaje; // Ahora usando String^
+	String^ puntaje;
+	static int CompararPuntajes(jugadorPuntaje^ j1, jugadorPuntaje^ j2)
+	{
+		// Convertir los puntajes a int para compararlos numéricamente
+		int puntaje1 = Int32::Parse(j1->puntaje);
+		int puntaje2 = Int32::Parse(j2->puntaje);
+
+		// Orden descendente: devolver el orden inverso de la comparación
+		return puntaje2.CompareTo(puntaje1);  // Invertido para orden descendente
+	}
 };
 
 namespace ForestHero2 {
@@ -39,7 +49,9 @@ namespace ForestHero2 {
 			guardian = new Guardian(200, 200, 64, 64);
 			jugadores = gcnew List<jugadorPuntaje^>();
 		}
-
+		// Método estático de comparación para ordenar por puntaje descendente
+		
+		
 	protected:
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
@@ -135,12 +147,10 @@ namespace ForestHero2 {
 
 			// Leer el nombre y asignarlo al objeto
 			getline(fileRead, texto);
-			if (fileRead.eof()) break; // Prevenir errores si el archivo termina aquí
 			nuevoJugador->nombre = gcnew String(texto.c_str());
 
 			// Leer el puntaje y convertirlo a entero
 			getline(fileRead, texto);
-			if (fileRead.eof()) break; // Prevenir errores si el archivo termina aquí
 			nuevoJugador->puntaje = gcnew String(texto.c_str());
 
 			// Agregar el jugador a la lista
@@ -148,18 +158,32 @@ namespace ForestHero2 {
 			k++;
 		}
 		fileRead.close();
-		/*for (int i = 0; i < jugadores->Count - 1; i++) {
-			for (int j = 0; j < jugadores->Count - i - 1; j++) {
-				int puntaje1 = Convert::ToInt32(jugadores[j]->puntaje);
-				int puntaje2 = Convert::ToInt32(jugadores[j + 1]->puntaje);
+		// Ordenar la lista de jugadores de forma descendente por el puntaje
+		//jugadores->Sort(gcnew Comparison<jugadorPuntaje^>(&jugadorPuntaje::CompararPuntajes));
+		
 
-				if (puntaje1 < puntaje2) {
-					jugadorPuntaje^ temp = jugadores[j];
-					jugadores[j] = jugadores[j + 1];
-					jugadores[j + 1] = temp;
-				}
-			}
-		}*/
+
+		//for (int i = 1; i < jugadores->Count-1; i++) {
+		//	for (int j = 1; j < jugadores->Count-1; j++) {
+		//		int puntaje1 = Convert::ToInt32(jugadores[j]->puntaje);
+		//		int puntaje2 = Convert::ToInt32(jugadores[j+1]->puntaje);
+
+		//		if (puntaje1 > puntaje2) {
+		//			// Intercambio de objetos jugadorPuntaje^
+		//			jugadorPuntaje^ temp = gcnew jugadorPuntaje();
+		//			temp->nombre = jugadores[j]->nombre;
+		//			temp->puntaje = jugadores[j]->puntaje;
+
+		//			jugadores[j]->nombre = jugadores[j+1]->nombre;
+		//			jugadores[j]->puntaje = jugadores[j+1]->puntaje;
+
+		//			jugadores[j+1]->nombre = temp->nombre;
+		//			jugadores[j+1]->puntaje = temp->puntaje;
+		//		}
+		//	}
+		//}
+		// Crear un delegado de comparación
+
 		buffer->Graphics->DrawImage(bmpRanking, 0, 0, bmpRanking->Width, bmpRanking->Height);
 		buffer->Render(g);
 
@@ -180,11 +204,13 @@ namespace ForestHero2 {
 
 			labelsCreados = true;
 		}
-		//ordemar la lista desendente por puntaje con algo ordenaminento
+		//ordemar la lista descendente por puntaje
 		for (int i = 0; i < listaLabels->Count; i++) {
 			listaLabels[i]->Text = (i + 1).ToString() + ". " + jugadores[i]->nombre + " " + jugadores[i]->puntaje;
 			listaLabels[i]->ForeColor = System::Drawing::Color::Brown;
+			listaLabels[i]->Visible = true;
 		}
 	}
+
 	};
 }
