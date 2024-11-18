@@ -6,6 +6,12 @@
 #include <string>
 #include <msclr/marshal_cppstd.h>
 using System::String;
+
+typedef struct {
+	int puntaje;
+	char nombre[60];
+}pJugador;
+
 namespace ForestHero2 {
 
 	using namespace System;
@@ -165,26 +171,31 @@ private: System::Void textBox1_KeyDown(System::Object^ sender, System::Windows::
 	switch (e->KeyCode)
 	{
 	case Keys::Enter:
-		textBox1->ReadOnly = true;
+		textBox1->ReadOnly = true; /// para evirtar exceso de inputs
+
 		nombre = textBox1->Text;
 		puntaje = guardian->getPuntos();
-		ofstream fileWrite;
-		ifstream fileRead;
-		std::string nombre_std = msclr::interop::marshal_as<std::string>(textBox1->Text);
-		fileRead.open("JugadorPuntaje.txt", ios::in);
 
-		if (fileRead.fail())
+		ofstream ranked;
+		pJugador jugador;
+
+		// Convertir System::String^ a std::string
+		msclr::interop::marshal_context context;
+		std::string stdNombre = context.marshal_as<std::string>(nombre);
+
+		// Copiar el nombre al array de chars de forma segura
+		strncpy_s(jugador.nombre, stdNombre.c_str(), sizeof(jugador.nombre) - 1);
+		jugador.nombre[sizeof(jugador.nombre) - 1] = '\0'; // Asegurar terminación null
+
+		ranked.open("JugadorPuntaje.dat", ios::out | ios::app | ios::binary);
+
+		jugador.puntaje = puntaje;
+
+		if (ranked.is_open())
 		{
-			fileRead.close();
-
-			fileWrite.open("JugadorPuntaje.txt", ios::out);
-			fileWrite << nombre_std << endl;
-			fileWrite << puntaje << endl;
-			fileWrite.close();
-
-			fileRead.open("JugadorPuntaje.txt", ios::in);
+			ranked.write((const char*)&jugador, sizeof(jugador));
+			ranked.close();
 		}
-
 		break;
 	}
 }
