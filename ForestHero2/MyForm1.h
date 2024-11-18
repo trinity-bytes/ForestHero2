@@ -3,24 +3,24 @@
 #include "Guardian.h"
 #include <string>
 #include <vector>
+#include <fstream>
 using namespace System;
 using namespace System::Drawing;
 using namespace System::Collections::Generic;
 
 using System::String;
+
 public ref class jugadorPuntaje
 {
 public:
-	System::String^ nombre;  // Ahora usando String^
+	System::String^ nombre;
 	System::String^ puntaje;
+
 	static int CompararPuntajes(jugadorPuntaje^ j1, jugadorPuntaje^ j2)
 	{
-		// Convertir los puntajes a int para compararlos numéricamente
 		int puntaje1 = Int32::Parse(j1->puntaje);
 		int puntaje2 = Int32::Parse(j2->puntaje);
-
-		// Orden descendente: devolver el orden inverso de la comparación
-		return puntaje2.CompareTo(puntaje1);  // Invertido para orden descendente
+		return puntaje2.CompareTo(puntaje1);
 	}
 };
 
@@ -92,6 +92,7 @@ namespace ForestHero2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			
 			this->components = (gcnew System::ComponentModel::Container());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
@@ -129,88 +130,157 @@ namespace ForestHero2 {
 		}
 #pragma endregion
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-		int numJugadores = 1000;
+		jugadores->Clear();
 		
-		ifstream fileRead;
-		string texto;
-		System::String^ nombre;
-		System::String^ puntaje;
-		fileRead.open("JugadorPuntaje.txt", ios::in | ios::out);
+		std::ifstream leerRanked;
+		leerRanked.open("Resources/Data/JugadorPuntaje.dat");
 
-		if (fileRead.fail()) {
-			exit(1);
+		if (!leerRanked.is_open()) {
+			MessageBox::Show("Error al abrir el archivo de ranking", "Error",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+			return;
 		}
 
-		int k = 0;
-		while (!fileRead.eof()) {
-			// Crear un nuevo objeto jugadorPuntaje para cada jugador
+		std::string linea;
+		while (std::getline(leerRanked, linea)) {
+			if (linea.empty()) continue;  // Saltar líneas vacías
+
 			jugadorPuntaje^ nuevoJugador = gcnew jugadorPuntaje();
 
-			// Leer el nombre y asignarlo al objeto
-			getline(fileRead, texto);
-			nuevoJugador->nombre = gcnew String(texto.c_str());
+			// La primera línea es el nombre
+			nuevoJugador->nombre = gcnew String(linea.c_str());
 
-			// Leer el puntaje y convertirlo a entero
-			getline(fileRead, texto);
-			nuevoJugador->puntaje = gcnew String(texto.c_str());
-
-			// Agregar el jugador a la lista
-			jugadores->Add(nuevoJugador);
-			k++;
+			// La segunda línea es el puntaje
+			if (std::getline(leerRanked, linea)) {
+				nuevoJugador->puntaje = gcnew String(linea.c_str());
+				jugadores->Add(nuevoJugador);
+			}
 		}
-		fileRead.close();
-		// Ordenar la lista de jugadores de forma descendente por el puntaje
-		//jugadores->Sort(gcnew Comparison<jugadorPuntaje^>(&jugadorPuntaje::CompararPuntajes));
-		
 
+		leerRanked.close();
 
-		//for (int i = 1; i < jugadores->Count-1; i++) {
-		//	for (int j = 1; j < jugadores->Count-1; j++) {
-		//		int puntaje1 = Convert::ToInt32(jugadores[j]->puntaje);
-		//		int puntaje2 = Convert::ToInt32(jugadores[j+1]->puntaje);
+		// Ordenar la lista usando el comparador
+		jugadores->Sort(gcnew Comparison<jugadorPuntaje^>(&jugadorPuntaje::CompararPuntajes));
 
-		//		if (puntaje1 > puntaje2) {
-		//			// Intercambio de objetos jugadorPuntaje^
-		//			jugadorPuntaje^ temp = gcnew jugadorPuntaje();
-		//			temp->nombre = jugadores[j]->nombre;
-		//			temp->puntaje = jugadores[j]->puntaje;
-
-		//			jugadores[j]->nombre = jugadores[j+1]->nombre;
-		//			jugadores[j]->puntaje = jugadores[j+1]->puntaje;
-
-		//			jugadores[j+1]->nombre = temp->nombre;
-		//			jugadores[j+1]->puntaje = temp->puntaje;
-		//		}
-		//	}
-		//}
-		// Crear un delegado de comparación
-
+		// Dibujar el fondo
 		buffer->Graphics->DrawImage(bmpRanking, 0, 0, bmpRanking->Width, bmpRanking->Height);
 		buffer->Render(g);
 
+		// Crear o actualizar los labels
 		if (!labelsCreados) {
-			listaLabels = gcnew System::Collections::Generic::List<System::Windows::Forms::Label^>();
+			listaLabels = gcnew List<System::Windows::Forms::Label^>();
 
-			for (int i = 0; i < k; i++) {
+			// Crear solo los labels necesarios basados en la cantidad de jugadores
+			for (int i = 0; i < jugadores->Count; i++) {
 				System::Windows::Forms::Label^ nuevoLabel = gcnew System::Windows::Forms::Label();
-
-				nuevoLabel->Visible = true;
-				nuevoLabel->Text = "Texto inicial del Label #" + i.ToString();
-				nuevoLabel->Location = System::Drawing::Point(400, 200 + (i * 40)); // Posición dinámica
-				nuevoLabel->Size = System::Drawing::Size(200, 30);
+				nuevoLabel->AutoSize = true;
+				nuevoLabel->Location = System::Drawing::Point(400, 200 + (i * 40));
 				nuevoLabel->Font = gcnew System::Drawing::Font("Arial", 12);
+				nuevoLabel->ForeColor = System::Drawing::Color::Brown;
 				panel1->Controls->Add(nuevoLabel);
 				listaLabels->Add(nuevoLabel);
 			}
 
 			labelsCreados = true;
 		}
-		//ordemar la lista descendente por puntaje
-		for (int i = 0; i < listaLabels->Count; i++) {
-			listaLabels[i]->Text = (i + 1).ToString() + ". " + jugadores[i]->nombre + " " + jugadores[i]->puntaje;
-			listaLabels[i]->ForeColor = System::Drawing::Color::Brown;
+
+		// Actualizar los labels existentes
+		for (int i = 0; i < jugadores->Count && i < listaLabels->Count; i++) {
+			listaLabels[i]->Text = String::Format("{0}. {1} - {2}",
+				i + 1,
+				jugadores[i]->nombre,
+				jugadores[i]->puntaje);
 			listaLabels[i]->Visible = true;
 		}
+
+		//int numJugadores = 1000;
+		//
+		//string texto;
+		//System::String^ nombre;
+		//System::String^ puntaje;
+
+		//ifstream leerRanked;
+		//leerRanked.open("Resources/Data/JugadorPuntaje.dat", ios::in | ios::out);
+		//			
+		//if (leerRanked.fail()) exit(1);
+
+		////pJugador jugador;
+
+		////leerRanked.read((char*)&jugador, sizeof(jugador));
+
+		//int k = 0;
+
+		////while (!leerRanked.eof()) {
+		////	// Crear un nuevo objeto jugadorPuntaje para cada jugador
+		////	jugadorPuntaje^ nuevoJugador = gcnew jugadorPuntaje();
+
+		////	// Leer el nombre y asignarlo al objeto
+		////	getline(leerRanked, texto);
+		////	nuevoJugador->nombre = gcnew String(texto.c_str());
+
+		////	// Leer el puntaje y convertirlo a entero
+		////	getline(leerRanked, texto);
+		////	nuevoJugador->puntaje = gcnew String(texto.c_str());
+
+		////	// Agregar el jugador a la lista
+		////	jugadores->Add(nuevoJugador);
+		////	k++;
+		////}
+		////leerRanked.close();
+
+
+		//// Ordenar la lista de jugadores de forma descendente por el puntaje
+		////jugadores->Sort(gcnew Comparison<jugadorPuntaje^>(&jugadorPuntaje::CompararPuntajes));
+		//
+
+
+		////for (int i = 1; i < jugadores->Count-1; i++) {
+		////	for (int j = 1; j < jugadores->Count-1; j++) {
+		////		int puntaje1 = Convert::ToInt32(jugadores[j]->puntaje);
+		////		int puntaje2 = Convert::ToInt32(jugadores[j+1]->puntaje);
+
+		////		if (puntaje1 > puntaje2) {
+		////			// Intercambio de objetos jugadorPuntaje^
+		////			jugadorPuntaje^ temp = gcnew jugadorPuntaje();
+		////			temp->nombre = jugadores[j]->nombre;
+		////			temp->puntaje = jugadores[j]->puntaje;
+
+		////			jugadores[j]->nombre = jugadores[j+1]->nombre;
+		////			jugadores[j]->puntaje = jugadores[j+1]->puntaje;
+
+		////			jugadores[j+1]->nombre = temp->nombre;
+		////			jugadores[j+1]->puntaje = temp->puntaje;
+		////		}
+		////	}
+		////}
+		//// Crear un delegado de comparación
+
+		//buffer->Graphics->DrawImage(bmpRanking, 0, 0, bmpRanking->Width, bmpRanking->Height);
+		//buffer->Render(g);
+
+		//if (!labelsCreados) {
+		//	listaLabels = gcnew System::Collections::Generic::List<System::Windows::Forms::Label^>();
+
+		//	for (int i = 0; i < k; i++) {
+		//		System::Windows::Forms::Label^ nuevoLabel = gcnew System::Windows::Forms::Label();
+
+		//		nuevoLabel->Visible = true;
+		//		nuevoLabel->Text = "Texto inicial del Label #" + i.ToString();
+		//		nuevoLabel->Location = System::Drawing::Point(400, 200 + (i * 40)); // Posición dinámica
+		//		nuevoLabel->Size = System::Drawing::Size(200, 30);
+		//		nuevoLabel->Font = gcnew System::Drawing::Font("Arial", 12);
+		//		panel1->Controls->Add(nuevoLabel);
+		//		listaLabels->Add(nuevoLabel);
+		//	}
+
+		//	labelsCreados = true;
+		//}
+		////ordemar la lista descendente por puntaje
+		//for (int i = 0; i < listaLabels->Count; i++) {
+		//	listaLabels[i]->Text = (i + 1).ToString() + ". " + jugadores[i]->nombre + " " + jugadores[i]->puntaje;
+		//	listaLabels[i]->ForeColor = System::Drawing::Color::Brown;
+		//	listaLabels[i]->Visible = true;
+		//}
 	}
 
 	};

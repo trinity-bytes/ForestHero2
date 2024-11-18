@@ -187,7 +187,7 @@ private: System::Void textBox1_KeyDown(System::Object^ sender, System::Windows::
 		strncpy_s(jugador.nombre, stdNombre.c_str(), sizeof(jugador.nombre) - 1);
 		jugador.nombre[sizeof(jugador.nombre) - 1] = '\0'; // Asegurar terminación null
 
-		ranked.open("JugadorPuntaje.dat", ios::out | ios::app | ios::binary);
+		ranked.open("Resources/Data/JugadorPuntaje.dat", ios::out | ios::app | ios::binary);
 
 		jugador.puntaje = puntaje;
 
