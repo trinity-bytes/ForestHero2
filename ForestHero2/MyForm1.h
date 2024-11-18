@@ -7,11 +7,12 @@ using namespace System;
 using namespace System::Drawing;
 using namespace System::Collections::Generic;
 
+using System::String;
 public ref class jugadorPuntaje
 {
 public:
-	String^ nombre;  // Ahora usando String^
-	String^ puntaje;
+	System::String^ nombre;  // Ahora usando String^
+	System::String^ puntaje;
 	static int CompararPuntajes(jugadorPuntaje^ j1, jugadorPuntaje^ j2)
 	{
 		// Convertir los puntajes a int para compararlos numéricamente
@@ -132,8 +133,8 @@ namespace ForestHero2 {
 		
 		ifstream fileRead;
 		string texto;
-		String^ nombre;
-		String^ puntaje;
+		System::String^ nombre;
+		System::String^ puntaje;
 		fileRead.open("JugadorPuntaje.txt", ios::in | ios::out);
 
 		if (fileRead.fail()) {

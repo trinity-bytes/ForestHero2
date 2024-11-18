@@ -1,6 +1,11 @@
 #pragma once
 #include "MyForm.h"
 #include "MenuJuego.h"
+#include "Guardian.h"
+#include "MyForm1.h"
+#include <string>
+#include <msclr/marshal_cppstd.h>
+using System::String;
 namespace ForestHero2 {
 
 	using namespace System;
@@ -16,10 +21,13 @@ namespace ForestHero2 {
 	public ref class MyForm3 : public System::Windows::Forms::Form
 	{
 	public: bool reiniciar = false;
+	public: System::String^ nombre;
+	public:	 int puntaje;
 	public:
 		MyForm3(void)
 		{
 			InitializeComponent();
+			guardian = new Guardian(200, 200, 64, 64);
 		}
 
 	protected:
@@ -42,7 +50,7 @@ namespace ForestHero2 {
 	protected:
 
 	private:
-
+		Guardian* guardian;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -158,6 +166,25 @@ private: System::Void textBox1_KeyDown(System::Object^ sender, System::Windows::
 	{
 	case Keys::Enter:
 		textBox1->ReadOnly = true;
+		nombre = textBox1->Text;
+		puntaje = guardian->getPuntos();
+		ofstream fileWrite;
+		ifstream fileRead;
+		std::string nombre_std = msclr::interop::marshal_as<std::string>(textBox1->Text);
+		fileRead.open("JugadorPuntaje.txt", ios::in);
+
+		if (fileRead.fail())
+		{
+			fileRead.close();
+
+			fileWrite.open("JugadorPuntaje.txt", ios::out);
+			fileWrite << nombre_std << endl;
+			fileWrite << puntaje << endl;
+			fileWrite.close();
+
+			fileRead.open("JugadorPuntaje.txt", ios::in);
+		}
+
 		break;
 	}
 }
