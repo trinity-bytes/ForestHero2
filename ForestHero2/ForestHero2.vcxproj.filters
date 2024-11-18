@@ -33,6 +33,9 @@
     <ClCompile Include="Creditos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyForm1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -71,9 +74,6 @@
     <ClInclude Include="Aliado.h">
       <Filter>Header Files\Clases Objetos\Agentes</Filter>
     </ClInclude>
-    <ClInclude Include="MyForm1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="File.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -90,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Creditos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyForm1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
