@@ -193,7 +193,8 @@ private: System::Void textBox1_KeyDown(System::Object^ sender, System::Windows::
 
 		if (ranked.is_open())
 		{
-			ranked.write((const char*)&jugador, sizeof(jugador));
+			ranked << stdNombre << std::endl; // Nombre del jugador
+			ranked << puntaje << std::endl;  // Puntaje del jugador
 			ranked.close();
 		}
 		break;

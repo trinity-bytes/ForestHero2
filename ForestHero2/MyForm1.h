@@ -1,5 +1,12 @@
 #pragma once
 
+#include <string>
+#include <vector>
+#include <fstream>
+using namespace System;
+using namespace System::Drawing;
+using namespace System::Collections::Generic;
+
 namespace ForestHero2 {
 
 	using namespace System;
@@ -21,6 +28,15 @@ namespace ForestHero2 {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			jugadores = gcnew List<jugadorPuntaje^>();
+			listaLabels = gcnew List<System::Windows::Forms::Label^>();
+
+			// Configurar el panel
+			panel1->BackColor = System::Drawing::Color::Transparent;
+
+			// Cargar y mostrar los datos
+			CargarDatos();
+			CrearLabels();
 		}
 
 	protected:
@@ -34,6 +50,22 @@ namespace ForestHero2 {
 				delete components;
 			}
 		}
+	private:
+		ref class jugadorPuntaje
+		{
+		public:
+			System::String^ nombre;
+			System::String^ puntaje;
+
+			// Método para comparar puntajes
+			static int CompararPuntajes(jugadorPuntaje^ j1, jugadorPuntaje^ j2)
+			{
+				int puntaje1 = Int32::Parse(j1->puntaje);
+				int puntaje2 = Int32::Parse(j2->puntaje);
+				return puntaje2.CompareTo(puntaje1); // Orden descendente
+			}
+		};
+
 	private: System::Windows::Forms::Panel^ panel1;
 	protected:
 	private: System::Windows::Forms::Button^ button1;
@@ -43,6 +75,76 @@ namespace ForestHero2 {
 		/// Variable del diseñador necesaria.
 		/// </summary>
 		System::ComponentModel::Container ^components;
+
+		List<jugadorPuntaje^>^ jugadores; // Lista de jugadores
+		List<System::Windows::Forms::Label^>^ listaLabels; // Lista de Labels
+
+		void CargarDatos() {
+			jugadores->Clear();
+			std::ifstream leerRanked("Resources/Data/JugadorPuntaje.dat");
+
+			if (!leerRanked.is_open()) {
+				MessageBox::Show("Error al abrir el archivo de ranking", "Error",
+					MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
+			}
+
+			std::string linea;
+			while (std::getline(leerRanked, linea)) {
+				if (linea.empty()) continue;
+
+				jugadorPuntaje^ nuevoJugador = gcnew jugadorPuntaje();
+				nuevoJugador->nombre = gcnew String(linea.c_str());
+
+				if (std::getline(leerRanked, linea)) {
+					nuevoJugador->puntaje = gcnew String(linea.c_str());
+					jugadores->Add(nuevoJugador);
+				}
+			}
+
+			leerRanked.close();
+			jugadores->Sort(gcnew Comparison<jugadorPuntaje^>(&jugadorPuntaje::CompararPuntajes));
+		}
+
+		void CrearLabels() {
+			// Limpiar labels existentes
+			for each (Label ^ label in listaLabels) {
+				panel1->Controls->Remove(label);
+				delete label;
+			}
+			listaLabels->Clear();
+
+			// Verificar que hay jugadores cargados
+			if (jugadores->Count == 0) {
+				MessageBox::Show("No se encontraron jugadores para mostrar.", "Información",
+					MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+			// Crear nuevos labels
+			for (int i = 0; i < jugadores->Count; i++) {
+				Label^ nuevoLabel = gcnew Label();
+				nuevoLabel->AutoSize = true;
+				nuevoLabel->BackColor = System::Drawing::Color::Transparent;
+				nuevoLabel->ForeColor = System::Drawing::Color::White;
+				nuevoLabel->Font = gcnew System::Drawing::Font("Arial", 16, FontStyle::Bold);
+
+				// Ajustar la posición (50 de margen izquierdo, espacio entre líneas de 40)
+				nuevoLabel->Location = System::Drawing::Point(50, 50 + (i * 40));
+
+				// Configurar el texto del label
+				nuevoLabel->Text = String::Format("{0}. {1} - {2}",
+					i + 1,
+					jugadores[i]->nombre,
+					jugadores[i]->puntaje);
+
+				// Agregar al panel y a la lista
+				panel1->Controls->Add(nuevoLabel);
+				listaLabels->Add(nuevoLabel);
+			}
+
+			MessageBox::Show("Labels creados: " + listaLabels->Count, "Debug");
+		}
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
