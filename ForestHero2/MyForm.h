@@ -399,6 +399,7 @@ namespace ForestHero2 {
 					bmpArbol->Width,
 					bmpArbol->Height
 				);
+				guardian->setPuntos(100000);
 			}
 
 			teclaM = false;
