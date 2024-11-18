@@ -107,21 +107,21 @@ namespace ForestHero2 {
 		}
 
 		void CrearLabels() {
-			// Limpiar labels existentes
+			// Limpiar labels 
 			for each (Label ^ label in listaLabels) {
 				panel1->Controls->Remove(label);
 				delete label;
 			}
 			listaLabels->Clear();
 
-			// Verificar que hay jugadores cargados
+			// Verificar que hay jugadores 
 			if (jugadores->Count == 0) {
 				MessageBox::Show("No se encontraron jugadores para mostrar.", "Información",
 					MessageBoxButtons::OK, MessageBoxIcon::Information);
 				return;
 			}
 
-			// Crear nuevos labels
+			// Crear  labels
 			for (int i = 0; i < jugadores->Count; i++) {
 				Label^ nuevoLabel = gcnew Label();
 				nuevoLabel->AutoSize = true;
@@ -129,10 +129,8 @@ namespace ForestHero2 {
 				nuevoLabel->ForeColor = System::Drawing::Color::Black;
 				nuevoLabel->Font = gcnew System::Drawing::Font("Arial", 16, FontStyle::Bold);
 
-				// Ajustar la posición (50 de margen izquierdo, espacio entre líneas de 40)
 				nuevoLabel->Location = System::Drawing::Point(250, 170 + (i * 40));
 
-				// Configurar el texto del label
 				nuevoLabel->Text = String::Format("{0}. {1} - {2}",
 					i + 1,
 					jugadores[i]->nombre,
@@ -142,9 +140,6 @@ namespace ForestHero2 {
 				panel1->Controls->Add(nuevoLabel);
 				listaLabels->Add(nuevoLabel);
 			}
-
-			/// para hacer debbigin
-			//MessageBox::Show("Labels creados: " + listaLabels->Count, "Debug");
 		}
 
 #pragma region Windows Form Designer generated code
