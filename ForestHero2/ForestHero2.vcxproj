@@ -120,6 +120,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Instrucciones.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +135,9 @@
     <ClInclude Include="File.h" />
     <ClInclude Include="GestionJuego.h" />
     <ClInclude Include="Guardian.h" />
+    <ClInclude Include="Instrucciones.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MenuJuego.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -154,6 +158,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Derrota.resx">
       <DependentUpon>Derrota.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instrucciones.resx">
+      <DependentUpon>Instrucciones.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuJuego.resx">
       <DependentUpon>MenuJuego.h</DependentUpon>

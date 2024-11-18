@@ -1,5 +1,6 @@
 #pragma once
 #include "MyForm.h"
+#include "Instrucciones.h"
 namespace ForestHero2 {
 
 	using namespace System;
@@ -245,6 +246,11 @@ private: System::Void botonClose_MouseLeave(System::Object^ sender, System::Even
 	botonClose->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/closecopy.png");
 }
 private: System::Void botonInstruciones_Click(System::Object^ sender, System::EventArgs^ e) {
+	Instrucciones^ MyInstrucciones = gcnew Instrucciones();
+	this->Hide();
+
+	MyInstrucciones->FormClosed += gcnew FormClosedEventHandler(this, &MenuJuego::JuegoForm_Closed);
+	MyInstrucciones->Show();
 }
 private: System::Void botonInstruciones_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
 	botonInstruciones->BackgroundImage = Image::FromFile("Resources/Buttons/menuPrincipal-assets/instruccionesblanco.png");
