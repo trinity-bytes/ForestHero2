@@ -97,7 +97,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" />
-    <None Include="LICENSE" />
+    <None Include="..\LICENSE.md">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\README.md">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
