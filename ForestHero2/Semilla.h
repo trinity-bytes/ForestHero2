@@ -1,35 +1,44 @@
 #pragma once
 #include "Agente.h"
 
+/// Clase Semilla que hereda de Agente, demostrando el concepto de herencia
 class Semilla : public Agente
 {
 private:
-	bool seMueve;
+    /// Variable privada para encapsular el estado de movimiento de la semilla
+    bool seMueve;
+
 public:
-	Semilla(int x, int y, int ancho, int alto) : Agente(x, y, velocidad, ancho, alto)
-	{
-		seMueve = false;
-		velocidad = 0;
-	}
+    /// Constructor que inicializa los atributos de la semilla y llama al constructor de la clase base
+    Semilla(int x, int y, int ancho, int alto) : Agente(x, y, velocidad, ancho, alto)
+    {
+        seMueve = false;
+        velocidad = 0;
+    }
 
-	Semilla(int x, int y, int ancho, int alto, Direccion direccionActual) : Agente(x, y, velocidad, ancho, alto)
-	{
-		seMueve = true;
-		velocidad = 40;
-		this->direccionActual = direccionActual;
-	}
+    /// Constructor sobrecargado que inicializa la semilla con una dirección específica
+    Semilla(int x, int y, int ancho, int alto, Direccion direccionActual) : Agente(x, y, velocidad, ancho, alto)
+    {
+        seMueve = true;
+        velocidad = 40;
+        this->direccionActual = direccionActual;
+    }
 
-	~Semilla() {}
+    /// Destructor de la clase
+    ~Semilla() {}
 
-	bool getSeMueve() { return seMueve; }
+    /// Método getter para acceder al estado de movimiento de la semilla (encapsulamiento)
+    bool getSeMueve() { return seMueve; }
 
-	void Dibujar(Graphics^ g, Bitmap^ bmp) override 
-	{
-		g->DrawImage(bmp, x, y, ancho, alto);
-	}
+    /// Método sobrescrito para dibujar la semilla (polimorfismo)
+    void Dibujar(Graphics^ g, Bitmap^ bmp) override
+    {
+        g->DrawImage(bmp, x, y, ancho, alto);
+    }
 
-	void Mover(Graphics^ g) override
-	{
+    /// Método sobrescrito para mover la semilla (polimorfismo)
+    void Mover(Graphics^ g) override
+    {
         switch (direccionActual)
         {
         case Arriba:
@@ -62,6 +71,5 @@ public:
             }
             break;
         }
-	}
+    }
 };
-
