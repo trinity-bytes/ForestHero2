@@ -84,8 +84,6 @@ Este proyecto está desarrollado en C++ utilizando C++/CLI y Windows Forms, por 
 7.  **Ejecuta el Proyecto:**
     *   En Visual Studio: `Debug > Start Debugging` (o presiona `F5`) o `Debug > Start Without Debugging` (o presiona `Ctrl+F5`).
 
-*(Por favor, actualiza esta sección con los pasos específicos y cualquier pre-requisito adicional para tu proyecto, como versiones específicas de Visual Studio o SDKs de .NET Framework).*
-
 ## 👥 Contribuidores
 
 -  Oscar Lizandro Vasquez Llave
