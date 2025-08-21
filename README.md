@@ -2,11 +2,12 @@
 
 # ForestHero2 🌲🎮
 
-<!-- Badges (reemplaza owner/repo cuando publiques en GitHub)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Last commit](https://img.shields.io/github/last-commit/owner/repo)
-![Issues](https://img.shields.io/github/issues/owner/repo)
--->
+<!-- Reemplaza owner/repo cuando publiques en GitHub -->
+![License](https://img.shields.io/badge/code-MIT-green)
+![Academic use](https://img.shields.io/badge/academic%20use-only-orange)
+![Assets](https://img.shields.io/badge/assets-non--commercial-orange)
+<!-- ![Last commit](https://img.shields.io/github/last-commit/owner/repo) -->
+<!-- ![Issues](https://img.shields.io/github/issues/owner/repo) -->
 
 Un juego 2D de reforestación hecho en C++/CLI + Windows Forms. Protege el bosque, planta árboles y vence a los enemigos mientras gestionas recursos y tiempo.
 
@@ -29,6 +30,7 @@ Un juego 2D de reforestación hecho en C++/CLI + Windows Forms. Protege el bosqu
 - Descripción rápida
 - Características
 - Controles
+- ⚠️ Disclaimer / Integridad académica
 - Prerrequisitos
 - Instalación y ejecución
 - Compilar desde código
@@ -41,6 +43,8 @@ Un juego 2D de reforestación hecho en C++/CLI + Windows Forms. Protege el bosqu
 ## Descripción rápida
 
 ForestHero2 es un juego 2D desarrollado en C++ con C++/CLI y Windows Forms. Controlas a un guardián del bosque que debe recolectar semillas y agua, plantar árboles y enfrentarse a enemigos para reforestar antes de que el tiempo se agote.
+
+Proyecto académico (UPC). Este juego fue el proyecto final del curso de Algoritmos 2024‑2 — UPC.
 
 ## Características
 
@@ -58,6 +62,16 @@ ForestHero2 es un juego 2D desarrollado en C++ con C++/CLI y Windows Forms. Cont
 - Disparar semilla: P
 - Pausa/Continuar: U / Y
 - Salir: Esc
+
+## ⚠️ Disclaimer / Integridad académica
+
+Este repositorio es público con fines educativos y de referencia.
+
+- Se prohíbe el plagio total o parcial y cualquier uso que vulnere el Código de Integridad/Probidad Académica de la UPC o de cualquier otra institución educativa.
+- Puedes estudiar el código y reutilizar ideas o fragmentos no evaluados citando la fuente. Todo trabajo evaluable debe ser de autoría propia.
+- Los autores no asumen responsabilidad por usos indebidos. Cualquier fork o contribución debe respetar estas condiciones.
+
+Consulta `ACADEMIC_INTEGRITY.md` para más detalles.
 
 ## Prerrequisitos
 
@@ -106,8 +120,9 @@ Las contribuciones son bienvenidas. Antes de abrir un PR:
 
 ## Créditos y licencias
 
-- Código: licencia MIT (ver `LICENSE.md`).
-- Assets (imágenes, fuentes y sonidos): ver `CREDITS.md` y `THIRD-PARTY-NOTICES.md`. Si no se indica lo contrario, los assets son propiedad de los autores y no se autorizan usos fuera de este proyecto sin permiso.
+- Código: MIT (ver `LICENSE.md`).
+- Assets (imágenes, fuentes, sonidos): CC BY‑NC 4.0 por defecto (ver `LICENSE-assets`) con excepciones detalladas en `CREDITS.md` y `THIRD-PARTY-NOTICES.md`.
+- Documentación/capturas del README: CC BY‑NC‑SA 4.0 (ver `LICENSE-docs`).
 
 ## Autores
 

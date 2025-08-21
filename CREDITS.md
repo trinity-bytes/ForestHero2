@@ -1,5 +1,7 @@
 # Créditos de assets
 
+Aviso: por defecto los assets están cubiertos por `LICENSE-assets` (CC BY‑NC 4.0), salvo que aquí se indique una licencia diferente. Verifica cada licencia antes de reutilizarlos.
+
 Enumera aquí el origen y licencia de cada recurso no código (imágenes, fuentes, sonidos, etc.).
 
 - Imágenes: carpeta `ForestHero2/Resources/Images/`.
