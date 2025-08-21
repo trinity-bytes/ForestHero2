@@ -361,3 +361,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Project-specific ignores
+ForestHero2/Resources/Data/JugadorPuntaje.dat
+ForestHero2/Resources/Data/jugadorPuntaje.txt
+*.dat
+*.zip
+*.7z
+*.rar

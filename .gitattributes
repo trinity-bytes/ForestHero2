@@ -3,6 +3,18 @@
 ###############################################################################
 * text=auto
 
+# Ensure consistent line endings
+*.sln text eol=crlf
+*.vcxproj text eol=crlf
+*.filters text eol=crlf
+*.h text eol=crlf
+*.cpp text eol=crlf
+*.md text eol=lf
+
+# Consider LFS for large binaries (uncomment if you enable Git LFS)
+#*.png filter=lfs diff=lfs merge=lfs -text
+#*.wav filter=lfs diff=lfs merge=lfs -text
+
 ###############################################################################
 # Set default behavior for command prompt diff.
 #

@@ -1,95 +1,120 @@
-﻿# ForestHero2 🌲🎮
+﻿<div align="center">
 
-## Descripción
+# ForestHero2 🌲🎮
 
-ForestHero2 es un juego 2D desarrollado en **C++** con **C++/CLI** y **Windows Forms**. El objetivo principal del juego es controlar a un guardián del bosque para protegerlo y reforestarlo. El jugador deberá recolectar semillas y agua, plantar árboles y enfrentarse a enemigos para mantener el bosque saludable y alcanzar el mayor puntaje posible.
+<!-- Badges (reemplaza owner/repo cuando publiques en GitHub)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Last commit](https://img.shields.io/github/last-commit/owner/repo)
+![Issues](https://img.shields.io/github/issues/owner/repo)
+-->
 
-## 📜 Índice
+Un juego 2D de reforestación hecho en C++/CLI + Windows Forms. Protege el bosque, planta árboles y vence a los enemigos mientras gestionas recursos y tiempo.
 
-*   [Descripción](#descripción)
-*   [Índice](#-índice)
-*   [Características](#-características)
-*   [Tecnologías Utilizadas](#-tecnologías-utilizadas)
-*   [Cómo Jugar](#-cómo-jugar)
-*   [Cómo Compilar y Ejecutar](#-cómo-compilar-y-ejecutar)
-*   [Contribuidores](#-contribuidores)
-*   [Créditos](#-créditos)
+</div>
 
-## ✨ Características
+## Capturas
 
-*   **Jugabilidad Dinámica:** Controla al Guardián del Bosque en un entorno desafiante.
-*   **Recolección y Gestión de Recursos:** Junta semillas y agua, esenciales para la reforestación.
-*   **Mecánica de Reforestación:** Planta árboles para recuperar el bosque y ganar puntos.
-*   **Sistema de Combate:** Enfréntate a enemigos que amenazan la salud del bosque.
-*   **Power-Ups y Coleccionables:** Encuentra ítems como corazones (vidas extra) y ten cuidado con la basura.
-*   **Aliados:** En momentos difíciles, un aliado podría aparecer para ayudarte.
-*   **Puntuación y Tiempo:** Lucha contra el reloj y consigue la máxima puntuación.
-*   **Interfaz Gráfica Amigable:**
-    *   Menú Principal intuitivo.
-    *   Pantalla de Juego con información vital (vidas, puntos, tiempo, etc.).
-    *   Secciones de Instrucciones y Créditos.
-    *   Pantallas de Victoria y Derrota.
-*   **Experiencia Auditiva:**
-    *   Música para el menú principal.
-    *   Música ambiental durante el juego.
-    *   Música especial para el clímax del juego.
-    *   Sonidos de victoria y derrota.
+<p>
+    <img src="ForestHero2/Resources/Images/menuPrincipal.png" alt="Menú principal" width="600" />
+</p>
+<p>
+    <img src="ForestHero2/Resources/Images/Escenario1.png" alt="Juego en marcha" width="600" />
+</p>
+<p>
+    <img src="ForestHero2/Resources/Images/menuVictoria.png" alt="Pantalla de victoria" width="600" />
+</p>
 
-## 🛠️ Tecnologías Utilizadas
+## Tabla de contenidos
 
-*   **Lenguaje de Programación:** C++ (compilado con C++14)
-*   **Interfaz Gráfica:** C++/CLI y Windows Forms (System::Windows::Forms)
-*   **Gestión de Gráficos:** System::Drawing (Bitmap, Graphics, BufferedGraphics)
-*   **Manejo de Archivos:** `fstream` para la persistencia de puntuaciones.
-*   **Sonido:** Probablemente `System::Media::SoundPlayer` o similar para la reproducción de archivos .wav (inferido).
+- Descripción rápida
+- Características
+- Controles
+- Prerrequisitos
+- Instalación y ejecución
+- Compilar desde código
+- Solución de problemas
+- Roadmap
+- Contribuir
+- Créditos y licencias
+- Autores
 
-## 🎮 Cómo Jugar
+## Descripción rápida
 
-*   **Movimiento:**
-    *   `W`: Mover hacia Arriba
-    *   `A`: Mover hacia la Izquierda
-    *   `S`: Mover hacia Abajo
-    *   `D`: Mover hacia la Derecha
-*   **Acciones:**
-    *   `M`: Plantar un árbol (necesitas semillas y agua).
-    *   `P`: Disparar una semilla (si tienes semillas).
-*   **Objetivo:**
-    *   Recolecta semillas y agua.
-    *   Planta árboles para aumentar el porcentaje de reforestación.
-    *   Evita o derrota a los enemigos.
-    *   No dejes que tus vidas lleguen a cero.
-    *   Consigue la mayor cantidad de puntos antes de que se acabe el tiempo o cumplas el objetivo de reforestación.
-*   **Pausa (Sugerido):**
-    *   `U`: Detener Timers (Pausar el juego)
-    *   `Y`: Reactivar Timers (Reanudar el juego)
-*   **Salir:**
-    *   `Esc`: Cerrar el juego.
+ForestHero2 es un juego 2D desarrollado en C++ con C++/CLI y Windows Forms. Controlas a un guardián del bosque que debe recolectar semillas y agua, plantar árboles y enfrentarse a enemigos para reforestar antes de que el tiempo se agote.
 
-## 🚀 Cómo Compilar y Ejecutar
+## Características
 
-Este proyecto está desarrollado en C++ utilizando C++/CLI y Windows Forms, por lo que se recomienda usar Visual Studio.
+- Jugabilidad arcade con presión de tiempo y puntuación.
+- Recolección y gestión de recursos (semillas y agua).
+- Plantación de árboles y porcentaje de reforestación como objetivo.
+- Enemigos, power‑ups y un posible aliado.
+- Interfaz completa: menú, instrucciones, créditos, victoria y derrota.
+- Músicas y efectos en distintos estados del juego.
 
-1.  **Clona el repositorio (si aplica) o descarga los archivos del proyecto.**
-2.  **Abre el archivo de solución (`.sln`)** con Visual Studio.
-    *   Si no hay un `.sln`, abre el archivo de proyecto (`.vcxproj`).
-3.  **Configura el Entorno:**
-    *   Asegúrate de que el proyecto esté configurado para compilar con el estándar C++14.
-    *   Verifica que las referencias a ensamblados de .NET (como `System`, `System.Windows.Forms`, `System.Drawing`) estén correctamente configuradas.
-4.  **Restaura Dependencias (si aplica):** Si el proyecto usa alguna librería externa gestionada por un administrador de paquetes, restáuralas. (No parece ser el caso según el código visto).
-5.  **Selecciona la Configuración de Compilación:**
-    *   **Debug:** Para desarrollo y depuración.
-    *   **Release:** Para la versión final optimizada.
-6.  **Construye la Solución:**
-    *   En Visual Studio: `Build > Build Solution` (o presiona `Ctrl+Shift+B`).
-7.  **Ejecuta el Proyecto:**
-    *   En Visual Studio: `Debug > Start Debugging` (o presiona `F5`) o `Debug > Start Without Debugging` (o presiona `Ctrl+F5`).
+## Controles
 
-## 👥 Desarrolladores 
+- Movimiento: W A S D
+- Plantar árbol: M (requiere semillas y agua)
+- Disparar semilla: P
+- Pausa/Continuar: U / Y
+- Salir: Esc
 
--  Oscar Lizandro Vasquez Llave
--  Mauricio Teran Zavala
--  Jahat Jassiel Trinidad Leon 
+## Prerrequisitos
 
-## 🙏 Créditos
+- Windows 10/11
+- Visual Studio 2022 (v17) con el workload “Desktop development with C++” y soporte C++/CLI
+- .NET Framework 4.7.2 targeting pack
+- Windows 10 SDK (10.0.x)
 
-*(En desarrollo)*
+## Instalación y ejecución (binarios)
+
+- Descarga el ZIP desde la pestaña Releases de GitHub y ejecuta el `.exe` dentro de la carpeta correspondiente (Debug/Release/x86/x64). Si no hay releases aún, compila desde código.
+
+## Compilar desde código
+
+1) Clona o descarga el repositorio.
+2) Abre `ForestHero2.sln` en Visual Studio.
+3) Selecciona la configuración (Debug/Release) y plataforma (x86/x64).
+4) Compila con Ctrl+Shift+B.
+5) Ejecuta con F5 o Ctrl+F5.
+
+Notas:
+- El proyecto usa C++/CLI y Windows Forms (.NET Framework 4.7.2).
+- Los recursos se cargan desde `ForestHero2/Resources/...`.
+
+## Solución de problemas
+
+- MSBuild/Toolset v143 no encontrado: instala el componente “MSVC v143” desde el Visual Studio Installer.
+- Falta .NET 4.7.2 targeting pack: instálalo desde Instalador de VS > Componentes individuales.
+- No se reproducen sonidos (.wav): verifica que los archivos de `Resources/Sounds/` existan y que el volumen del sistema no esté silenciado.
+- Recursos no encontrados: asegúrate de ejecutar desde la carpeta donde el ejecutable puede resolver rutas relativas a `Resources/`.
+- Mapeo Debug|x64 inusual en la solución: en `ForestHero2.sln`, corrige si ves que Debug|x64 apunta a Release|x64.
+
+## Roadmap
+
+- Pulido de UI y feedback in‑game.
+- Más niveles y tipos de enemigos.
+- Sistema de guardado fuera del repositorio (AppData).
+- Publicación de builds en Releases con CI.
+
+## Contribuir
+
+Las contribuciones son bienvenidas. Antes de abrir un PR:
+- Crea un issue con el cambio propuesto.
+- Sigue el estilo del proyecto y evita introducir binarios en Git.
+- Verifica que compila en Debug y Release.
+
+## Créditos y licencias
+
+- Código: licencia MIT (ver `LICENSE.md`).
+- Assets (imágenes, fuentes y sonidos): ver `CREDITS.md` y `THIRD-PARTY-NOTICES.md`. Si no se indica lo contrario, los assets son propiedad de los autores y no se autorizan usos fuera de este proyecto sin permiso.
+
+## Autores
+
+- Oscar Lizandro Vasquez Llave
+- Mauricio Teran Zavala
+- Jahat Jassiel Trinidad Leon
+
+---
+
+Licencia: MIT • © 2025 Autores del proyecto.
