@@ -126,9 +126,9 @@ Las contribuciones son bienvenidas. Antes de abrir un PR:
 
 ## Autores
 
-- Oscar Lizandro Vasquez Llave
-- Mauricio Teran Zavala
-- Jahat Jassiel Trinidad Leon
+- [Oscar Lizandro Vasquez Llave](https://github.com/Ixooc)
+- [Mauricio Teran Zavala](https://github.com/mau-tz)
+- [Jahat Jassiel Trinidad Leon](https://github.com/trinity-bytes)
 
 ---
 
