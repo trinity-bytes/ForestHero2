@@ -1,5 +1,5 @@
 #pragma once
-#include "Entidad.h"
+#include "Entidad.hpp"
 
 /// Enumeración para las direcciones posibles del agente
 enum Direccion { Arriba, Abajo, Izquierda, Derecha, Ninguna };

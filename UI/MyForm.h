@@ -1,8 +1,8 @@
 #pragma once
-#include "../Utils/FuncionesCustom.h"
-#include "../Core/GestionJuego.h"
-#include "../Models/Guardian.h"
-#include "../Utils/File.h"
+#include "../Utils/FuncionesCustom.hpp"
+#include "../Core/GestionJuego.hpp"
+#include "../Models/Guardian.hpp"
+#include "../Utils/File.hpp"
 #include "Derrota.h"
 #include "MyForm3.h"
 

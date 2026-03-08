@@ -1,5 +1,5 @@
 #pragma once
-#include "Agente.h"
+#include "Agente.hpp"
 
 class Enemigo : public Agente
 {

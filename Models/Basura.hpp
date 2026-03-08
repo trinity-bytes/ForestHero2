@@ -1,5 +1,5 @@
 #pragma once
-#include "Entidad.h"
+#include "Entidad.hpp"
 
 class Basura : public Entidad
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "Agente.h"
+#include "Agente.hpp"
 
 /// Clase Semilla que hereda de Agente, demostrando el concepto de herencia
 class Semilla : public Agente

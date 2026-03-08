@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -125,20 +125,20 @@
     <ClCompile Include="UI\MyForm1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Models\Agua.h" />
-    <ClInclude Include="Models\Aliado.h" />
-    <ClInclude Include="Models\Arbol.h" />
-    <ClInclude Include="Models\Basura.h" />
+    <ClInclude Include="Models\Agua.hpp" />
+    <ClInclude Include="Models\Aliado.hpp" />
+    <ClInclude Include="Models\Arbol.hpp" />
+    <ClInclude Include="Models\Basura.hpp" />
     <ClInclude Include="UI\Creditos.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="UI\Derrota.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Models\Enemigo.h" />
-    <ClInclude Include="Utils\File.h" />
-    <ClInclude Include="Core\GestionJuego.h" />
-    <ClInclude Include="Models\Guardian.h" />
+    <ClInclude Include="Models\Enemigo.hpp" />
+    <ClInclude Include="Utils\File.hpp" />
+    <ClInclude Include="Core\GestionJuego.hpp" />
+    <ClInclude Include="Models\Guardian.hpp" />
     <ClInclude Include="UI\Instrucciones.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -151,13 +151,13 @@
     <ClInclude Include="UI\MyForm3.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Models\Semilla.h" />
-    <ClInclude Include="Models\Entidad.h" />
-    <ClInclude Include="Utils\FuncionesCustom.h" />
+    <ClInclude Include="Models\Semilla.hpp" />
+    <ClInclude Include="Models\Entidad.hpp" />
+    <ClInclude Include="Utils\FuncionesCustom.hpp" />
     <ClInclude Include="UI\MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Models\Agente.h" />
+    <ClInclude Include="Models\Agente.hpp" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\Creditos.resx">
