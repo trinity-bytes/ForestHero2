@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -120,66 +120,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Creditos.cpp" />
-    <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="MyForm1.cpp" />
+    <ClCompile Include="UI\Creditos.cpp" />
+    <ClCompile Include="UI\MyForm.cpp" />
+    <ClCompile Include="UI\MyForm1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Agua.h" />
-    <ClInclude Include="Aliado.h" />
-    <ClInclude Include="Arbol.h" />
-    <ClInclude Include="Basura.h" />
-    <ClInclude Include="Creditos.h">
+    <ClInclude Include="Models\Agua.h" />
+    <ClInclude Include="Models\Aliado.h" />
+    <ClInclude Include="Models\Arbol.h" />
+    <ClInclude Include="Models\Basura.h" />
+    <ClInclude Include="UI\Creditos.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Derrota.h">
+    <ClInclude Include="UI\Derrota.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Enemigo.h" />
-    <ClInclude Include="File.h" />
-    <ClInclude Include="GestionJuego.h" />
-    <ClInclude Include="Guardian.h" />
-    <ClInclude Include="Instrucciones.h">
+    <ClInclude Include="Models\Enemigo.h" />
+    <ClInclude Include="Utils\File.h" />
+    <ClInclude Include="Core\GestionJuego.h" />
+    <ClInclude Include="Models\Guardian.h" />
+    <ClInclude Include="UI\Instrucciones.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MenuJuego.h">
+    <ClInclude Include="UI\MenuJuego.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MyForm1.h">
+    <ClInclude Include="UI\MyForm1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MyForm3.h">
+    <ClInclude Include="UI\MyForm3.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Semilla.h" />
-    <ClInclude Include="Entidad.h" />
-    <ClInclude Include="FuncionesCustom.h" />
-    <ClInclude Include="MyForm.h">
+    <ClInclude Include="Models\Semilla.h" />
+    <ClInclude Include="Models\Entidad.h" />
+    <ClInclude Include="Utils\FuncionesCustom.h" />
+    <ClInclude Include="UI\MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Agente.h" />
+    <ClInclude Include="Models\Agente.h" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Creditos.resx">
-      <DependentUpon>Creditos.h</DependentUpon>
+    <EmbeddedResource Include="UI\Creditos.resx">
+      <DependentUpon>UI\Creditos.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Derrota.resx">
-      <DependentUpon>Derrota.h</DependentUpon>
+    <EmbeddedResource Include="UI\Derrota.resx">
+      <DependentUpon>UI\Derrota.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Instrucciones.resx">
-      <DependentUpon>Instrucciones.h</DependentUpon>
+    <EmbeddedResource Include="UI\Instrucciones.resx">
+      <DependentUpon>UI\Instrucciones.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MenuJuego.resx">
-      <DependentUpon>MenuJuego.h</DependentUpon>
+    <EmbeddedResource Include="UI\MenuJuego.resx">
+      <DependentUpon>UI\MenuJuego.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyForm.resx">
-      <DependentUpon>MyForm.h</DependentUpon>
+    <EmbeddedResource Include="UI\MyForm.resx">
+      <DependentUpon>UI\MyForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyForm1.resx">
-      <DependentUpon>MyForm1.h</DependentUpon>
+    <EmbeddedResource Include="UI\MyForm1.resx">
+      <DependentUpon>UI\MyForm1.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyForm3.resx">
-      <DependentUpon>MyForm3.h</DependentUpon>
+    <EmbeddedResource Include="UI\MyForm3.resx">
+      <DependentUpon>UI\MyForm3.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

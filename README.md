@@ -3,9 +3,11 @@
 # ForestHero2 🌲🎮
 
 <!-- Reemplaza owner/repo cuando publiques en GitHub -->
+
 ![License](https://img.shields.io/badge/code-MIT-green)
 ![Academic use](https://img.shields.io/badge/academic%20use-only-orange)
 ![Assets](https://img.shields.io/badge/assets-non--commercial-orange)
+
 <!-- ![Last commit](https://img.shields.io/github/last-commit/owner/repo) -->
 <!-- ![Issues](https://img.shields.io/github/issues/owner/repo) -->
 
@@ -16,13 +18,13 @@ Un juego 2D de reforestación hecho en C++/CLI + Windows Forms. Protege el bosqu
 ## Capturas
 
 <p>
-    <img src="ForestHero2/Resources/Images/menuPrincipal.png" alt="Menú principal" width="600" />
+    <img src="Resources/Images/menuPrincipal.png" alt="Menú principal" width="600" />
 </p>
 <p>
-    <img src="ForestHero2/Resources/Images/Escenario1.png" alt="Juego en marcha" width="600" />
+    <img src="Resources/Images/Escenario1.png" alt="Juego en marcha" width="600" />
 </p>
 <p>
-    <img src="ForestHero2/Resources/Images/menuVictoria.png" alt="Pantalla de victoria" width="600" />
+    <img src="Resources/Images/menuVictoria.png" alt="Pantalla de victoria" width="600" />
 </p>
 
 ## Tabla de contenidos
@@ -86,13 +88,14 @@ Consulta `ACADEMIC_INTEGRITY.md` para más detalles.
 
 ## Compilar desde código
 
-1) Clona o descarga el repositorio.
-2) Abre `ForestHero2.sln` en Visual Studio.
-3) Selecciona la configuración (Debug/Release) y plataforma (x86/x64).
-4) Compila con Ctrl+Shift+B.
-5) Ejecuta con F5 o Ctrl+F5.
+1. Clona o descarga el repositorio.
+2. Abre `ForestHero2.sln` en Visual Studio.
+3. Selecciona la configuración (Debug/Release) y plataforma (x86/x64).
+4. Compila con Ctrl+Shift+B.
+5. Ejecuta con F5 o Ctrl+F5.
 
 Notas:
+
 - El proyecto usa C++/CLI y Windows Forms (.NET Framework 4.7.2).
 - Los recursos se cargan desde `ForestHero2/Resources/...`.
 
@@ -114,6 +117,7 @@ Notas:
 ## Contribuir
 
 Las contribuciones son bienvenidas. Antes de abrir un PR:
+
 - Crea un issue con el cambio propuesto.
 - Sigue el estilo del proyecto y evita introducir binarios en Git.
 - Verifica que compila en Debug y Release.

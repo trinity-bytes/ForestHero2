@@ -363,8 +363,8 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Project-specific ignores
-ForestHero2/Resources/Data/JugadorPuntaje.dat
-ForestHero2/Resources/Data/jugadorPuntaje.txt
+Resources/Data/JugadorPuntaje.dat
+Resources/Data/jugadorPuntaje.txt
 *.dat
 *.zip
 *.7z

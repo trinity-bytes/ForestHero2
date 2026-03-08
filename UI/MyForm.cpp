@@ -2,10 +2,10 @@
 
 using namespace System;
 using namespace System::Windows::Forms;
-using namespace ForestHero2;
+using namespace ForestHero2::UI;
 
 void main() {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	Application::Run(gcnew ForestHero2::MenuJuego());
+	Application::Run(gcnew MenuJuego());
 }

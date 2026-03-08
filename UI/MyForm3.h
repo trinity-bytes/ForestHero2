@@ -1,7 +1,7 @@
 #pragma once
 #include "MyForm.h"
 #include "MenuJuego.h"
-#include "Guardian.h"
+#include "../Models/Guardian.h"
 #include "MyForm1.h"
 #include <string>
 #include <msclr/marshal_cppstd.h>

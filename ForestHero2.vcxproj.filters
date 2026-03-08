@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{fd184994-e94f-4e2a-8e8f-bdcbefdfba09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{cbfca882-c404-4454-956c-b8e3b8de3888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{1eb0ed57-a9ee-4096-9492-56e5d196a587}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{1b9e8392-5175-4eee-93f3-aca1562a4745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Services">
+      <UniqueIdentifier>{f5792f23-174e-4022-8977-219b008711aa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="UI\MyForm.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Creditos.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\MyForm1.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="UI\MyForm.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Agua.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Agente.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Enemigo.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Guardian.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Arbol.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Basura.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\FuncionesCustom.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Entidad.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Semilla.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GestionJuego.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Aliado.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\File.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\MenuJuego.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Derrota.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\MyForm3.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Instrucciones.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Creditos.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\MyForm1.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE.md">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\README.md">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
